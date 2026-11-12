@@ -14,105 +14,68 @@ const mono = JetBrains_Mono({
 });
 
 /**
- * 1:1 Modular Geometric Vector Typography for "CONTACT"
- * Symmetrically aligned and mathematically centered (viewBox 0 0 450 84).
- * Matches the exact aesthetic geometry of PROJECTS, EXPERIENCE, and SKILLS.
+ * 1:1 Modular Chunky Vector Typography for "CONTACT"
+ * Cleanly centered with exact bounding box (viewBox 0 0 448 70).
+ * Standard SVG <g> ensures zero collapsed transforms.
  */
-function CenteredContactTypography() {
-  const letters = [
-    {
-      char: "C",
-      transform: "translate(10, 4)",
-      shapes: [
-        <rect key="1" x="0" y="0" width="14" height="74" rx="7" />,
-        <rect key="2" x="10" y="0" width="34" height="15" rx="7" />,
-        <rect key="3" x="10" y="59" width="34" height="15" rx="7" />,
-      ],
-    },
-    {
-      char: "O",
-      transform: "translate(70, 4)",
-      shapes: [
-        <rect key="1" x="0" y="0" width="14" height="74" rx="7" />,
-        <rect key="2" x="34" y="0" width="14" height="74" rx="7" />,
-        <rect key="3" x="10" y="0" width="28" height="15" rx="6" />,
-        <rect key="4" x="10" y="59" width="28" height="15" rx="6" />,
-      ],
-    },
-    {
-      char: "N",
-      transform: "translate(134, 4)",
-      shapes: [
-        <rect key="1" x="0" y="0" width="14" height="74" rx="7" />,
-        <rect key="2" x="36" y="0" width="14" height="74" rx="7" />,
-        <path key="3" d="M 10 0 L 38 60 H 42 V 74 L 14 14 H 10 Z" />,
-      ],
-    },
-    {
-      char: "T",
-      transform: "translate(200, 4)",
-      shapes: [
-        <rect key="1" x="0" y="0" width="48" height="15" rx="7" />,
-        <rect key="2" x="17" y="10" width="14" height="64" rx="7" />,
-      ],
-    },
-    {
-      char: "A",
-      transform: "translate(264, 4)",
-      shapes: [
-        <rect key="1" x="15" y="0" width="14" height="74" rx="7" transform="rotate(-15 15 37)" />,
-        <rect key="2" x="23" y="0" width="14" height="74" rx="7" transform="rotate(15 23 37)" />,
-        <rect key="3" x="13" y="42" width="26" height="14" rx="6" />,
-      ],
-    },
-    {
-      char: "C",
-      transform: "translate(332, 4)",
-      shapes: [
-        <rect key="1" x="0" y="0" width="14" height="74" rx="7" />,
-        <rect key="2" x="10" y="0" width="34" height="15" rx="7" />,
-        <rect key="3" x="10" y="59" width="34" height="15" rx="7" />,
-      ],
-    },
-    {
-      char: "T",
-      transform: "translate(392, 4)",
-      shapes: [
-        <rect key="1" x="0" y="0" width="48" height="15" rx="7" />,
-        <rect key="2" x="17" y="10" width="14" height="64" rx="7" />,
-      ],
-    },
-  ];
-
+function ContactTypography() {
   return (
     <svg
-      viewBox="0 0 450 84"
-      className="w-full max-w-[320px] sm:max-w-[420px] md:max-w-[540px] lg:max-w-[620px] h-auto block select-none text-[#171717] mx-auto overflow-visible"
+      viewBox="0 0 448 70"
+      className="w-full max-w-[320px] sm:max-w-[420px] md:max-w-[540px] lg:max-w-[640px] h-auto block select-none text-[#171717] mx-auto"
       fill="currentColor"
       aria-label="CONTACT"
     >
-      {letters.map((letter, idx) => (
-        <motion.g
-          key={idx}
-          transform={letter.transform}
-          initial={{ y: 16, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{
-            type: "spring",
-            stiffness: 280,
-            damping: 22,
-            delay: idx * 0.04,
-          }}
-          whileHover={{
-            y: -6,
-            transition: { type: "spring", stiffness: 400, damping: 18 },
-          }}
-          onHoverStart={() => playBubblePop(1 + idx * 0.08, true)}
-          className="cursor-default"
-        >
-          {letter.shapes}
-        </motion.g>
-      ))}
+      {/* C */}
+      <g transform="translate(0, 0)">
+        <path
+          fillRule="evenodd"
+          d="M 16 0 H 42 C 48 0 52 4 52 10 V 16 C 52 22 48 26 42 26 H 24 C 20 26 18 28 18 32 V 38 C 18 42 20 44 24 44 H 42 C 48 44 52 48 52 54 V 60 C 52 66 48 70 42 70 H 16 C 6 70 0 64 0 54 V 16 C 0 6 6 0 16 0 Z"
+        />
+      </g>
+      {/* O */}
+      <g transform="translate(60, 0)">
+        <path
+          fillRule="evenodd"
+          d="M 16 0 H 40 C 50 0 56 6 56 16 V 54 C 56 64 50 70 40 70 H 16 C 6 70 0 64 0 54 V 16 C 0 6 6 0 16 0 Z M 18 20 H 38 C 40 20 41 21 41 23 V 47 C 41 49 40 50 38 50 H 18 C 16 50 15 49 15 47 V 23 C 15 21 16 20 18 20 Z"
+        />
+      </g>
+      {/* N */}
+      <g transform="translate(124, 0)">
+        <path
+          fillRule="evenodd"
+          d="M 8 0 H 18 C 22 0 24 2 24 6 V 34 L 38 4 C 40 1 43 0 47 0 H 52 C 56 0 58 4 58 8 V 64 C 58 68 56 70 52 70 H 44 C 40 70 38 68 38 64 V 36 L 24 66 C 22 69 19 70 15 70 H 8 C 4 70 0 66 0 62 V 8 C 0 4 4 0 8 0 Z"
+        />
+      </g>
+      {/* T */}
+      <g transform="translate(190, 0)">
+        <path
+          fillRule="evenodd"
+          d="M 3 0 H 53 C 57 0 60 3 60 7 V 15 C 60 19 57 22 53 22 H 36 V 63 C 36 67 33 70 29 70 H 27 C 23 70 20 67 20 63 V 22 H 3 C 0 22 0 19 0 15 V 7 C 0 3 3 0 3 0 Z"
+        />
+      </g>
+      {/* A */}
+      <g transform="translate(254, 0)">
+        <path
+          fillRule="evenodd"
+          d="M 18 0 H 36 C 45 0 52 6 52 15 C 52 22 47 27 39 30 C 35 31 34 33 36 36 C 44 40 54 48 54 59 V 63 C 54 67 51 70 46 70 H 36 C 32 70 29 67 29 63 V 53 C 29 47 24 44 19 44 C 14 44 9 47 9 53 V 63 C 9 67 6 70 1 70 H -2 C -7 70 -10 67 -10 63 V 59 C -10 48 0 40 8 36 C 10 33 9 31 5 30 C -3 27 -8 22 -8 15 C -8 6 -1 0 8 0 Z M 12 14 C 12 18 15 21 19 21 C 23 21 26 18 26 14 C 26 10 23 7 19 7 C 15 7 12 10 12 14 Z"
+          transform="translate(10, 0)"
+        />
+      </g>
+      {/* C */}
+      <g transform="translate(328, 0)">
+        <path
+          fillRule="evenodd"
+          d="M 16 0 H 42 C 48 0 52 4 52 10 V 16 C 52 22 48 26 42 26 H 24 C 20 26 18 28 18 32 V 38 C 18 42 20 44 24 44 H 42 C 48 44 52 48 52 54 V 60 C 52 66 48 70 42 70 H 16 C 6 70 0 64 0 54 V 16 C 0 6 6 0 16 0 Z"
+        />
+      </g>
+      {/* T */}
+      <g transform="translate(388, 0)">
+        <path
+          fillRule="evenodd"
+          d="M 3 0 H 53 C 57 0 60 3 60 7 V 15 C 60 19 57 22 53 22 H 36 V 63 C 36 67 33 70 29 70 H 27 C 23 70 20 67 20 63 V 22 H 3 C 0 22 0 19 0 15 V 7 C 0 3 3 0 3 0 Z"
+        />
+      </g>
     </svg>
   );
 }
@@ -189,9 +152,15 @@ export default function ContactHeroSection() {
         </motion.div>
 
         {/* 2. Perfectly Centered Modular Vector Typography: CONTACT */}
-        <div className="flex justify-center items-center w-full my-3 sm:my-5 select-none">
-          <CenteredContactTypography />
-        </div>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.94 }}
+          animate={{ opacity: 1, scale: 1 }}
+          whileHover={{ scale: 1.02 }}
+          transition={{ duration: 0.5, delay: 0.1, type: "spring", stiffness: 280, damping: 20 }}
+          className="flex justify-center items-center w-full my-3 sm:my-5 cursor-default select-none"
+        >
+          <ContactTypography />
+        </motion.div>
 
         {/* 3. Clean Status Badges & Quick Info Chips */}
         <motion.div
