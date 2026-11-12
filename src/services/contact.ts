@@ -2,7 +2,6 @@ import type { ContactMessagePayload, ContactApiResponse } from "@/types/contact"
 
 /**
  * Mengirim pesan kontak ke endpoint aman /api/contact
- * Tidak lagi memanggil Supabase secara langsung dari client
  */
 export async function sendContactMessage(
   payload: ContactMessagePayload

@@ -45,9 +45,19 @@ body {
 
 /* Background grain noise texture overlay */
 .bg-grain-texture {
-  background-color: #F8F9FA;
+  background-color: #FFFFFF;
   background-image: radial-gradient(rgba(15, 23, 42, 0.035) 1px, transparent 0);
   background-size: 16px 16px;
+}
+
+/* Universal Blueprint Grid Pattern (Consistent across loading, home, about, and all sections) */
+.bg-blueprint-grid {
+  background-color: #FFFFFF;
+  background-image: 
+    linear-gradient(to right, #E2E8F0 1px, transparent 1px),
+    linear-gradient(to bottom, #E2E8F0 1px, transparent 1px);
+  background-size: 56px 56px;
+  background-position: top center;
 }
 
 /* Headings modern letter spacing */
@@ -84,3 +94,177 @@ h1, h2, h3, h4, h5, h6 {
 .shadow-soft-hover {
   box-shadow: 0 16px 32px -4px rgba(15, 23, 42, 0.08), 0 4px 12px -2px rgba(15, 23, 42, 0.04);
 }
+
+/* ==========================================================================
+   Project Folder Cards - Locked Responsive Media Queries (1:1 Reference)
+   ========================================================================== */
+
+.project-card-article {
+  position: sticky;
+  width: 100%;
+  top: 84px;
+}
+
+.project-card-container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.project-card-body {
+  display: grid;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.project-left-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.project-right-col {
+  position: relative;
+  width: 100%;
+}
+
+.project-image-box {
+  position: relative;
+  width: 100%;
+}
+
+/* Extra Large Screens (>= 1440px) */
+@media (min-width: 1440px) {
+  .project-card-article {
+    top: 100px;
+  }
+  .project-card-container {
+    max-width: 1360px;
+  }
+  .project-card-body {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 2.5rem;
+    min-height: 590px;
+    padding: 38px 44px;
+  }
+  .project-left-col {
+    grid-column: span 5 / span 5;
+    min-height: 514px;
+  }
+  .project-right-col {
+    grid-column: span 7 / span 7;
+    height: 514px;
+  }
+  .project-image-box {
+    height: 514px;
+  }
+}
+
+/* Desktop & Large Laptops (1200px - 1439px) — [LOCKED LAPTOP REFERENCE] */
+@media (min-width: 1200px) and (max-width: 1439px) {
+  .project-card-article {
+    top: 96px;
+  }
+  .project-card-container {
+    max-width: 1200px;
+  }
+  .project-card-body {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 2rem;
+    min-height: 540px;
+    padding: 32px 38px;
+  }
+  .project-left-col {
+    grid-column: span 5 / span 5;
+    min-height: 476px;
+  }
+  .project-right-col {
+    grid-column: span 7 / span 7;
+    height: 476px;
+  }
+  .project-image-box {
+    height: 476px;
+  }
+}
+
+/* Compact Laptops (1024px - 1199px) */
+@media (min-width: 1024px) and (max-width: 1199px) {
+  .project-card-article {
+    top: 92px;
+  }
+  .project-card-container {
+    max-width: 990px;
+  }
+  .project-card-body {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 1.75rem;
+    min-height: 490px;
+    padding: 28px 30px;
+  }
+  .project-left-col {
+    grid-column: span 5 / span 5;
+    min-height: 434px;
+  }
+  .project-right-col {
+    grid-column: span 7 / span 7;
+    height: 434px;
+  }
+  .project-image-box {
+    height: 434px;
+  }
+}
+
+/* Tablets (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .project-card-article {
+    top: 88px;
+  }
+  .project-card-container {
+    max-width: 720px;
+  }
+  .project-card-body {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    min-height: auto;
+    padding: 30px 28px;
+  }
+  .project-left-col {
+    min-height: auto;
+  }
+  .project-right-col {
+    height: auto;
+  }
+  .project-image-box {
+    height: 380px;
+  }
+}
+
+/* Mobile Screens (< 768px) */
+@media (max-width: 767px) {
+  .project-card-article {
+    top: 84px;
+  }
+  .project-card-container {
+    max-width: 100%;
+  }
+  .project-card-body {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    min-height: auto;
+    padding: 22px 18px;
+  }
+  .project-left-col {
+    min-height: auto;
+  }
+  .project-right-col {
+    height: auto;
+  }
+  .project-image-box {
+    aspect-ratio: 4 / 3;
+    min-height: 240px;
+    height: auto;
+  }
+}
+

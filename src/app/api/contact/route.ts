@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { supabase } from "@/lib/supabase/client";
+import { turso } from "@/lib/turso";
 
 // Simple in-memory rate limiter per IP address
 // Menyimpan riwayat timestamp pengiriman untuk tiap IP
@@ -119,29 +119,17 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // 5. Simpan ke database Supabase
-    // Coba insert dengan subject terlebih dahulu
-    const payloadWithSubject: Record<string, unknown> = {
-      name: cleanName,
-      email: cleanEmail,
-      message: cleanMessage,
-      status: "unread",
-    };
-
-    if (cleanSubject) {
-      payloadWithSubject.subject = cleanSubject;
-    }
-
-    let insertRes = await supabase.from("messages").insert([payloadWithSubject]);
-
-    // Jika skema tabel Supabase belum memiliki kolom 'subject', fallback insert tanpa subject
-    if (insertRes.error && insertRes.error.message.includes("subject")) {
-      delete payloadWithSubject.subject;
-      insertRes = await supabase.from("messages").insert([payloadWithSubject]);
-    }
-
-    if (insertRes.error) {
-      console.error("Gagal insert pesan ke Supabase:", insertRes.error);
+    // 5. Simpan ke database Turso
+    try {
+      if (!turso) {
+        throw new Error("Turso database client is not configured.");
+      }
+      await turso.execute({
+        sql: "INSERT INTO messages (name, email, subject, message, status) VALUES (?, ?, ?, ?, 'unread')",
+        args: [cleanName, cleanEmail, cleanSubject || null, cleanMessage],
+      });
+    } catch (dbError) {
+      console.error("Gagal insert pesan ke Turso:", dbError);
       return NextResponse.json(
         {
           success: false,

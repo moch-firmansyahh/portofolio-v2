@@ -2,45 +2,62 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { PERSONAL_INFO } from "@/data/portfolioData";
 
 export default function Preloader() {
-  const [progress, setProgress] = useState(0);
+  const [displayText, setDisplayText] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Lock scroll during preloader
+    // Lock scroll during greeting preloader
     document.body.style.overflow = "hidden";
 
-    // 60fps/120fps display refresh synchronized progress (~2.2s loading)
-    const totalDuration = 2200;
-    let startTime: number | null = null;
-    let animationFrameId: number;
+    let isCancelled = false;
 
-    const updateProgress = (timestamp: number) => {
-      if (!startTime) startTime = timestamp;
-      const elapsed = timestamp - startTime;
-      const progressRatio = Math.min(elapsed / totalDuration, 1);
+    const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-      // Smooth easeOutQuad progress curve
-      const easedProgress = progressRatio * (2 - progressRatio);
-      const currentPercent = Math.round(easedProgress * 100);
+    async function runTypewriter() {
+      await sleep(250); // initial brief pause
 
-      setProgress(currentPercent);
-
-      if (progressRatio < 1) {
-        animationFrameId = requestAnimationFrame(updateProgress);
-      } else {
-        // Unblock scroll immediately at 100% and dismiss preloader
-        document.body.style.overflow = "unset";
-        setIsLoading(false);
+      // 1. Type "Hey there!"
+      const phrase1 = "Hey there!";
+      for (let i = 1; i <= phrase1.length; i++) {
+        if (isCancelled) return;
+        setDisplayText(phrase1.substring(0, i));
+        await sleep(55);
       }
-    };
 
-    animationFrameId = requestAnimationFrame(updateProgress);
+      // Pause on "Hey there!"
+      await sleep(750);
+
+      // 2. Delete "Hey there!"
+      for (let i = phrase1.length; i >= 0; i--) {
+        if (isCancelled) return;
+        setDisplayText(phrase1.substring(0, i));
+        await sleep(28);
+      }
+
+      await sleep(150);
+
+      // 3. Type "Welcome"
+      const phrase2 = "Welcome";
+      for (let i = 1; i <= phrase2.length; i++) {
+        if (isCancelled) return;
+        setDisplayText(phrase2.substring(0, i));
+        await sleep(65);
+      }
+
+      // Pause on "Welcome"
+      await sleep(700);
+
+      if (isCancelled) return;
+      document.body.style.overflow = "unset";
+      setIsLoading(false);
+    }
+
+    runTypewriter();
 
     return () => {
-      cancelAnimationFrame(animationFrameId);
+      isCancelled = true;
       document.body.style.overflow = "unset";
     };
   }, []);
@@ -49,39 +66,34 @@ export default function Preloader() {
     <AnimatePresence mode="wait">
       {isLoading && (
         <motion.div
-          key="preloader-slideup"
-          initial={{ y: "0%" }}
+          key="greeting-preloader"
+          initial={{ opacity: 1 }}
           exit={{
-            y: "-100%",
-            transition: {
-              duration: 1.1, // Slower, buttery-smooth curtain lift
-              ease: [0.76, 0, 0.24, 1], // Award-winning custom cubic bezier
-            },
+            opacity: 0,
+            scale: 1.02,
+            transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] },
           }}
-          className="fixed inset-0 z-[99999] flex flex-col items-center justify-center bg-[#F8F9FA] bg-grain-texture select-none overflow-hidden will-change-transform"
+          className="fixed inset-0 z-[99999] flex items-center justify-center bg-white select-none overflow-hidden"
+          style={{
+            backgroundImage:
+              "linear-gradient(to right, #E2E8F0 1px, transparent 1px), linear-gradient(to bottom, #E2E8F0 1px, transparent 1px)",
+            backgroundSize: "56px 56px",
+            backgroundPosition: "top center",
+          }}
         >
-          {/* Center Brand & Loading Counter */}
-          <div className="flex flex-col items-center text-center space-y-4 px-6">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-neutral-900">
-              {PERSONAL_INFO.name}
-            </h1>
-
-            {/* Subtitle with percentage */}
-            <div className="flex items-center gap-2 text-xs sm:text-sm font-mono uppercase tracking-[0.28em] text-neutral-500 font-medium">
-              <span>PORTFOLIO LOADING</span>
-              <span className="font-bold text-neutral-900 font-mono min-w-[40px] text-left">
-                {progress}%
-              </span>
-            </div>
-
-            {/* Continuous Fluid Progress Loading Bar */}
-            <div className="w-52 sm:w-64 h-[2px] bg-neutral-200 overflow-hidden relative rounded-full mt-2">
-              <div
-                style={{ width: `${progress}%` }}
-                className="h-full bg-neutral-900 rounded-full transition-[width] duration-75 ease-out will-change-[width]"
-              />
-            </div>
-          </div>
+          {/* Cyan Speech Bubble 1:1 with Image 2 */}
+          <motion.div
+            initial={{ scale: 0.85, opacity: 0, y: 10 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            exit={{ scale: 1.1, opacity: 0 }}
+            transition={{ type: "spring", stiffness: 400, damping: 25 }}
+            className="relative px-8 py-5 sm:px-10 sm:py-6 bg-[#00C2FF] rounded-2xl rounded-tl-xs border-[2.5px] border-black shadow-[4px_4px_0px_#000] flex items-center justify-center min-w-[240px] sm:min-w-[280px]"
+          >
+            <span className="font-sans font-extrabold text-2xl sm:text-3xl md:text-4xl text-black tracking-tight flex items-center">
+              {displayText || "\u00A0"}
+              <span className="inline-block w-[3px] h-7 sm:h-9 bg-black ml-1.5 animate-pulse align-middle" />
+            </span>
+          </motion.div>
         </motion.div>
       )}
     </AnimatePresence>

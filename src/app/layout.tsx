@@ -1,11 +1,18 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans } from "next/font/google";
+import { Plus_Jakarta_Sans, Caveat } from "next/font/google";
 import "./globals.css";
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
   variable: "--font-jakarta",
+  display: "swap",
+});
+
+const caveat = Caveat({
+  subsets: ["latin"],
+  weight: ["400", "600", "700"],
+  variable: "--font-caveat",
   display: "swap",
 });
 
@@ -53,14 +60,19 @@ export const metadata: Metadata = {
   },
 };
 
+import GlobalCursor from "@/components/effects/GlobalCursor";
+import Preloader from "@/components/layout/Preloader";
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id" className={`${jakarta.variable}`}>
-      <body className="min-h-screen bg-[#F5EFE6] text-[#1A1A1A] font-sans antialiased selection:bg-[#F7EAE5] selection:text-[#B5654A]">
+    <html lang="id" className={`${jakarta.variable} ${caveat.variable}`}>
+      <body className="min-h-screen bg-white text-[#1A1A1A] font-sans antialiased selection:bg-[#F7EAE5] selection:text-[#B5654A]">
+        <Preloader />
+        <GlobalCursor />
         {children}
       </body>
     </html>
