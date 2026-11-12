@@ -16,7 +16,9 @@ import {
   Terminal,
   ExternalLink,
   Layers,
+  Zap,
 } from "lucide-react";
+import { playBubblePop, playCombo } from "@/components/playground/audioEffects";
 
 interface ExperienceTimelineProps {
   initialExperiences: ExperienceItem[];
@@ -61,14 +63,17 @@ export default function ExperienceTimelineSection({
 
   // Kudos / Reaction Counter per card
   const [kudosCount, setKudosCount] = useState<Record<string, number>>({
-    "0": 12,
-    "1": 8,
-    "2": 15,
+    "0": 18,
+    "1": 14,
+    "2": 22,
   });
+
+  // Card shake tracking on kudos
+  const [shakingCard, setShakingCard] = useState<number | null>(null);
 
   // Floating particles on kudos click
   const [floatingParticles, setFloatingParticles] = useState<
-    Array<{ id: number; cardIdx: number; emoji: string }>
+    Array<{ id: number; cardIdx: number; emoji: string; x: number }>
   >([]);
 
   // Scroll Progress for Center Blueprint Metro Line
@@ -101,10 +106,14 @@ export default function ExperienceTimelineSection({
   }, [initialExperiences, activeFilter]);
 
   const toggleLog = (key: string) => {
-    setExpandedLogs((prev) => ({
-      ...prev,
-      [key]: !prev[key],
-    }));
+    setExpandedLogs((prev) => {
+      const nextState = !prev[key];
+      playBubblePop(nextState ? 1.3 : 0.9, true);
+      return {
+        ...prev,
+        [key]: nextState,
+      };
+    });
   };
 
   const handleKudos = (cardIdx: number) => {
@@ -114,16 +123,29 @@ export default function ExperienceTimelineSection({
       [key]: (prev[key] || 0) + 1,
     }));
 
-    // Spawn 2 fun emoji particles
-    const emojis = ["🔥", "⚡", "✨", "🚀", "👾", "🎉"];
-    const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
-    const newParticle = { id: Date.now() + Math.random(), cardIdx, emoji: randomEmoji };
-    setFloatingParticles((prev) => [...prev.slice(-6), newParticle]);
+    playCombo(true);
+    setShakingCard(cardIdx);
+    setTimeout(() => setShakingCard(null), 350);
+
+    // Spawn 5 fun emoji particles shooting up
+    const emojis = ["🔥", "⚡", "✨", "🚀", "👾", "🎉", "☕", "💖"];
+    const newParticles = Array.from({ length: 4 }).map((_, i) => ({
+      id: Date.now() + Math.random() + i,
+      cardIdx,
+      emoji: emojis[Math.floor(Math.random() * emojis.length)],
+      x: (Math.random() - 0.5) * 60,
+    }));
+
+    setFloatingParticles((prev) => [...prev.slice(-10), ...newParticles]);
 
     setTimeout(() => {
-      setFloatingParticles((prev) => prev.filter((p) => p.id !== newParticle.id));
-    }, 900);
+      setFloatingParticles((prev) =>
+        prev.filter((p) => !newParticles.some((np) => np.id === p.id))
+      );
+    }, 950);
   };
+
+  const totalKudos = Object.values(kudosCount).reduce((a, b) => a + b, 0);
 
   const filterTabs = [
     { key: "ALL", labelEn: `ALL ROADMAP (${initialExperiences.length})`, labelId: `SEMUA PERJALANAN (${initialExperiences.length})` },
@@ -150,29 +172,36 @@ export default function ExperienceTimelineSection({
           </span>
         </h2>
 
+        {/* Global Kudos Counter Chip */}
+        <motion.div
+          whileHover={{ scale: 1.05 }}
+          className="mt-3 inline-flex items-center gap-1.5 px-3 py-1 bg-[#FFF275] border-2 border-black font-mono text-xs font-black shadow-[2px_2px_0px_#000]"
+        >
+          <Flame className="w-3.5 h-3.5 text-[#E11D5A] fill-[#E11D5A]" />
+          <span>{t(`TOTAL KUDOS SENT: ${totalKudos} 🔥`, `TOTAL APRESIASI: ${totalKudos} 🔥`)}</span>
+        </motion.div>
+
         {/* Filter Navigation Tabs */}
         <div className="flex flex-wrap items-center justify-center gap-2 font-mono text-xs select-none mt-5">
           {filterTabs.map((tab) => {
             const isActive = activeFilter === tab.key;
             return (
-              <button
+              <motion.button
                 key={tab.key}
-                onClick={() => setActiveFilter(tab.key)}
-                className={`relative px-3 py-1.5 font-bold border-2 border-black transition-transform cursor-pointer ${
+                onClick={() => {
+                  setActiveFilter(tab.key);
+                  playBubblePop(1.1, true);
+                }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className={`relative px-3.5 py-1.5 font-bold border-2 border-black transition-all cursor-pointer ${
                   isActive
                     ? "bg-neutral-900 text-white shadow-[3px_3px_0px_#00C2FF]"
                     : "bg-white text-neutral-800 hover:bg-neutral-100 shadow-[2px_2px_0px_#000]"
                 }`}
               >
-                {isActive && (
-                  <motion.div
-                    layoutId="activeTimelineFilter"
-                    className="absolute inset-0 border-2 border-black -z-10"
-                    transition={{ type: "spring", stiffness: 380, damping: 28 }}
-                  />
-                )}
                 <span>{t(tab.labelEn, tab.labelId)}</span>
-              </button>
+              </motion.button>
             );
           })}
         </div>
@@ -181,12 +210,25 @@ export default function ExperienceTimelineSection({
       {/* 2. Interactive Metro / Blueprint Timeline */}
       <div className="relative max-w-5xl mx-auto">
         {/* Center Blueprint Track Line (Background Rail) */}
-        <div className="absolute top-0 bottom-0 left-6 md:left-1/2 -translate-x-1/2 w-1 bg-neutral-300 border-x border-dashed border-neutral-400/50" />
+        <div className="absolute top-0 bottom-0 left-6 md:left-1/2 -translate-x-1/2 w-1.5 bg-neutral-200 border-x border-dashed border-neutral-400" />
 
         {/* Animated Progress Line filling with scroll */}
         <motion.div
           style={{ height: pathHeight }}
-          className="absolute top-0 left-6 md:left-1/2 -translate-x-1/2 w-1 bg-[#00C2FF] border-x border-black z-10 origin-top shadow-xs"
+          className="absolute top-0 left-6 md:left-1/2 -translate-x-1/2 w-1.5 bg-[#00C2FF] border-x border-black z-10 origin-top shadow-[0_0_8px_#00C2FF]"
+        />
+
+        {/* Travelling Energy Light Pulse along line */}
+        <motion.div
+          animate={{
+            top: ["0%", "100%"],
+          }}
+          transition={{
+            repeat: Infinity,
+            duration: 4,
+            ease: "easeInOut",
+          }}
+          className="absolute left-6 md:left-1/2 -translate-x-1/2 w-3 h-6 bg-[#FFE600] border border-black rounded-full z-15 shadow-[0_0_10px_#FFE600] pointer-events-none"
         />
 
         {/* Timeline Items List */}
@@ -203,6 +245,7 @@ export default function ExperienceTimelineSection({
                 };
               const isLogOpen = !!expandedLogs[exp.company || String(index)];
               const kudos = kudosCount[String(index)] || 10;
+              const isShaking = shakingCard === index;
 
               // Card Accent Color
               const accentColors = [
@@ -216,34 +259,41 @@ export default function ExperienceTimelineSection({
                 <motion.div
                   key={exp.id || `${exp.company}-${index}`}
                   layout
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, y: 35, rotate: isEven ? -1 : 1 }}
+                  whileInView={{ opacity: 1, y: 0, rotate: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
                   exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.4, delay: index * 0.08 }}
+                  transition={{ duration: 0.5, delay: index * 0.08, ease: "easeOut" }}
                   className={`relative flex flex-col md:flex-row items-start ${
                     !isEven ? "md:flex-row-reverse" : ""
                   } gap-6 md:gap-14`}
                 >
-                  {/* Metro Station Node with Hover 360 Spin */}
+                  {/* Metro Station Node with Pulsing Radar Ring & 360 Spin */}
                   <div className="absolute left-6 md:left-1/2 -translate-x-1/2 top-6 flex items-center justify-center z-20">
+                    {/* Concentric Radar Wave */}
+                    <motion.div
+                      animate={{ scale: [1, 2.2], opacity: [0.7, 0] }}
+                      transition={{ repeat: Infinity, duration: 2.2, delay: index * 0.4, ease: "easeOut" }}
+                      className="absolute w-10 h-10 rounded-full border-2 border-black bg-[#00C2FF]/30 pointer-events-none"
+                    />
+
                     <motion.div
                       whileHover={{ scale: 1.25, rotate: 180 }}
                       whileTap={{ scale: 0.9 }}
                       transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                      className={`w-10 h-10 rounded-full border-2 border-black ${accent.bg} shadow-[3px_3px_0px_#000] flex items-center justify-center font-mono font-black text-xs cursor-pointer select-none`}
+                      className={`relative w-10 h-10 rounded-full border-2 border-black ${accent.bg} shadow-[3px_3px_0px_#000] flex items-center justify-center font-mono font-black text-xs cursor-pointer select-none`}
                     >
                       <span>0{index + 1}</span>
                     </motion.div>
                   </div>
 
                   {/* Experience Card */}
-                  <div
-                    className="ml-14 md:ml-0 w-[calc(100%-3.5rem)] md:w-[calc(50%-2rem)] md:text-left"
-                  >
+                  <div className="ml-14 md:ml-0 w-[calc(100%-3.5rem)] md:w-[calc(50%-2rem)] md:text-left">
                     <motion.div
-                      whileHover={{ y: -4 }}
-                      transition={{ type: "spring", stiffness: 350, damping: 22 }}
-                      className="group relative bg-white border-2 border-black p-5 sm:p-7 shadow-[6px_6px_0px_#000] hover:shadow-[8px_8px_0px_#000] transition-shadow duration-200"
+                      animate={isShaking ? { x: [-3, 3, -3, 3, 0] } : {}}
+                      transition={{ duration: 0.3 }}
+                      whileHover={{ y: -6, scale: 1.01 }}
+                      className="group relative bg-white border-2 border-black p-5 sm:p-7 shadow-[6px_6px_0px_#000] hover:shadow-[10px_10px_0px_#000] transition-shadow duration-200"
                     >
                       {/* Technical Registration Crosshairs at 4 corners */}
                       <div className="absolute top-1.5 left-1.5 text-neutral-400 font-mono text-[9px] pointer-events-none group-hover:text-black transition-colors">
@@ -300,9 +350,9 @@ export default function ExperienceTimelineSection({
                           {exp.technologies.map((tech, tIdx) => (
                             <motion.span
                               key={`${tech}-${tIdx}`}
-                              whileHover={{ scale: 1.08, y: -2 }}
+                              whileHover={{ scale: 1.1, y: -2 }}
                               whileTap={{ scale: 0.95 }}
-                              className="px-2.5 py-1 bg-neutral-100 hover:bg-[#F6DCA0] border border-black font-mono text-[11px] font-bold text-neutral-900 shadow-[1.5px_1.5px_0px_#000] cursor-pointer transition-colors"
+                              className="px-2.5 py-1 bg-neutral-100 hover:bg-[#FFE600] border border-black font-mono text-[11px] font-bold text-neutral-900 shadow-[1.5px_1.5px_0px_#000] cursor-pointer transition-colors"
                             >
                               {tech}
                             </motion.span>
@@ -315,15 +365,19 @@ export default function ExperienceTimelineSection({
                         {/* 1. Behind The Scenes Button */}
                         <motion.button
                           onClick={() => toggleLog(exp.company || String(index))}
-                          whileHover={{ scale: 1.03 }}
+                          whileHover={{ scale: 1.04 }}
                           whileTap={{ scale: 0.95 }}
-                          className="flex items-center gap-1.5 px-3 py-1.5 bg-neutral-100 hover:bg-neutral-200 border-2 border-black font-mono text-xs font-bold text-neutral-900 shadow-[2px_2px_0px_#000] cursor-pointer"
+                          className={`flex items-center gap-1.5 px-3 py-1.5 border-2 border-black font-mono text-xs font-bold transition-colors cursor-pointer ${
+                            isLogOpen
+                              ? "bg-neutral-900 text-white shadow-[2px_2px_0px_#00C2FF]"
+                              : "bg-neutral-100 hover:bg-neutral-200 text-neutral-900 shadow-[2px_2px_0px_#000]"
+                          }`}
                         >
-                          <BookOpen className="w-3.5 h-3.5 text-neutral-700" />
+                          <BookOpen className="w-3.5 h-3.5" />
                           <span>
                             {isLogOpen
-                              ? t("Tutup Catatan Rahasia", "Tutup Catatan Rahasia")
-                              : t("Baca Catatan Rahasia (Dev Log)", "Baca Catatan Rahasia (Dev Log)")}
+                              ? t("Tutup Catatan Dapur", "Tutup Catatan Dapur")
+                              : t("Buka Catatan Dapur (Dev Log)", "Buka Catatan Dapur (Dev Log)")}
                           </span>
                           {isLogOpen ? (
                             <ChevronUp className="w-3.5 h-3.5 ml-1" />
@@ -332,13 +386,13 @@ export default function ExperienceTimelineSection({
                           )}
                         </motion.button>
 
-                        {/* 2. Kudos Fire Button with Floating Emojis */}
+                        {/* 2. Kudos Fire Button with Particle Explosion */}
                         <div className="relative">
                           <motion.button
                             onClick={() => handleKudos(index)}
-                            whileHover={{ scale: 1.06 }}
-                            whileTap={{ scale: 0.9, rotate: [0, -6, 6, 0] }}
-                            className="flex items-center gap-1.5 px-3 py-1.5 bg-[#FFF275] hover:bg-[#FFEB3B] border-2 border-black font-mono text-xs font-black text-neutral-900 shadow-[2px_2px_0px_#000] cursor-pointer select-none"
+                            whileHover={{ scale: 1.08 }}
+                            whileTap={{ scale: 0.88 }}
+                            className="flex items-center gap-1.5 px-3.5 py-1.5 bg-[#FFF275] hover:bg-[#FFE600] border-2 border-black font-mono text-xs font-black text-neutral-900 shadow-[2px_2px_0px_#000] cursor-pointer select-none"
                             title={t("Send Kudos to this milestone!", "Beri apresiasi untuk babak ini!")}
                           >
                             <Flame className="w-3.5 h-3.5 text-[#E11D5A] fill-[#E11D5A]" />
@@ -355,11 +409,11 @@ export default function ExperienceTimelineSection({
                               .map((p) => (
                                 <motion.div
                                   key={p.id}
-                                  initial={{ opacity: 1, y: 0, scale: 0.6 }}
-                                  animate={{ opacity: 0, y: -45, scale: 1.4 }}
+                                  initial={{ opacity: 1, y: 0, x: p.x, scale: 0.6 }}
+                                  animate={{ opacity: 0, y: -65, x: p.x * 1.5, scale: 1.5 }}
                                   exit={{ opacity: 0 }}
-                                  transition={{ duration: 0.8, ease: "easeOut" }}
-                                  className="absolute top-0 right-2 pointer-events-none text-base z-30 select-none"
+                                  transition={{ duration: 0.9, ease: "easeOut" }}
+                                  className="absolute top-0 right-2 pointer-events-none text-xl z-40 select-none"
                                 >
                                   {p.emoji}
                                 </motion.div>
@@ -368,7 +422,7 @@ export default function ExperienceTimelineSection({
                         </div>
                       </div>
 
-                      {/* Behind The Scenes Handwritten Sticky Note Drawer */}
+                      {/* Behind The Scenes Blueprint Foldout Drawer */}
                       <AnimatePresence>
                         {isLogOpen && (
                           <motion.div
@@ -378,18 +432,20 @@ export default function ExperienceTimelineSection({
                             transition={{ duration: 0.35, ease: "easeInOut" }}
                             className="overflow-hidden"
                           >
-                            <div className="relative bg-[#FEF08A] border-2 border-black p-4 sm:p-5 shadow-[4px_4px_0px_#000] rotate-[-0.5deg]">
+                            <div className="relative bg-[#FFF275] border-2 border-black p-4 sm:p-5 shadow-[4px_4px_0px_#000] rotate-[-0.5deg]">
                               {/* Pushpin at top */}
                               <div className="absolute -top-2.5 left-6 w-5 h-5 rounded-full bg-[#E11D5A] border-2 border-black flex items-center justify-center shadow-xs">
                                 <div className="w-1.5 h-1.5 rounded-full bg-white" />
                               </div>
 
-                              <div className="flex items-center justify-between border-b border-black/20 pb-2 mb-2 font-mono text-[10px] text-neutral-700">
+                              <div className="flex items-center justify-between border-b border-black/20 pb-2 mb-2 font-mono text-[10px] text-neutral-800">
                                 <span className="font-bold flex items-center gap-1">
-                                  <Terminal className="w-3 h-3 text-neutral-800" />
-                                  CONFIDENTIAL DEV LOG
+                                  <Terminal className="w-3.5 h-3.5 text-neutral-900" />
+                                  CONFIDENTIAL DEV LOG // LEVEL 1
                                 </span>
-                                <span className="font-semibold">{secretLog.mood}</span>
+                                <span className="font-black px-1.5 py-0.5 bg-black text-white rounded-xs">
+                                  {secretLog.mood}
+                                </span>
                               </div>
 
                               <p
@@ -399,9 +455,9 @@ export default function ExperienceTimelineSection({
                                 &ldquo;{t(secretLog.en, secretLog.id)}&rdquo;
                               </p>
 
-                              <div className="mt-3 pt-2 border-t border-black/10 flex items-center justify-between font-mono text-[10px] text-neutral-800">
+                              <div className="mt-3 pt-2 border-t border-black/10 flex items-center justify-between font-mono text-[10px] text-neutral-900 font-bold">
                                 <span>TROPHY: {secretLog.techTrophy}</span>
-                                <span className="font-bold text-neutral-500">
+                                <span className="text-neutral-700">
                                   {t("keep building! 🚀", "tetap berproses! 🚀")}
                                 </span>
                               </div>
