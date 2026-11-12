@@ -13,145 +13,89 @@ const mono = JetBrains_Mono({
 });
 
 /**
- * 1:1 Modular Chunky Vector Typography for "EXPERIENCE"
- * Each letter has independent spring hover, bouncy physics, and playful audio feedback!
+ * 1:1 Modular Geometric Vector Typography for "EXPERIENCE"
+ * Matches the exact geometric modular font family across the portfolio.
+ * Standard SVG <g> ensures zero collapsed transforms.
  */
-function InteractiveExperienceTypography() {
-  const letters = [
-    {
-      char: "E",
-      transform: "translate(6, 4)",
-      shapes: [
-        <rect key="1" x="0" y="0" width="14" height="74" rx="7" />,
-        <rect key="2" x="10" y="0" width="34" height="15" rx="7" />,
-        <rect key="3" x="10" y="29" width="26" height="15" rx="6" />,
-        <rect key="4" x="10" y="59" width="34" height="15" rx="7" />,
-      ],
-      color: "#00C2FF",
-    },
-    {
-      char: "X",
-      transform: "translate(64, 4)",
-      shapes: [
-        <rect key="1" x="18" y="0" width="14" height="74" rx="7" transform="rotate(28 25 37)" />,
-        <rect key="2" x="18" y="0" width="14" height="74" rx="7" transform="rotate(-28 25 37)" />,
-      ],
-      color: "#FFE600",
-    },
-    {
-      char: "P",
-      transform: "translate(126, 4)",
-      shapes: [
-        <rect key="1" x="0" y="0" width="14" height="74" rx="7" />,
-        <path key="2" d="M 10 0 H 30 C 40 0 48 7 48 20 C 48 33 40 40 30 40 H 10 Z M 14 15 H 28 C 30 15 32 17 32 20 C 32 23 30 25 28 25 H 14 Z" />,
-      ],
-      color: "#10B981",
-    },
-    {
-      char: "E",
-      transform: "translate(186, 4)",
-      shapes: [
-        <rect key="1" x="0" y="0" width="14" height="74" rx="7" />,
-        <rect key="2" x="10" y="0" width="34" height="15" rx="7" />,
-        <rect key="3" x="10" y="29" width="26" height="15" rx="6" />,
-        <rect key="4" x="10" y="59" width="34" height="15" rx="7" />,
-      ],
-      color: "#FF5757",
-    },
-    {
-      char: "R",
-      transform: "translate(244, 4)",
-      shapes: [
-        <rect key="1" x="0" y="0" width="14" height="74" rx="7" />,
-        <path key="2" d="M 10 0 H 30 C 40 0 48 7 48 20 C 48 33 40 40 30 40 H 10 Z M 14 15 H 28 C 30 15 32 17 32 20 C 32 23 30 25 28 25 H 14 Z" />,
-        <rect key="3" x="20" y="34" width="14" height="42" rx="7" transform="rotate(-26 20 34)" />,
-      ],
-      color: "#A855F7",
-    },
-    {
-      char: "I",
-      transform: "translate(306, 4)",
-      shapes: [
-        <rect key="1" x="0" y="0" width="36" height="15" rx="7.5" />,
-        <rect key="2" x="11" y="10" width="14" height="54" rx="7" />,
-        <rect key="3" x="0" y="59" width="36" height="15" rx="7.5" />,
-      ],
-      color: "#00C2FF",
-    },
-    {
-      char: "E",
-      transform: "translate(352, 4)",
-      shapes: [
-        <rect key="1" x="0" y="0" width="14" height="74" rx="7" />,
-        <rect key="2" x="10" y="0" width="34" height="15" rx="7" />,
-        <rect key="3" x="10" y="29" width="26" height="15" rx="6" />,
-        <rect key="4" x="10" y="59" width="34" height="15" rx="7" />,
-      ],
-      color: "#F97316",
-    },
-    {
-      char: "N",
-      transform: "translate(410, 4)",
-      shapes: [
-        <rect key="1" x="0" y="0" width="14" height="74" rx="7" />,
-        <rect key="2" x="36" y="0" width="14" height="74" rx="7" />,
-        <path key="3" d="M 10 0 L 38 60 H 42 V 74 L 14 14 H 10 Z" />,
-      ],
-      color: "#10B981",
-    },
-    {
-      char: "C",
-      transform: "translate(476, 4)",
-      shapes: [
-        <rect key="1" x="0" y="0" width="14" height="74" rx="7" />,
-        <rect key="2" x="10" y="0" width="34" height="15" rx="7" />,
-        <rect key="3" x="10" y="59" width="34" height="15" rx="7" />,
-      ],
-      color: "#FFE600",
-    },
-    {
-      char: "E",
-      transform: "translate(534, 4)",
-      shapes: [
-        <rect key="1" x="0" y="0" width="14" height="74" rx="7" />,
-        <rect key="2" x="10" y="0" width="34" height="15" rx="7" />,
-        <rect key="3" x="10" y="29" width="26" height="15" rx="6" />,
-        <rect key="4" x="10" y="59" width="34" height="15" rx="7" />,
-      ],
-      color: "#FF5757",
-    },
-  ];
-
+function ExperienceTypography() {
   return (
     <svg
       viewBox="0 0 584 84"
-      className="w-full max-w-[340px] sm:max-w-[480px] md:max-w-[620px] lg:max-w-[740px] h-auto block select-none text-[#171717] mx-auto overflow-visible"
+      className="w-full max-w-[340px] sm:max-w-[480px] md:max-w-[620px] lg:max-w-[740px] h-auto block select-none text-[#171717] mx-auto"
       fill="currentColor"
       aria-label="EXPERIENCE"
     >
-      {letters.map((letter, idx) => (
-        <motion.g
-          key={idx}
-          transform={letter.transform}
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{
-            type: "spring",
-            stiffness: 300,
-            damping: 20,
-            delay: idx * 0.04,
-          }}
-          whileHover={{
-            y: -10,
-            scale: 1.08,
-            transition: { type: "spring", stiffness: 450, damping: 15 },
-          }}
-          onHoverStart={() => playBubblePop(1 + idx * 0.08, true)}
-          className="cursor-pointer"
-        >
-          {letter.shapes}
-        </motion.g>
-      ))}
+      {/* E */}
+      <g transform="translate(6, 4)">
+        <rect x="0" y="0" width="14" height="74" rx="7" />
+        <rect x="10" y="0" width="34" height="15" rx="7" />
+        <rect x="10" y="29" width="26" height="15" rx="6" />
+        <rect x="10" y="59" width="34" height="15" rx="7" />
+      </g>
+
+      {/* X */}
+      <g transform="translate(64, 4)">
+        <rect x="18" y="0" width="14" height="74" rx="7" transform="rotate(28 25 37)" />
+        <rect x="18" y="0" width="14" height="74" rx="7" transform="rotate(-28 25 37)" />
+      </g>
+
+      {/* P */}
+      <g transform="translate(126, 4)">
+        <rect x="0" y="0" width="14" height="74" rx="7" />
+        <path d="M 10 0 H 30 C 40 0 48 7 48 20 C 48 33 40 40 30 40 H 10 Z M 14 15 H 28 C 30 15 32 17 32 20 C 32 23 30 25 28 25 H 14 Z" />
+      </g>
+
+      {/* E */}
+      <g transform="translate(186, 4)">
+        <rect x="0" y="0" width="14" height="74" rx="7" />
+        <rect x="10" y="0" width="34" height="15" rx="7" />
+        <rect x="10" y="29" width="26" height="15" rx="6" />
+        <rect x="10" y="59" width="34" height="15" rx="7" />
+      </g>
+
+      {/* R */}
+      <g transform="translate(244, 4)">
+        <rect x="0" y="0" width="14" height="74" rx="7" />
+        <path d="M 10 0 H 30 C 40 0 48 7 48 20 C 48 33 40 40 30 40 H 10 Z M 14 15 H 28 C 30 15 32 17 32 20 C 32 23 30 25 28 25 H 14 Z" />
+        <rect x="20" y="34" width="14" height="42" rx="7" transform="rotate(-26 20 34)" />
+      </g>
+
+      {/* I */}
+      <g transform="translate(306, 4)">
+        <rect x="0" y="0" width="36" height="15" rx="7.5" />
+        <rect x="11" y="10" width="14" height="54" rx="7" />
+        <rect x="0" y="59" width="36" height="15" rx="7.5" />
+      </g>
+
+      {/* E */}
+      <g transform="translate(352, 4)">
+        <rect x="0" y="0" width="14" height="74" rx="7" />
+        <rect x="10" y="0" width="34" height="15" rx="7" />
+        <rect x="10" y="29" width="26" height="15" rx="6" />
+        <rect x="10" y="59" width="34" height="15" rx="7" />
+      </g>
+
+      {/* N */}
+      <g transform="translate(410, 4)">
+        <rect x="0" y="0" width="14" height="74" rx="7" />
+        <rect x="36" y="0" width="14" height="74" rx="7" />
+        <path d="M 10 0 L 38 60 H 42 V 74 L 14 14 H 10 Z" />
+      </g>
+
+      {/* C */}
+      <g transform="translate(476, 4)">
+        <rect x="0" y="0" width="14" height="74" rx="7" />
+        <rect x="10" y="0" width="34" height="15" rx="7" />
+        <rect x="10" y="59" width="34" height="15" rx="7" />
+      </g>
+
+      {/* E */}
+      <g transform="translate(534, 4)">
+        <rect x="0" y="0" width="14" height="74" rx="7" />
+        <rect x="10" y="0" width="34" height="15" rx="7" />
+        <rect x="10" y="29" width="26" height="15" rx="6" />
+        <rect x="10" y="59" width="34" height="15" rx="7" />
+      </g>
     </svg>
   );
 }
@@ -443,14 +387,15 @@ export default function ExperienceHeroSection() {
           </motion.svg>
         </motion.div>
 
-        {/* 2. Interactive Modular Vector Typography: EXPERIENCE */}
+        {/* 2. Modular Vector Typography: EXPERIENCE */}
         <motion.div
           initial={{ opacity: 0, scale: 0.94 }}
           animate={{ opacity: 1, scale: 1 }}
+          whileHover={{ scale: 1.02 }}
           transition={{ duration: 0.5, delay: 0.1, type: "spring", stiffness: 280, damping: 20 }}
-          className="flex justify-center w-full my-3 sm:my-5 select-none"
+          className="flex justify-center items-center w-full my-3 sm:my-5 cursor-default select-none"
         >
-          <InteractiveExperienceTypography />
+          <ExperienceTypography />
         </motion.div>
 
         {/* 3. Supercharged Interactive Companion Mascot */}
