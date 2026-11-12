@@ -263,7 +263,7 @@ export default function SnakeGame({ soundEnabled }: SnakeProps) {
 
           return (
             <div
-              key={`${seg.x}-${seg.y}-${idx}`}
+              key={idx}
               style={{
                 left: `${(seg.x / GRID_SIZE) * 100}%`,
                 top: `${(seg.y / GRID_SIZE) * 100}%`,
