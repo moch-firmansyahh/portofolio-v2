@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useMemo } from "react";
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
 import type { ExperienceItem } from "@/types/experience";
 import {
@@ -123,14 +123,6 @@ export default function ExperienceTimelineSection({
 
   // Floating vector particles on kudos click
   const [floatingParticles, setFloatingParticles] = useState<FloatingParticle[]>([]);
-
-  // Scroll Progress for Circuit Track Line
-  const { scrollYProgress } = useScroll({
-    target: timelineRef,
-    offset: ["start 80%", "end 80%"],
-  });
-
-  const pathHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   // Filter logic
   const filteredExperiences = useMemo(() => {
@@ -288,28 +280,6 @@ export default function ExperienceTimelineSection({
 
       {/* 2. Unified Metro-Rail Roadmap Layout */}
       <div className="relative">
-        {/* Left Track Rail (Background) */}
-        <div className="absolute top-4 bottom-8 left-5 sm:left-7 w-1 bg-neutral-200 border-x border-dashed border-neutral-400" />
-
-        {/* Animated Progress Line filling on scroll */}
-        <motion.div
-          style={{ height: pathHeight }}
-          className="absolute top-4 left-5 sm:left-7 w-1 bg-[#00C2FF] border-x border-black z-10 origin-top shadow-[0_0_8px_#00C2FF]"
-        />
-
-        {/* Travelling Energy Light Pulse along rail */}
-        <motion.div
-          animate={{
-            top: ["0%", "100%"],
-          }}
-          transition={{
-            repeat: Infinity,
-            duration: 4,
-            ease: "easeInOut",
-          }}
-          className="absolute left-5 sm:left-7 -translate-x-[3px] w-2.5 h-6 bg-[#FFE600] border border-black rounded-full z-15 shadow-[0_0_8px_#FFE600] pointer-events-none"
-        />
-
         {/* Timeline Items List */}
         <div className="space-y-10 sm:space-y-12">
           <AnimatePresence mode="popLayout">
@@ -376,21 +346,39 @@ export default function ExperienceTimelineSection({
                   viewport={{ once: true, margin: "-40px" }}
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.45, delay: index * 0.08, ease: "easeOut" }}
-                  className="relative flex items-start gap-4 sm:gap-7"
+                  className="relative flex items-stretch gap-4 sm:gap-7"
                 >
-                  {/* Station Node on Rail */}
-                  <div className="relative z-20 shrink-0 mt-3">
+                  {/* Station Node Column with Clean Segmented Connector Rail */}
+                  <div className="relative z-20 shrink-0 flex flex-col items-center">
+                    {/* Station Node Box */}
                     <motion.div
                       whileHover={{ scale: 1.15, rotate: 6 }}
                       whileTap={{ scale: 0.92 }}
                       transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                      className={`w-11 h-11 sm:w-13 sm:h-13 rounded-2xl border-2 border-black ${theme.badgeBg} ${theme.badgeText} shadow-[3px_3px_0px_#000] flex flex-col items-center justify-center cursor-pointer select-none`}
+                      className={`w-11 h-11 sm:w-13 sm:h-13 rounded-2xl border-2 border-black ${theme.badgeBg} ${theme.badgeText} shadow-[3px_3px_0px_#000] flex flex-col items-center justify-center cursor-pointer select-none shrink-0`}
                     >
                       <CompanyIcon className="w-5 h-5 sm:w-5.5 sm:h-5.5" />
                       <span className="font-mono text-[9px] font-black leading-none mt-0.5">
                         0{index + 1}
                       </span>
                     </motion.div>
+
+                    {/* Connecting track to next station - Strictly BETWEEN nodes only, NEVER above station 01 */}
+                    {index < filteredExperiences.length - 1 && (
+                      <div className="w-1.5 flex-1 bg-neutral-200 border-x border-dashed border-neutral-400 mt-2 -mb-10 sm:-mb-12 relative overflow-hidden">
+                        {/* Animated glowing signal moving strictly inside this connector segment */}
+                        <motion.div
+                          animate={{ y: ["-100%", "200%"] }}
+                          transition={{
+                            repeat: Infinity,
+                            duration: 2.6,
+                            ease: "easeInOut",
+                            delay: index * 0.6,
+                          }}
+                          className="absolute inset-x-0 h-16 bg-gradient-to-b from-transparent via-[#00C2FF] to-transparent shadow-[0_0_8px_#00C2FF]"
+                        />
+                      </div>
+                    )}
                   </div>
 
                   {/* Clean Neo-Brutalist Experience Card */}

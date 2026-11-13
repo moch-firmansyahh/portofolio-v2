@@ -210,9 +210,9 @@ export default function ProjectsSection() {
                 } as CSSProperties
               }
             >
-              {/* Tab trapesium di atas kartu */}
+              {/* Tab trapesium di atas kartu - 1px overlap eliminates subpixel hairline seam on Windows */}
               <div
-                className="absolute bottom-full flex h-[2.8em] items-center justify-center gap-[0.7em] bg-[var(--bg)] text-[var(--ink)] [--cut:1.4em] sm:h-[3em] sm:[--cut:1.8em] lg:h-[3.4em] lg:[--cut:3.4em]"
+                className="absolute bottom-[calc(100%-1px)] flex h-[2.8em] items-center justify-center gap-[0.7em] bg-[var(--bg)] text-[var(--ink)] [--cut:1.4em] sm:h-[3em] sm:[--cut:1.8em] lg:h-[3.4em] lg:[--cut:3.4em]"
                 style={{
                   left: `${(index / total) * 100}%`,
                   width: `${100 / total}%`,
