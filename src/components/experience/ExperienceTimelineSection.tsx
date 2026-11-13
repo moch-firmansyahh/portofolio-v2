@@ -514,25 +514,17 @@ export default function ExperienceTimelineSection({
                       </span>
                     </motion.div>
 
-                    {/* Full Solid Cyan Connector Line - NEVER above station 01, runs ALL THE WAY DOWN */}
+                    {/* Full Solid Cyan Connector Line - NEVER above station 01, runs ALL THE WAY DOWN with continuous full-length white core */}
                     {index < filteredExperiences.length - 1 ? (
-                      <div className="w-1.5 flex-1 bg-[#00C2FF] border-x border-black shadow-[0_0_8px_rgba(0,194,255,0.8)] mt-2 -mb-10 sm:-mb-12 relative overflow-hidden">
-                        {/* Shimmer pulse travelling through the solid blue line */}
-                        <motion.div
-                          animate={{ y: ["-100%", "250%"] }}
-                          transition={{
-                            repeat: Infinity,
-                            duration: 2.2,
-                            ease: "easeInOut",
-                            delay: index * 0.4,
-                          }}
-                          className="absolute inset-x-0 h-20 bg-gradient-to-b from-transparent via-white/80 to-transparent"
-                        />
+                      <div className="w-2 flex-1 bg-[#00C2FF] border-x-2 border-black shadow-[0_0_8px_rgba(0,194,255,0.8)] mt-2 -mb-10 sm:-mb-12 relative flex justify-center">
+                        {/* Solid white core line extending continuously from top box to bottom box */}
+                        <div className="w-0.5 h-full bg-white shadow-[0_0_3px_#FFFFFF]" />
                       </div>
                     ) : (
                       /* Terminus extension below the last station all the way to the bottom */
-                      <div className="w-1.5 h-16 sm:h-20 bg-gradient-to-b from-[#00C2FF] via-[#00C2FF] to-transparent border-x border-black shadow-[0_0_8px_rgba(0,194,255,0.6)] mt-2 relative flex flex-col items-center justify-end">
-                        <span className="w-2.5 h-2.5 rounded-full bg-[#00C2FF] border border-black shadow-xs -mb-1" />
+                      <div className="w-2 h-16 sm:h-20 bg-[#00C2FF] border-x-2 border-black shadow-[0_0_8px_rgba(0,194,255,0.6)] mt-2 relative flex flex-col items-center justify-between">
+                        <div className="w-0.5 h-full bg-white shadow-[0_0_3px_#FFFFFF]" />
+                        <span className="w-3 h-3 rounded-full bg-[#00C2FF] border-2 border-black shadow-xs -mb-1.5 z-10" />
                       </div>
                     )}
                   </div>

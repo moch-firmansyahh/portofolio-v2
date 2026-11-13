@@ -222,175 +222,217 @@ export default function CoreCapabilitiesSection() {
         <div className="absolute top-1/2 left-0 w-full h-[1.5px] bg-[#171717] z-10 pointer-events-none" />
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1.5px] h-full bg-[#171717] z-10 pointer-events-none" />
 
-        {/* KUADRAN 1: TOP-LEFT (STRATEGY - Green) */}
+        {/* KUADRAN 1: TOP-LEFT (FRONT-END & CODE - Green) */}
         <div className="absolute top-0 left-0 w-1/2 h-1/2 p-6 sm:p-10 lg:p-14">
           <div className="relative w-full h-full">
             {/* Folder Badge di pojok kiri atas */}
             <div className="absolute top-3 left-4 sm:top-5 sm:left-6 z-20">
-              <QuadrantFolderBadge label="STRATEGY" color="green" />
+              <QuadrantFolderBadge label="FRONT-END & CODE" color="green" />
             </div>
 
             {/* Scattered Skills Tags */}
             <DraggableSkillTag
-              label="Product Strategy"
+              label="React & Next.js"
               color="green"
               rotation={-2.5}
               style={{ left: "14%", top: "35%" }}
               containerRef={boardRef}
             />
             <DraggableSkillTag
-              label="Design Strategy"
+              label="TypeScript & JavaScript"
               color="green"
               rotation={1.5}
-              style={{ left: "30%", top: "58%" }}
+              style={{ left: "28%", top: "58%" }}
               containerRef={boardRef}
             />
             <DraggableSkillTag
-              label="Research"
+              label="Tailwind CSS & UI Systems"
               color="green"
               rotation={3}
-              style={{ left: "65%", top: "22%" }}
+              style={{ left: "60%", top: "22%" }}
               containerRef={boardRef}
             />
             <DraggableSkillTag
-              label="Information Architecture"
+              label="Python, C++ & Go"
               color="green"
               rotation={-1.5}
-              style={{ left: "50%", top: "76%" }}
+              style={{ left: "48%", top: "76%" }}
               containerRef={boardRef}
             />
             <DraggableSkillTag
-              label="User Flows"
+              label="Framer Motion"
               color="green"
               rotation={4}
-              style={{ left: "78%", top: "45%" }}
+              style={{ left: "74%", top: "45%" }}
+              containerRef={boardRef}
+            />
+            <DraggableSkillTag
+              label="PWA & WebSocket"
+              color="green"
+              rotation={-2}
+              style={{ left: "18%", top: "82%" }}
               containerRef={boardRef}
             />
           </div>
         </div>
 
-        {/* KUADRAN 2: TOP-RIGHT (DESIGN - Blue) */}
+        {/* KUADRAN 2: TOP-RIGHT (BACK-END & AI - Blue) */}
         <div className="absolute top-0 right-0 w-1/2 h-1/2 p-6 sm:p-10 lg:p-14">
           <div className="relative w-full h-full">
-            {/* Folder Badge DESIGN di pojok kiri atas kuadran */}
+            {/* Folder Badge di pojok kiri atas kuadran */}
             <div className="absolute top-3 left-4 sm:top-5 sm:left-6 z-20">
-              <QuadrantFolderBadge label="DESIGN" color="blue" />
+              <QuadrantFolderBadge label="BACK-END & AI" color="blue" />
             </div>
 
-            {/* Scattered Skills Tags - Ditempatkan bebas dan TIDAK SEJAJAR dengan tulisan DESIGN */}
+            {/* Scattered Skills Tags */}
             <DraggableSkillTag
-              label="UX Design"
+              label="REST API & Middleware"
               color="blue"
               rotation={2}
-              style={{ left: "22%", top: "38%" }}
+              style={{ left: "16%", top: "36%" }}
               containerRef={boardRef}
             />
             <DraggableSkillTag
-              label="Interaction Design"
+              label="Node.js & Express.js"
               color="blue"
               rotation={-2}
-              style={{ left: "18%", top: "66%" }}
+              style={{ left: "20%", top: "66%" }}
               containerRef={boardRef}
             />
             <DraggableSkillTag
-              label="UI Design"
+              label="Spring Boot & Java"
               color="blue"
               rotation={-3}
-              style={{ left: "62%", top: "25%" }}
+              style={{ left: "58%", top: "24%" }}
               containerRef={boardRef}
             />
             <DraggableSkillTag
-              label="Web Design"
+              label="Laravel & PHP"
               color="blue"
               rotation={3}
-              style={{ left: "80%", top: "46%" }}
+              style={{ left: "76%", top: "44%" }}
               containerRef={boardRef}
             />
             <DraggableSkillTag
-              label="Prototyping"
+              label="Gemini API & Fail-Safe"
               color="blue"
               rotation={-1.5}
-              style={{ left: "74%", top: "74%" }}
+              style={{ left: "68%", top: "72%" }}
+              containerRef={boardRef}
+            />
+            <DraggableSkillTag
+              label="Supabase Engine"
+              color="blue"
+              rotation={2}
+              style={{ left: "44%", top: "84%" }}
               containerRef={boardRef}
             />
           </div>
         </div>
 
-        {/* KUADRAN 3: BOTTOM-LEFT (SYSTEMS - Yellow) */}
+        {/* KUADRAN 3: BOTTOM-LEFT (DATA & SECURITY - Yellow) */}
         <div className="absolute bottom-0 left-0 w-1/2 h-1/2 p-6 sm:p-10 lg:p-14">
           <div className="relative w-full h-full">
             {/* Folder Badge di pojok kiri atas kuadran */}
             <div className="absolute top-3 left-4 sm:top-5 sm:left-6 z-20">
-              <QuadrantFolderBadge label="SYSTEMS" color="yellow" />
+              <QuadrantFolderBadge label="DATA & SECURITY" color="yellow" />
             </div>
 
             {/* Scattered Skills Tags */}
             <DraggableSkillTag
-              label="Design Systems"
+              label="PostgreSQL & MySQL"
               color="yellow"
               rotation={1}
-              style={{ left: "15%", top: "36%" }}
+              style={{ left: "14%", top: "34%" }}
               containerRef={boardRef}
             />
             <DraggableSkillTag
-              label="Design Tokens"
+              label="Prisma ORM & Relasi"
               color="yellow"
               rotation={-2}
-              style={{ left: "17%", top: "68%" }}
+              style={{ left: "16%", top: "66%" }}
               containerRef={boardRef}
             />
             <DraggableSkillTag
-              label="Component Libraries"
+              label="JWT & OAuth 2.0"
               color="yellow"
               rotation={3}
-              style={{ left: "62%", top: "26%" }}
+              style={{ left: "56%", top: "24%" }}
               containerRef={boardRef}
             />
             <DraggableSkillTag
-              label="Responsive Design"
+              label="RBAC Access Control"
               color="yellow"
               rotation={-3}
-              style={{ left: "70%", top: "76%" }}
+              style={{ left: "68%", top: "74%" }}
+              containerRef={boardRef}
+            />
+            <DraggableSkillTag
+              label="SQLi Prevention & Hashing"
+              color="yellow"
+              rotation={2}
+              style={{ left: "58%", top: "50%" }}
+              containerRef={boardRef}
+            />
+            <DraggableSkillTag
+              label="Google Network Security"
+              color="yellow"
+              rotation={-1}
+              style={{ left: "16%", top: "84%" }}
               containerRef={boardRef}
             />
           </div>
         </div>
 
-        {/* KUADRAN 4: BOTTOM-RIGHT (MOTION - Pink) */}
+        {/* KUADRAN 4: BOTTOM-RIGHT (TOOLS & SOFT SKILLS - Pink) */}
         <div className="absolute bottom-0 right-0 w-1/2 h-1/2 p-6 sm:p-10 lg:p-14">
           <div className="relative w-full h-full">
             {/* Folder Badge di pojok kiri atas kuadran */}
             <div className="absolute top-3 left-4 sm:top-5 sm:left-6 z-20">
-              <QuadrantFolderBadge label="MOTION" color="pink" />
+              <QuadrantFolderBadge label="TOOLS & SOFT SKILLS" color="pink" />
             </div>
 
             {/* Scattered Skills Tags */}
             <DraggableSkillTag
-              label="Micro-interactions"
+              label="Git & GitHub Flow"
               color="pink"
               rotation={-2}
-              style={{ left: "24%", top: "42%" }}
+              style={{ left: "18%", top: "36%" }}
               containerRef={boardRef}
             />
             <DraggableSkillTag
-              label="Motion Direction"
+              label="Docker Containers"
               color="pink"
               rotation={2}
-              style={{ left: "20%", top: "72%" }}
+              style={{ left: "20%", top: "66%" }}
               containerRef={boardRef}
             />
             <DraggableSkillTag
-              label="Transitions"
+              label="Vercel Deployments"
               color="pink"
               rotation={-1}
-              style={{ left: "68%", top: "28%" }}
+              style={{ left: "62%", top: "26%" }}
               containerRef={boardRef}
             />
             <DraggableSkillTag
-              label="Prototyping"
+              label="Postman & Wireshark"
               color="pink"
               rotation={2}
-              style={{ left: "72%", top: "58%" }}
+              style={{ left: "70%", top: "52%" }}
+              containerRef={boardRef}
+            />
+            <DraggableSkillTag
+              label="Technical Problem Solving"
+              color="pink"
+              rotation={-2}
+              style={{ left: "52%", top: "78%" }}
+              containerRef={boardRef}
+            />
+            <DraggableSkillTag
+              label="Team Leadership (CCI)"
+              color="pink"
+              rotation={3}
+              style={{ left: "12%", top: "84%" }}
               containerRef={boardRef}
             />
           </div>
