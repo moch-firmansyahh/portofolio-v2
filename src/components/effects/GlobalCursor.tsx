@@ -32,11 +32,12 @@ export default function GlobalCursor() {
       rawMouseY.set(e.clientY);
 
       // Check if cursor is over an element requesting hiding global cursor
-      const target = e.target as HTMLElement | null;
-      const hideEl = target?.closest("[data-hide-global-cursor='true']");
+      const target = e.target as Element | null;
+      const el = target instanceof Element ? target : (target as unknown as Node)?.parentElement;
+      const hideEl = el?.closest ? el.closest("[data-hide-global-cursor='true']") : null;
       setIsSuppressed(!!hideEl);
 
-      const colorEl = target?.closest("[data-cursor-color]");
+      const colorEl = el?.closest ? el.closest("[data-cursor-color]") : null;
       if (colorEl) {
         setCursorColor(colorEl.getAttribute("data-cursor-color") || "#000000");
       } else {
@@ -78,7 +79,7 @@ export default function GlobalCursor() {
   return (
     <motion.div
       animate={{ opacity: isVisible && !isSuppressed ? 1 : 0 }}
-      transition={{ duration: 0.12 }}
+      transition={{ duration: isSuppressed ? 0.05 : 0.15 }}
       style={{
         position: "fixed",
         left: 0,

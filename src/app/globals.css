@@ -43,6 +43,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Suppress native OS cursor and custom cursor on selection highlights */
+[data-hide-global-cursor="true"],
+[data-hide-global-cursor="true"] * {
+  cursor: none !important;
+}
+
 /* Background grain noise texture overlay */
 .bg-grain-texture {
   background-color: #FFFFFF;

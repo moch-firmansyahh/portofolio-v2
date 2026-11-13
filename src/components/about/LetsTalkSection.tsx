@@ -195,6 +195,12 @@ export default function LetsTalkSection() {
       ref={sectionRef}
       id="lets-talk"
       onMouseMove={handleMouseMove}
+      onMouseLeave={() => {
+        setIsHovered(false);
+        if (typeof window !== "undefined") {
+          window.dispatchEvent(new CustomEvent("toggle-global-cursor", { detail: { hide: false } }));
+        }
+      }}
       className="relative w-full bg-transparent min-h-[90vh] lg:min-h-screen flex flex-col justify-center pt-16 sm:pt-20 md:pt-24 pb-32 sm:pb-44 md:pb-56 overflow-hidden select-none"
     >
       <div className="relative z-10 mx-auto max-w-7xl px-6 sm:px-10 md:px-12">
@@ -203,7 +209,7 @@ export default function LetsTalkSection() {
           <div className="md:col-span-5 flex justify-center md:justify-start lg:pl-2">
             <motion.div
               ref={charRef}
-              data-cursor-color="#d0437e"
+              data-hide-global-cursor="true"
               initial={{ scale: 0.9, opacity: 0 }}
               whileInView={{ scale: 1, opacity: 1 }}
               viewport={{ once: true }}
@@ -230,9 +236,19 @@ export default function LetsTalkSection() {
                       opacity: { duration: 0.4 },
                     }
               }
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
-              className="relative w-[230px] sm:w-[280px] md:w-[320px] lg:w-[360px] xl:w-[390px] aspect-square cursor-pointer select-none"
+              onMouseEnter={() => {
+                setIsHovered(true);
+                if (typeof window !== "undefined") {
+                  window.dispatchEvent(new CustomEvent("toggle-global-cursor", { detail: { hide: true } }));
+                }
+              }}
+              onMouseLeave={() => {
+                setIsHovered(false);
+                if (typeof window !== "undefined") {
+                  window.dispatchEvent(new CustomEvent("toggle-global-cursor", { detail: { hide: false } }));
+                }
+              }}
+              className="relative w-[230px] sm:w-[280px] md:w-[320px] lg:w-[360px] xl:w-[390px] aspect-square cursor-none select-none"
             >
               <svg
                 viewBox="0 0 500 500"
@@ -322,6 +338,7 @@ export default function LetsTalkSection() {
         {isHovered && (
           <motion.div
             key="black-marquee-highlight"
+            data-hide-global-cursor="true"
             initial={{ scale: 0.15, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.15, opacity: 0 }}
@@ -342,7 +359,9 @@ export default function LetsTalkSection() {
               pointerEvents: "none",
               zIndex: 35,
               transformOrigin: "center center",
+              cursor: "none",
             }}
+            className="cursor-none"
           >
             {/* 4 Corner Square Handles */}
             <div className="w-2.5 h-2.5 bg-black absolute -top-1 -left-1" />

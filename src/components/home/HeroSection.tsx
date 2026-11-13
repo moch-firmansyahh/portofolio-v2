@@ -217,6 +217,9 @@ export default function HeroSection() {
       onMouseLeave={() => {
         setIsInsideHero(false);
         setIsHoveringCyanBorder(false);
+        if (typeof window !== "undefined") {
+          window.dispatchEvent(new CustomEvent("toggle-global-cursor", { detail: { hide: false } }));
+        }
       }}
       className="relative w-full min-h-[92vh] lg:min-h-[96vh] flex flex-col items-center justify-between pb-14 sm:pb-20 overflow-hidden bg-transparent select-none"
     >
@@ -269,9 +272,20 @@ export default function HeroSection() {
         {/* The Cyan Selection Bounding Box - strictly centered with symmetric padding */}
         <div
           ref={cyanBoxRef}
-          onMouseEnter={() => setIsHoveringCyanBorder(true)}
-          onMouseLeave={() => setIsHoveringCyanBorder(false)}
-          className="relative border-2 border-[#00C2FF] py-6 sm:py-8 md:py-10 px-6 sm:px-10 md:px-14 bg-white/30 backdrop-blur-[1px] shadow-xs w-full max-w-[750px] mx-auto flex items-center justify-center"
+          data-hide-global-cursor="true"
+          onMouseEnter={() => {
+            setIsHoveringCyanBorder(true);
+            if (typeof window !== "undefined") {
+              window.dispatchEvent(new CustomEvent("toggle-global-cursor", { detail: { hide: true } }));
+            }
+          }}
+          onMouseLeave={() => {
+            setIsHoveringCyanBorder(false);
+            if (typeof window !== "undefined") {
+              window.dispatchEvent(new CustomEvent("toggle-global-cursor", { detail: { hide: false } }));
+            }
+          }}
+          className="relative border-2 border-[#00C2FF] py-6 sm:py-8 md:py-10 px-6 sm:px-10 md:px-14 bg-white/30 backdrop-blur-[1px] shadow-xs w-full max-w-[750px] mx-auto flex items-center justify-center cursor-none"
         >
           {/* Left Tilted Sticky Note (Pastel Mint) - Stuck tightly across top-left cyan border */}
           <div
@@ -462,6 +476,7 @@ export default function HeroSection() {
         {isHoveringCyanBorder && (
           <motion.div
             key="black-marquee-highlight"
+            data-hide-global-cursor="true"
             initial={{ scale: 0.15, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.15, opacity: 0 }}
@@ -482,7 +497,9 @@ export default function HeroSection() {
               pointerEvents: "none",
               zIndex: 35,
               transformOrigin: "center center",
+              cursor: "none",
             }}
+            className="cursor-none"
           >
             {/* 4 Corner Square Handles */}
             <div className="w-2.5 h-2.5 bg-black absolute -top-1 -left-1" />
