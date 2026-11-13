@@ -5,6 +5,17 @@ import { motion, useMotionValue, useSpring, AnimatePresence } from "framer-motio
 import { useLanguage } from "@/context/LanguageContext";
 import { JetBrains_Mono } from "next/font/google";
 import { playBubblePop, playCombo } from "@/components/playground/audioEffects";
+import {
+  Coffee,
+  Rocket,
+  Heart,
+  Gamepad2,
+  Sparkles,
+  Zap,
+  Star,
+  MapPin,
+  Calendar,
+} from "lucide-react";
 
 const mono = JetBrains_Mono({
   subsets: ["latin"],
@@ -15,7 +26,6 @@ const mono = JetBrains_Mono({
 /**
  * 1:1 Modular Geometric Vector Typography for "EXPERIENCE"
  * Matches the exact geometric modular font family across the portfolio.
- * Standard SVG <g> ensures zero collapsed transforms.
  */
 function ExperienceTypography() {
   return (
@@ -100,49 +110,74 @@ function ExperienceTypography() {
   );
 }
 
+type MoodKey = "coffee" | "code" | "chill" | "retro";
+
+interface SparkParticle {
+  id: number;
+  x: number;
+  y: number;
+  color: string;
+  type: "star" | "sparkle" | "heart" | "zap";
+}
+
 /**
  * Supercharged Interactive Mascot: "Byte" the Blueprint Companion Robot
- * - Eyes follow mouse cursor with spring easing
- * - 4 Interactive Moods: Coffee, Code, Chill, Retro
- * - Animated waving robot arms!
- * - Click to bounce, play audio, and shoot star particles
- * - Orbiting floating tech icons
+ * Cleaned up with vector Lucide icons, expressive spring physics, and charming sounds.
  */
 function CuteMascot() {
   const { t } = useLanguage();
   const mascotRef = useRef<HTMLDivElement>(null);
   const [isBlinking, setIsBlinking] = useState(false);
-  const [mood, setMood] = useState<"coffee" | "code" | "chill" | "retro">("coffee");
-  const [sparks, setSparks] = useState<Array<{ id: number; x: number; y: number; emoji: string }>>([]);
+  const [mood, setMood] = useState<MoodKey>("coffee");
+  const [sparks, setSparks] = useState<SparkParticle[]>([]);
 
-  const moods = {
+  const moods: Record<
+    MoodKey,
+    {
+      quote: string;
+      color: string;
+      eyeColor: string;
+      mouth: string;
+      tag: string;
+      icon: React.ComponentType<{ className?: string }>;
+      accentBg: string;
+    }
+  > = {
     coffee: {
-      quote: t("Fueled by Arabica & midnight commits! ☕", "Ditenagai Kopi Hitam & ngoding malam! ☕"),
+      quote: t("Fueled by Arabica & midnight commits!", "Ditenagai Kopi Hitam & ngoding malam!"),
       color: "#00C2FF",
       eyeColor: "#10B981",
       mouth: "rounded-full border-b-2 border-[#EDB22E]",
-      tag: "☕ COFFEE MODE",
+      tag: "COFFEE FUEL",
+      icon: Coffee,
+      accentBg: "bg-[#EDB22E]",
     },
     code: {
-      quote: t("Clean components & 0 bug policy! 🚀", "Komponen bersih & zero bug policy! 🚀"),
+      quote: t("Clean components & zero-bug mindset!", "Komponen bersih & zero-bug mindset!"),
       color: "#FFE600",
       eyeColor: "#00C2FF",
       mouth: "w-3 h-1 bg-[#171717] rounded-xs",
-      tag: "🚀 CODE MODE",
+      tag: "TURBO CODE",
+      icon: Rocket,
+      accentBg: "bg-[#00C2FF]",
     },
     chill: {
-      quote: t("Designing with love, motion & pixels! 💖", "Mendesain penuh cinta, animasi & piksel! 💖"),
+      quote: t("Designing with love, motion & pixels!", "Mendesain penuh cinta, animasi & piksel!"),
       color: "#F472B6",
       eyeColor: "#F43F5E",
       mouth: "rounded-full border-b-2 border-white",
-      tag: "💖 CHILL MODE",
+      tag: "CHILL VIBES",
+      icon: Heart,
+      accentBg: "bg-[#FFF275]",
     },
     retro: {
-      quote: t("8-bit arcade spirit running at 60 FPS! 👾", "Semangat arcade 8-bit ngeluncur 60 FPS! 👾"),
+      quote: t("8-bit arcade spirit running at 60 FPS!", "Semangat arcade ngeluncur 60 FPS!"),
       color: "#A855F7",
       eyeColor: "#FFE600",
       mouth: "w-4 h-1 border-b-2 border-[#00C2FF]",
-      tag: "👾 RETRO MODE",
+      tag: "RETRO 60 FPS",
+      icon: Gamepad2,
+      accentBg: "bg-[#10B981]",
     },
   };
 
@@ -181,51 +216,63 @@ function CuteMascot() {
   }, [mouseX, mouseY]);
 
   const handleMascotClick = () => {
-    const moodKeys: Array<"coffee" | "code" | "chill" | "retro"> = ["coffee", "code", "chill", "retro"];
+    const moodKeys: MoodKey[] = ["coffee", "code", "chill", "retro"];
     const nextMood = moodKeys[(moodKeys.indexOf(mood) + 1) % moodKeys.length];
     setMood(nextMood);
     playCombo(true);
 
-    const emojis = ["✨", "⚡", "⭐", "🎉", "🔥", "🚀"];
-    const newSparks = Array.from({ length: 6 }).map((_, i) => ({
+    const particleTypes: SparkParticle["type"][] = ["star", "sparkle", "heart", "zap"];
+    const colors = ["#FFE600", "#00C2FF", "#F472B6", "#10B981", "#EDB22E"];
+
+    const newSparks: SparkParticle[] = Array.from({ length: 6 }).map((_, i) => ({
       id: Date.now() + i,
-      x: (Math.random() - 0.5) * 110,
-      y: -Math.random() * 70 - 20,
-      emoji: emojis[i % emojis.length],
+      x: (Math.random() - 0.5) * 120,
+      y: -Math.random() * 70 - 25,
+      color: colors[i % colors.length],
+      type: particleTypes[i % particleTypes.length],
     }));
+
     setSparks(newSparks);
     setTimeout(() => setSparks([]), 900);
   };
 
   const currentMood = moods[mood];
+  const MoodIcon = currentMood.icon;
 
   return (
-    <div className="relative flex flex-col items-center mt-5 mb-3 select-none">
-      {/* Floating Orbit Items around Byte */}
+    <div className="relative flex flex-col items-center mt-6 mb-4 select-none">
+      {/* Floating Orbit Items around Byte - Clean Lucide vector cards */}
       <motion.div
         animate={{ y: [-5, 5, -5], rotate: [-6, 6, -6] }}
         transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-        className="hidden md:flex absolute -left-16 top-4 bg-white border-2 border-black p-1.5 shadow-[2px_2px_0px_#000] text-sm pointer-events-none"
+        className="hidden md:flex absolute -left-16 top-4 bg-white border-2 border-black p-2 shadow-[2px_2px_0px_#000] text-neutral-800 pointer-events-none"
       >
-        ☕
+        <Coffee className="w-4 h-4 text-[#D97706]" />
       </motion.div>
+
       <motion.div
         animate={{ y: [5, -5, 5], rotate: [6, -6, 6] }}
         transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut" }}
-        className="hidden md:flex absolute -right-16 top-4 bg-white border-2 border-black p-1.5 shadow-[2px_2px_0px_#000] text-sm pointer-events-none"
+        className="hidden md:flex absolute -right-16 top-4 bg-white border-2 border-black p-2 shadow-[2px_2px_0px_#000] text-neutral-800 pointer-events-none"
       >
-        ⚡
+        <Zap className="w-4 h-4 text-[#00C2FF]" />
       </motion.div>
 
       {/* Speech Bubble */}
       <motion.button
+        type="button"
         onClick={handleMascotClick}
-        whileHover={{ scale: 1.05, y: -2 }}
-        whileTap={{ scale: 0.95 }}
-        className="relative mb-3.5 px-4 py-2 bg-white border-2 border-black font-mono text-xs font-black text-neutral-900 shadow-[4px_4px_0px_#000] cursor-pointer group flex items-center gap-2"
+        whileHover={{ scale: 1.04, y: -2 }}
+        whileTap={{ scale: 0.96 }}
+        className="relative mb-3.5 px-4 py-2 bg-white border-2 border-black font-mono text-xs font-black text-neutral-900 shadow-[4px_4px_0px_#000] cursor-pointer group flex items-center gap-2.5 transition-transform"
       >
-        <span>{currentMood.quote}</span>
-        <span className="text-[10px] px-1.5 py-0.5 bg-[#FFF275] border border-black font-mono font-bold">
+        <span className="flex items-center gap-1.5">
+          <MoodIcon className="w-4 h-4 text-neutral-900" />
+          <span>{currentMood.quote}</span>
+        </span>
+        <span
+          className={`text-[10px] px-2 py-0.5 border border-black font-mono font-bold uppercase tracking-wider ${currentMood.accentBg} text-neutral-900`}
+        >
           {currentMood.tag}
         </span>
         {/* Pointer tip */}
@@ -245,8 +292,8 @@ function CuteMascot() {
         <motion.div
           ref={mascotRef}
           onClick={handleMascotClick}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
+          whileHover={{ scale: 1.08 }}
+          whileTap={{ scale: 0.92 }}
           animate={{ y: [-4, 4, -4] }}
           transition={{ repeat: Infinity, duration: 2.8, ease: "easeInOut" }}
           style={{ backgroundColor: currentMood.color }}
@@ -311,7 +358,7 @@ function CuteMascot() {
         />
       </div>
 
-      {/* Floating Spark Particles */}
+      {/* Floating Vector Sparks Particles (Clean Lucide SVGs, no OS emojis) */}
       <AnimatePresence>
         {sparks.map((spark) => (
           <motion.div
@@ -324,10 +371,14 @@ function CuteMascot() {
               y: spark.y,
             }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none text-xl z-50 select-none"
+            transition={{ duration: 0.85, ease: "easeOut" }}
+            style={{ color: spark.color }}
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-50 select-none drop-shadow-[0_2px_4px_rgba(0,0,0,0.2)]"
           >
-            {spark.emoji}
+            {spark.type === "star" && <Star className="w-5 h-5 fill-current" />}
+            {spark.type === "sparkle" && <Sparkles className="w-5 h-5" />}
+            {spark.type === "heart" && <Heart className="w-5 h-5 fill-current" />}
+            {spark.type === "zap" && <Zap className="w-5 h-5 fill-current" />}
           </motion.div>
         ))}
       </AnimatePresence>
@@ -335,9 +386,9 @@ function CuteMascot() {
       {/* Click prompt note */}
       <span
         style={{ fontFamily: "var(--font-caveat), cursive" }}
-        className="text-xs text-neutral-600 font-semibold mt-2"
+        className="text-xs sm:text-sm text-neutral-600 font-semibold mt-2.5"
       >
-        {t("click Byte to cycle moods & celebrate! ✨", "klik Byte untuk ganti mood & animasi! ✨")}
+        {t("click Byte to cycle moods & sound! ✦", "klik Byte untuk ganti ekspresi & suara! ✦")}
       </span>
     </div>
   );
@@ -357,7 +408,7 @@ export default function ExperienceHeroSection() {
           className="mb-4 sm:mb-5 flex flex-col items-center"
         >
           <motion.span
-            whileHover={{ scale: 1.06, rotate: 1 }}
+            whileHover={{ scale: 1.05, rotate: 1 }}
             style={{ fontFamily: "var(--font-caveat), cursive" }}
             className="text-2xl sm:text-3xl md:text-4xl text-neutral-800 font-semibold tracking-wide cursor-default"
           >
@@ -401,40 +452,53 @@ export default function ExperienceHeroSection() {
         {/* 3. Supercharged Interactive Companion Mascot */}
         <CuteMascot />
 
-        {/* 4. Draggable Blueprint Sticky Note with Spring Physics */}
+        {/* 4. Draggable Field Note Card with Washi Tape & Spring Physics */}
         <motion.div
           drag
-          dragConstraints={{ left: -40, right: 40, top: -20, bottom: 40 }}
+          dragConstraints={{ left: -50, right: 50, top: -20, bottom: 40 }}
           dragElastic={0.25}
-          initial={{ opacity: 0, rotate: -3, y: 14 }}
-          animate={{ opacity: 1, rotate: -1.5, y: 0 }}
-          whileHover={{ rotate: 0, scale: 1.03 }}
-          whileDrag={{ scale: 1.08, rotate: 2, cursor: "grabbing" }}
+          initial={{ opacity: 0, rotate: -2, y: 14 }}
+          animate={{ opacity: 1, rotate: -1.2, y: 0 }}
+          whileHover={{ rotate: 0, scale: 1.02 }}
+          whileDrag={{ scale: 1.06, rotate: 2, cursor: "grabbing" }}
           transition={{ type: "spring", stiffness: 350, damping: 22 }}
-          className="relative mt-6 max-w-md bg-[#FFF275] border-2 border-black p-4 sm:p-5 text-left shadow-[5px_5px_0px_#000] cursor-grab select-none group"
+          className="relative mt-6 max-w-lg bg-[#FFF275] border-2 border-black p-5 sm:p-6 text-left shadow-[5px_5px_0px_#000] cursor-grab select-none group"
         >
-          {/* Pin accent */}
-          <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-[#E11D5A] border-2 border-black shadow-xs flex items-center justify-center">
-            <div className="w-1.5 h-1.5 bg-white rounded-full" />
+          {/* Washi Tape Strip at Top */}
+          <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-28 h-6 bg-white/80 border border-black/40 shadow-xs rotate-[-1.5deg] backdrop-blur-xs flex items-center justify-center">
+            <span className="font-mono text-[9px] font-black text-neutral-600 tracking-widest uppercase">
+              // ROADMAP MEMO
+            </span>
+          </div>
+
+          {/* Red Pin Accent */}
+          <div className="absolute -top-2 left-6 w-4 h-4 rounded-full bg-[#E11D5A] border-2 border-black shadow-xs flex items-center justify-center">
+            <div className="w-1 h-1 bg-white rounded-full" />
           </div>
 
           <span
             style={{ fontFamily: "var(--font-caveat), cursive" }}
-            className="absolute -top-5 right-2 text-xs text-neutral-600 font-semibold opacity-0 group-hover:opacity-100 transition-opacity"
+            className="absolute -top-5 right-3 text-xs text-neutral-600 font-semibold opacity-0 group-hover:opacity-100 transition-opacity"
           >
             {t("pull me!", "tarik saya!")} ↗
           </span>
 
-          <p className="font-mono text-xs sm:text-sm font-bold text-neutral-900 leading-relaxed">
+          <p className="font-mono text-xs sm:text-sm font-bold text-neutral-900 leading-relaxed pt-2">
             {t(
               "Hands-on immersion through engineering labs, active study groups, and deep dive web development projects at Telkom University.",
               "Pengalaman nyata melalui keterlibatan aktif di laboratorium riset, kelompok studi web, dan eksplorasi teknologi modern di Telkom University."
             )}
           </p>
 
-          <div className="mt-3 pt-2 border-t border-black/20 flex items-center justify-between font-mono text-[11px] text-neutral-800 font-bold">
-            <span>BANDUNG, ID // TELKOM UNIV</span>
-            <span>2024 - 2026 ✦</span>
+          <div className="mt-4 pt-2.5 border-t border-black/20 flex flex-wrap items-center justify-between gap-2 font-mono text-[11px] text-neutral-800 font-bold">
+            <span className="flex items-center gap-1">
+              <MapPin className="w-3 h-3 text-[#E11D5A]" />
+              BANDUNG, ID // TELKOM UNIVERSITY
+            </span>
+            <span className="flex items-center gap-1 text-neutral-700">
+              <Calendar className="w-3 h-3" />
+              2024 - 2026 ✦
+            </span>
           </div>
         </motion.div>
       </div>
