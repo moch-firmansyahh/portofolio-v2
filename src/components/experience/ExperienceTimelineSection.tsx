@@ -214,7 +214,28 @@ export default function ExperienceTimelineSection({
   // Floating vector particles on kudos click
   const [floatingParticles, setFloatingParticles] = useState<FloatingParticle[]>([]);
 
-  // Filter logic
+  // Count calculation
+  const workCount = useMemo(
+    () =>
+      initialExperiences.filter(
+        (e) =>
+          e.company.toLowerCase().includes("reacteev") ||
+          (e.type && e.type.toLowerCase() === "work")
+      ).length,
+    [initialExperiences]
+  );
+
+  const campusCount = useMemo(
+    () =>
+      initialExperiences.filter(
+        (e) =>
+          !e.company.toLowerCase().includes("reacteev") &&
+          (!e.type || e.type.toLowerCase() !== "work")
+      ).length,
+    [initialExperiences]
+  );
+
+  // Filter logic (Bagi dua: Work & Intern vs Kegiatan Kampus/Organisasi/Study Group)
   const filteredExperiences = useMemo(() => {
     if (activeFilter === "ALL") return initialExperiences;
     if (activeFilter === "WORK") {
@@ -224,25 +245,11 @@ export default function ExperienceTimelineSection({
           (e.type && e.type.toLowerCase() === "work")
       );
     }
-    if (activeFilter === "CCI") {
+    if (activeFilter === "CAMPUS") {
       return initialExperiences.filter(
         (e) =>
-          e.company.toLowerCase().includes("central computer") ||
-          e.company.toLowerCase().includes("cci")
-      );
-    }
-    if (activeFilter === "LAB") {
-      return initialExperiences.filter(
-        (e) =>
-          e.company.toLowerCase().includes("laboratory") ||
-          e.company.toLowerCase().includes("cps")
-      );
-    }
-    if (activeFilter === "GDG") {
-      return initialExperiences.filter(
-        (e) =>
-          e.company.toLowerCase().includes("gdg") ||
-          e.company.toLowerCase().includes("google")
+          !e.company.toLowerCase().includes("reacteev") &&
+          (!e.type || e.type.toLowerCase() !== "work")
       );
     }
     return initialExperiences;
@@ -292,16 +299,23 @@ export default function ExperienceTimelineSection({
 
   const totalKudos = Object.values(kudosCount).reduce((a, b) => a + b, 0);
 
+  // Filter tabs: Disederhanakan menjadi 2 kategori utama (Work & Intern vs Kegiatan Kampus) + Semua
   const filterTabs = [
     {
       key: "ALL",
       labelEn: `ALL JOURNEY (${initialExperiences.length})`,
       labelId: `SEMUA PERJALANAN (${initialExperiences.length})`,
     },
-    { key: "WORK", labelEn: "WORK & INTERN", labelId: "MAGANG & KERJA" },
-    { key: "CCI", labelEn: "CCI TELKOM", labelId: "CCI TELKOM" },
-    { key: "LAB", labelEn: "CPS LABORATORY", labelId: "LABORATORIUM CPS" },
-    { key: "GDG", labelEn: "GDGoC GOOGLE", labelId: "GDGoC GOOGLE" },
+    {
+      key: "WORK",
+      labelEn: `WORK & INTERN (${workCount})`,
+      labelId: `MAGANG & KERJA (${workCount})`,
+    },
+    {
+      key: "CAMPUS",
+      labelEn: `CAMPUS ACTIVITIES (${campusCount})`,
+      labelId: `KEGIATAN KAMPUS & ORGANISASI (${campusCount})`,
+    },
   ];
 
   // Icons for specific companies
@@ -313,6 +327,56 @@ export default function ExperienceTimelineSection({
     if (c.includes("central computer") || c.includes("cci")) return Code2;
     if (c.includes("laboratory") || c.includes("cps")) return Server;
     return Globe;
+  };
+
+  // Dynamic Theme Colors & Labels for each experience item
+  const getExperienceTheme = (exp: ExperienceItem, index: number) => {
+    const c = exp.company.toLowerCase();
+    const r = exp.role.toLowerCase();
+
+    if (c.includes("reacteev") || (exp.type && exp.type.toLowerCase() === "work")) {
+      return {
+        badgeBg: "bg-[#00C2FF]",
+        badgeText: "text-black",
+        label: `WORK // FULL-STACK INTERNSHIP`,
+        status: t("ACTIVE // ONGOING ✦", "AKTIF // ONGOING ✦"),
+        statusBg: "bg-[#10B981]/15 text-[#065F46] border-[#10B981]",
+      };
+    }
+    if (r.includes("kepala") || r.includes("head") || r.includes("lead")) {
+      return {
+        badgeBg: "bg-[#FFE600]",
+        badgeText: "text-black",
+        label: `CAMPUS // ORGANISASI (LEADERSHIP)`,
+        status: t("ACTIVE // ONGOING ✦", "AKTIF // ONGOING ✦"),
+        statusBg: "bg-[#10B981]/15 text-[#065F46] border-[#10B981]",
+      };
+    }
+    if (c.includes("central computer") || c.includes("cci")) {
+      return {
+        badgeBg: "bg-[#38C6F4]",
+        badgeText: "text-black",
+        label: `CAMPUS // STUDY GROUP (FRONT-END)`,
+        status: t("COMPLETED ✓", "SELESAI // MILESTONE ✓"),
+        statusBg: "bg-neutral-100 text-neutral-800 border-neutral-600",
+      };
+    }
+    if (c.includes("laboratory") || c.includes("cps")) {
+      return {
+        badgeBg: "bg-[#EDB22E]",
+        badgeText: "text-black",
+        label: `CAMPUS // STUDY GROUP (LAB CPS)`,
+        status: t("COMPLETED ✓", "SELESAI // MILESTONE ✓"),
+        statusBg: "bg-neutral-100 text-neutral-800 border-neutral-600",
+      };
+    }
+    return {
+      badgeBg: "bg-[#10B981]",
+      badgeText: "text-white",
+      label: `CAMPUS // STUDY GROUP (GDGoC)`,
+      status: t("COMPLETED ✓", "SELESAI // MILESTONE ✓"),
+      statusBg: "bg-neutral-100 text-neutral-800 border-neutral-600",
+    };
   };
 
   return (
@@ -421,45 +485,8 @@ export default function ExperienceTimelineSection({
               const isShaking = shakingCard === index;
               const CompanyIcon = getCompanyIcon(exp.company, exp.role);
 
-              // Station Theme Colors
-              const stationThemes = [
-                {
-                  badgeBg: "bg-[#00C2FF]",
-                  badgeText: "text-black",
-                  label: "STATION 01 // FULL-STACK INDUSTRY INTERNSHIP",
-                  status: t("ACTIVE // ONGOING ✦", "AKTIF // BERJALAN ✦"),
-                  statusBg: "bg-[#10B981]/15 text-[#065F46] border-[#10B981]",
-                },
-                {
-                  badgeBg: "bg-[#FFE600]",
-                  badgeText: "text-black",
-                  label: "STATION 02 // WEB DEV LEADERSHIP",
-                  status: t("ACTIVE // ONGOING ✦", "AKTIF // BERJALAN ✦"),
-                  statusBg: "bg-[#10B981]/15 text-[#065F46] border-[#10B981]",
-                },
-                {
-                  badgeBg: "bg-[#38C6F4]",
-                  badgeText: "text-black",
-                  label: "STATION 03 // FRONT-END ENGINEERING",
-                  status: t("COMPLETED ✓", "SELESAI // MILESTONE ✓"),
-                  statusBg: "bg-neutral-100 text-neutral-800 border-neutral-600",
-                },
-                {
-                  badgeBg: "bg-[#EDB22E]",
-                  badgeText: "text-black",
-                  label: "STATION 04 // FULL-STACK & CLOUD LAB",
-                  status: t("COMPLETED ✓", "SELESAI // MILESTONE ✓"),
-                  statusBg: "bg-neutral-100 text-neutral-800 border-neutral-600",
-                },
-                {
-                  badgeBg: "bg-[#10B981]",
-                  badgeText: "text-white",
-                  label: "STATION 05 // COMMUNITY & WEB FOUNDATION",
-                  status: t("COMPLETED ✓", "SELESAI // MILESTONE ✓"),
-                  statusBg: "bg-neutral-100 text-neutral-800 border-neutral-600",
-                },
-              ];
-              const theme = stationThemes[index % stationThemes.length];
+              // Dynamic Theme based on role/company
+              const theme = getExperienceTheme(exp, index);
 
               return (
                 <motion.div
