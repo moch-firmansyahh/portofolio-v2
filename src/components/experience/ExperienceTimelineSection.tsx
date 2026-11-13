@@ -348,14 +348,14 @@ export default function ExperienceTimelineSection({
                   transition={{ duration: 0.45, delay: index * 0.08, ease: "easeOut" }}
                   className="relative flex items-stretch gap-4 sm:gap-7"
                 >
-                  {/* Station Node Column with Clean Segmented Connector Rail */}
+                  {/* Station Node Column with Solid Full Cyan Line */}
                   <div className="relative z-20 shrink-0 flex flex-col items-center">
                     {/* Station Node Box */}
                     <motion.div
                       whileHover={{ scale: 1.15, rotate: 6 }}
                       whileTap={{ scale: 0.92 }}
                       transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                      className={`w-11 h-11 sm:w-13 sm:h-13 rounded-2xl border-2 border-black ${theme.badgeBg} ${theme.badgeText} shadow-[3px_3px_0px_#000] flex flex-col items-center justify-center cursor-pointer select-none shrink-0`}
+                      className={`w-11 h-11 sm:w-13 sm:h-13 rounded-2xl border-2 border-black ${theme.badgeBg} ${theme.badgeText} shadow-[3px_3px_0px_#000] flex flex-col items-center justify-center cursor-pointer select-none shrink-0 z-10`}
                     >
                       <CompanyIcon className="w-5 h-5 sm:w-5.5 sm:h-5.5" />
                       <span className="font-mono text-[9px] font-black leading-none mt-0.5">
@@ -363,20 +363,25 @@ export default function ExperienceTimelineSection({
                       </span>
                     </motion.div>
 
-                    {/* Connecting track to next station - Strictly BETWEEN nodes only, NEVER above station 01 */}
-                    {index < filteredExperiences.length - 1 && (
-                      <div className="w-1.5 flex-1 bg-neutral-200 border-x border-dashed border-neutral-400 mt-2 -mb-10 sm:-mb-12 relative overflow-hidden">
-                        {/* Animated glowing signal moving strictly inside this connector segment */}
+                    {/* Full Solid Cyan Connector Line - NEVER above station 01, runs ALL THE WAY DOWN */}
+                    {index < filteredExperiences.length - 1 ? (
+                      <div className="w-1.5 flex-1 bg-[#00C2FF] border-x border-black shadow-[0_0_8px_rgba(0,194,255,0.8)] mt-2 -mb-10 sm:-mb-12 relative overflow-hidden">
+                        {/* Shimmer pulse travelling through the solid blue line */}
                         <motion.div
-                          animate={{ y: ["-100%", "200%"] }}
+                          animate={{ y: ["-100%", "250%"] }}
                           transition={{
                             repeat: Infinity,
-                            duration: 2.6,
+                            duration: 2.2,
                             ease: "easeInOut",
-                            delay: index * 0.6,
+                            delay: index * 0.4,
                           }}
-                          className="absolute inset-x-0 h-16 bg-gradient-to-b from-transparent via-[#00C2FF] to-transparent shadow-[0_0_8px_#00C2FF]"
+                          className="absolute inset-x-0 h-20 bg-gradient-to-b from-transparent via-white/80 to-transparent"
                         />
+                      </div>
+                    ) : (
+                      /* Terminus extension below the last station all the way to the bottom */
+                      <div className="w-1.5 h-16 sm:h-20 bg-gradient-to-b from-[#00C2FF] via-[#00C2FF] to-transparent border-x border-black shadow-[0_0_8px_rgba(0,194,255,0.6)] mt-2 relative flex flex-col items-center justify-end">
+                        <span className="w-2.5 h-2.5 rounded-full bg-[#00C2FF] border border-black shadow-xs -mb-1" />
                       </div>
                     )}
                   </div>
