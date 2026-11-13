@@ -3,7 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
-import { Sparkles, Gamepad2, Volume2, VolumeX, Cpu, Activity } from "lucide-react";
+import { Volume2, VolumeX } from "lucide-react";
 import { JetBrains_Mono } from "next/font/google";
 
 const mono = JetBrains_Mono({
@@ -174,25 +174,13 @@ export default function PlaygroundHeroSection({
           )}
         </motion.p>
 
-        {/* 4. Badges & Sound Controller */}
+        {/* 4. Sound Controller */}
         <motion.div
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.25 }}
-          className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3.5 select-none"
+          className="flex items-center justify-center select-none"
         >
-          {/* Framer Badge */}
-          <div className="flex items-center gap-1.5 px-3 py-1.5 bg-[#00C2FF] border-2 border-black font-mono text-xs font-black text-neutral-900 shadow-[2px_2px_0px_#000]">
-            <Sparkles className="w-3.5 h-3.5 text-neutral-900" />
-            <span>FRAMER MOTION V12</span>
-          </div>
-
-          {/* Performance tag */}
-          <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white border-2 border-black font-mono text-xs font-bold text-neutral-800 shadow-[2px_2px_0px_#000]">
-            <Activity className="w-3.5 h-3.5 text-[#10B981]" />
-            <span>60 FPS // GPU ACCELERATED</span>
-          </div>
-
           {/* Sound Toggle Button */}
           <motion.button
             onClick={onToggleSound}

@@ -27,25 +27,35 @@ const ROW_COLORS = ["bg-[#E11D5A]", "bg-[#F97316]", "bg-[#EDB22E]", "bg-[#10B981
 export default function BrickBreakerGame({ soundEnabled }: BrickProps) {
   const { t } = useLanguage();
   const arenaRef = useRef<HTMLDivElement>(null);
+  const ballElRef = useRef<HTMLDivElement>(null);
+  const paddleElRef = useRef<HTMLDivElement>(null);
 
   const [gameState, setGameState] = useState<"idle" | "playing" | "gameover" | "victory">("idle");
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
   const [lives, setLives] = useState(3);
-
-  // Relaxed & Comfortable Paddle and Ball Dimensions
-  const paddleWidth = 88;
-  const paddleHeight = 13;
-  const [paddleX, setPaddleX] = useState(156);
-
-  const ballSize = 13;
-  const [ballPos, setBallPos] = useState({ x: 193, y: 250 });
-  const [ballVel, setBallVel] = useState({ dx: 1.6, dy: -2.0 });
-
-  // Bricks state
   const [bricks, setBricks] = useState<Brick[]>([]);
 
+  // Synchronous game refs for ultra-smooth 60-144 FPS GPU-accelerated physics
+  const paddleWidth = 88;
+  const paddleHeight = 13;
+  const paddleXRef = useRef(156);
+
+  const ballSize = 13;
+  const ballPosRef = useRef({ x: 193, y: 240 });
+  const ballVelRef = useRef({ dx: 1.6, dy: -2.0 });
+
+  const livesRef = useRef(3);
+  const scoreRef = useRef(0);
+  const bricksRef = useRef<Brick[]>([]);
+  const soundEnabledRef = useRef(soundEnabled);
   const animRef = useRef<number | null>(null);
+  const lastTimeRef = useRef<number>(0);
+
+  // Sync sound setting without interrupting physics loop
+  useEffect(() => {
+    soundEnabledRef.current = soundEnabled;
+  }, [soundEnabled]);
 
   // Initialize Bricks
   const initBricks = () => {
@@ -70,17 +80,34 @@ export default function BrickBreakerGame({ soundEnabled }: BrickProps) {
         });
       }
     }
+    bricksRef.current = newBricks;
     setBricks(newBricks);
+  };
+
+  // Direct paddle position updater (0ms latency, GPU translated)
+  const updatePaddle = (newX: number) => {
+    const clamped = Math.max(0, Math.min(400 - paddleWidth, newX));
+    paddleXRef.current = clamped;
+    if (paddleElRef.current) {
+      paddleElRef.current.style.transform = `translate3d(${clamped}px, 0, 0)`;
+    }
   };
 
   const startGame = () => {
     initBricks();
+    scoreRef.current = 0;
     setScore(0);
+    livesRef.current = 3;
     setLives(3);
-    setPaddleX(156);
-    setBallPos({ x: 193, y: 250 });
-    // Calibrated relaxed speed: dy = -2.0, dx = 1.6
-    setBallVel({ dx: (Math.random() > 0.5 ? 1 : -1) * 1.6, dy: -2.0 });
+
+    ballPosRef.current = { x: 193, y: 240 };
+    ballVelRef.current = { dx: (Math.random() > 0.5 ? 1 : -1) * 1.6, dy: -2.0 };
+    updatePaddle(156);
+
+    if (ballElRef.current) {
+      ballElRef.current.style.transform = `translate3d(193px, 240px, 0)`;
+    }
+
     setGameState("playing");
   };
 
@@ -89,17 +116,24 @@ export default function BrickBreakerGame({ soundEnabled }: BrickProps) {
     if (!arenaRef.current) return;
     const rect = arenaRef.current.getBoundingClientRect();
     const relativeX = e.clientX - rect.left - paddleWidth / 2;
-    const clampedX = Math.max(0, Math.min(rect.width - paddleWidth, relativeX));
-    setPaddleX(clampedX);
+    updatePaddle(relativeX);
+  };
+
+  // Paddle touch movement
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (!arenaRef.current || e.touches.length === 0) return;
+    const rect = arenaRef.current.getBoundingClientRect();
+    const relativeX = e.touches[0].clientX - rect.left - paddleWidth / 2;
+    updatePaddle(relativeX);
   };
 
   // Keyboard left/right movement
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
       if (e.code === "ArrowLeft" || e.code === "KeyA") {
-        setPaddleX((px) => Math.max(0, px - 25));
+        updatePaddle(paddleXRef.current - 24);
       } else if (e.code === "ArrowRight" || e.code === "KeyD") {
-        setPaddleX((px) => Math.min(312, px + 25));
+        updatePaddle(paddleXRef.current + 24);
       } else if (e.code === "Space" && gameState !== "playing") {
         startGame();
       }
@@ -108,75 +142,86 @@ export default function BrickBreakerGame({ soundEnabled }: BrickProps) {
     return () => window.removeEventListener("keydown", handleKey);
   }, [gameState]);
 
-  // Main 60 FPS Physics Loop with Relaxed Speed
+  // Rock-solid 60-144 FPS Hardware-Accelerated Physics Loop
   useEffect(() => {
     if (gameState !== "playing") return;
 
-    let bx = ballPos.x;
-    let by = ballPos.y;
-    let bdx = ballVel.dx;
-    let bdy = ballVel.dy;
-    let localScore = score;
-    let localLives = lives;
-    const currentBricks = [...bricks];
+    lastTimeRef.current = 0;
 
-    const loop = () => {
-      bx += bdx;
-      by += bdy;
+    const loop = (currentTime: number) => {
+      if (!lastTimeRef.current) {
+        lastTimeRef.current = currentTime;
+      }
+      const elapsed = currentTime - lastTimeRef.current;
+      lastTimeRef.current = currentTime;
+
+      // Delta time normalized to 60 FPS (16.67ms)
+      // Clamped to avoid large jumps if tab is throttled
+      const dt = Math.min(Math.max(elapsed / (1000 / 60), 0.2), 2.0);
+
+      const pos = ballPosRef.current;
+      const vel = ballVelRef.current;
+
+      pos.x += vel.dx * dt;
+      pos.y += vel.dy * dt;
 
       const arenaW = 400;
       const arenaH = 340;
 
       // Wall bounce
-      if (bx <= 0) {
-        bx = 0;
-        bdx = Math.abs(bdx);
-        playBubblePop(1.4, soundEnabled);
-      } else if (bx >= arenaW - ballSize) {
-        bx = arenaW - ballSize;
-        bdx = -Math.abs(bdx);
-        playBubblePop(1.4, soundEnabled);
+      if (pos.x <= 0) {
+        pos.x = 0;
+        vel.dx = Math.abs(vel.dx);
+        playBubblePop(1.4, soundEnabledRef.current);
+      } else if (pos.x >= arenaW - ballSize) {
+        pos.x = arenaW - ballSize;
+        vel.dx = -Math.abs(vel.dx);
+        playBubblePop(1.4, soundEnabledRef.current);
       }
 
-      if (by <= 0) {
-        by = 0;
-        bdy = Math.abs(bdy);
-        playBubblePop(1.4, soundEnabled);
+      if (pos.y <= 0) {
+        pos.y = 0;
+        vel.dy = Math.abs(vel.dy);
+        playBubblePop(1.4, soundEnabledRef.current);
       }
 
-      // Paddle bounce with smooth controllable angle
+      // Paddle bounce with smooth controllable reflection angle
       const paddleY = arenaH - 32;
+      const curPaddleX = paddleXRef.current;
       if (
-        by + ballSize >= paddleY &&
-        by <= paddleY + paddleHeight &&
-        bx + ballSize >= paddleX &&
-        bx <= paddleX + paddleWidth
+        pos.y + ballSize >= paddleY &&
+        pos.y <= paddleY + paddleHeight &&
+        pos.x + ballSize >= curPaddleX &&
+        pos.x <= curPaddleX + paddleWidth &&
+        vel.dy > 0 // Only bounce when ball is descending
       ) {
-        bdy = -2.0; // Consistent, relaxed upward speed
-        // Gentle angle based on hit position
-        const hitPoint = (bx + ballSize / 2 - (paddleX + paddleWidth / 2)) / (paddleWidth / 2);
-        bdx = Math.max(-2.2, Math.min(2.2, hitPoint * 2.2));
-        playBubblePop(1.2, soundEnabled);
+        vel.dy = -Math.abs(vel.dy);
+        // Angle calibration based on hit distance from paddle center
+        const hitPoint = (pos.x + ballSize / 2 - (curPaddleX + paddleWidth / 2)) / (paddleWidth / 2);
+        vel.dx = Math.max(-2.4, Math.min(2.4, hitPoint * 2.4));
+        playBubblePop(1.2, soundEnabledRef.current);
       }
 
       // Brick collision
+      const currentBricks = bricksRef.current;
       let hitBrick = false;
       for (let i = 0; i < currentBricks.length; i++) {
         const br = currentBricks[i];
         if (br.alive) {
           if (
-            bx + ballSize >= br.x &&
-            bx <= br.x + br.w &&
-            by + ballSize >= br.y &&
-            by <= br.y + br.h
+            pos.x + ballSize >= br.x &&
+            pos.x <= br.x + br.w &&
+            pos.y + ballSize >= br.y &&
+            pos.y <= br.y + br.h
           ) {
             br.alive = false;
-            bdy = -bdy;
+            vel.dy = -vel.dy;
             hitBrick = true;
-            localScore += 20;
-            setScore(localScore);
-            if (localScore > highScore) setHighScore(localScore);
-            playBubblePop(0.9 + (i % 5) * 0.15, soundEnabled);
+            scoreRef.current += 20;
+            const newScore = scoreRef.current;
+            setScore(newScore);
+            setHighScore((h) => Math.max(h, newScore));
+            playBubblePop(0.9 + (i % 5) * 0.15, soundEnabledRef.current);
             break;
           }
         }
@@ -186,31 +231,37 @@ export default function BrickBreakerGame({ soundEnabled }: BrickProps) {
         setBricks([...currentBricks]);
         if (currentBricks.every((b) => !b.alive)) {
           setGameState("victory");
-          playJackpot(soundEnabled);
+          playJackpot(soundEnabledRef.current);
           return;
         }
       }
 
       // Ball falls to bottom (Lose a life)
-      if (by >= arenaH) {
-        localLives -= 1;
-        setLives(localLives);
-        playSquish(soundEnabled);
+      if (pos.y >= arenaH) {
+        playSquish(soundEnabledRef.current);
+        livesRef.current -= 1;
+        const remainingLives = livesRef.current;
+        setLives(remainingLives);
 
-        if (localLives <= 0) {
+        if (remainingLives <= 0) {
           setGameState("gameover");
           return;
         } else {
-          // Reset ball position with gentle speed
-          bx = 193;
-          by = 240;
-          bdx = 1.6;
-          bdy = -2.0;
+          // Reset ball position
+          pos.x = 193;
+          pos.y = 240;
+          vel.dx = (Math.random() > 0.5 ? 1 : -1) * 1.6;
+          vel.dy = -2.0;
+          if (ballElRef.current) {
+            ballElRef.current.style.transform = `translate3d(${pos.x}px, ${pos.y}px, 0)`;
+          }
         }
       }
 
-      setBallPos({ x: bx, y: by });
-      setBallVel({ dx: bdx, dy: bdy });
+      // Ultra-smooth sub-pixel GPU hardware transform (No React re-render lag)
+      if (ballElRef.current) {
+        ballElRef.current.style.transform = `translate3d(${pos.x}px, ${pos.y}px, 0)`;
+      }
 
       animRef.current = requestAnimationFrame(loop);
     };
@@ -220,7 +271,7 @@ export default function BrickBreakerGame({ soundEnabled }: BrickProps) {
     return () => {
       if (animRef.current) cancelAnimationFrame(animRef.current);
     };
-  }, [gameState, paddleX, soundEnabled]);
+  }, [gameState]);
 
   return (
     <div className="relative bg-white border-2 border-black p-5 sm:p-8 shadow-[8px_8px_0px_#000]">
@@ -229,7 +280,7 @@ export default function BrickBreakerGame({ soundEnabled }: BrickProps) {
         <div>
           <div className="flex items-center gap-2 font-mono text-xs font-bold text-neutral-600 mb-1">
             <span className="text-base">🧱</span>
-            <span>RELAXED CLASSIC // BRICK BREAKER</span>
+            <span>SMOOTH CLASSIC // BRICK BREAKER</span>
           </div>
           <h3 className="text-xl sm:text-2xl font-black text-neutral-900 tracking-tight">
             {t("Brick Breaker Classic", "Hancurkan Balok Bata (Breakout)")}
@@ -265,7 +316,8 @@ export default function BrickBreakerGame({ soundEnabled }: BrickProps) {
       <div
         ref={arenaRef}
         onMouseMove={handleMouseMove}
-        className="relative bg-neutral-900 border-2 border-black h-[340px] max-w-md mx-auto overflow-hidden select-none shadow-inner cursor-none"
+        onTouchMove={handleTouchMove}
+        className="relative bg-neutral-900 border-2 border-black h-[340px] max-w-md mx-auto overflow-hidden select-none shadow-inner cursor-none touch-none"
       >
         {/* Subtle grid pattern */}
         <div
@@ -293,26 +345,30 @@ export default function BrickBreakerGame({ soundEnabled }: BrickProps) {
           );
         })}
 
-        {/* Bouncy Ball */}
+        {/* Bouncy Ball (Sub-pixel hardware accelerated transform) */}
         <div
+          ref={ballElRef}
           style={{
-            left: ballPos.x,
-            top: ballPos.y,
+            transform: `translate3d(${ballPosRef.current.x}px, ${ballPosRef.current.y}px, 0)`,
             width: ballSize,
             height: ballSize,
+            willChange: "transform",
           }}
-          className="absolute rounded-full bg-white border border-black shadow-[0_0_8px_#fff] z-20 pointer-events-none"
+          className="absolute top-0 left-0 rounded-full bg-white border border-black shadow-[0_0_8px_#fff] z-20 pointer-events-none"
         />
 
-        {/* Bottom Paddle */}
+        {/* Bottom Paddle (Sub-pixel hardware accelerated transform) */}
         <div
+          ref={paddleElRef}
           style={{
-            left: paddleX,
+            transform: `translate3d(${paddleXRef.current}px, 0, 0)`,
             bottom: 20,
+            left: 0,
             width: paddleWidth,
             height: paddleHeight,
+            willChange: "transform",
           }}
-          className="absolute bg-[#00C2FF] border-2 border-white shadow-[0_0_10px_#00C2FF] rounded-full z-20 pointer-events-none"
+          className="absolute top-auto bg-[#00C2FF] border-2 border-white shadow-[0_0_10px_#00C2FF] rounded-full z-20 pointer-events-none"
         />
 
         {/* Idle Start Prompt */}
@@ -378,7 +434,7 @@ export default function BrickBreakerGame({ soundEnabled }: BrickProps) {
       </div>
 
       <div className="mt-5 pt-3 border-t border-black/10 flex items-center justify-between font-mono text-xs text-neutral-600">
-        <span>SPEED: RELAXED // CONTROLS: MOUSE / ARROWS</span>
+        <span>SMOOTH 60 FPS // CONTROLS: MOUSE / TOUCH / ARROWS</span>
         <span className="font-bold text-neutral-900">
           {t("Destroy all bricks to win! 🧱", "Hancurkan semua balok untuk menang! 🧱")}
         </span>
