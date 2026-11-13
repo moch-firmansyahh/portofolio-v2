@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
 import { playBubblePop, playSquish } from "./audioEffects";
-import { Trophy, RotateCcw, ArrowUp, ArrowDown, ArrowLeft, ArrowRight } from "lucide-react";
+import { Trophy, RotateCcw, ArrowUp, ArrowDown, ArrowLeft, ArrowRight, Skull } from "lucide-react";
 
 interface SnakeProps {
   soundEnabled: boolean;
@@ -23,7 +23,6 @@ const INITIAL_SNAKE: Point[] = [
   { x: 8, y: 9 },
   { x: 8, y: 10 },
 ];
-const FRUITS = ["🍎", "🍓", "🍉", "🍒", "🍇", "⭐"];
 
 export default function SnakeGame({ soundEnabled }: SnakeProps) {
   const { t } = useLanguage();
@@ -31,7 +30,6 @@ export default function SnakeGame({ soundEnabled }: SnakeProps) {
   const [snake, setSnake] = useState<Point[]>(INITIAL_SNAKE);
   const [direction, setDirection] = useState<Direction>("UP");
   const [food, setFood] = useState<Point>({ x: 8, y: 4 });
-  const [foodEmoji, setFoodEmoji] = useState("🍎");
   const [isGameOver, setIsGameOver] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [score, setScore] = useState(0);
@@ -79,7 +77,6 @@ export default function SnakeGame({ soundEnabled }: SnakeProps) {
       isOnSnake = currentSnake.some((seg) => seg.x === newFood.x && seg.y === newFood.y);
       if (!isOnSnake) {
         setFood(newFood);
-        setFoodEmoji(FRUITS[Math.floor(Math.random() * FRUITS.length)]);
         break;
       }
     }
@@ -199,7 +196,7 @@ export default function SnakeGame({ soundEnabled }: SnakeProps) {
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pb-5 border-b-2 border-black mb-6">
         <div>
           <div className="flex items-center gap-2 font-mono text-xs font-bold text-neutral-600 mb-1">
-            <span className="text-base">🐍</span>
+            <span className="w-2 h-2 rounded-full bg-[#10B981] inline-block animate-pulse" />
             <span>SMOOTH RETRO ARCADE // GAME ULAR</span>
           </div>
           <h3 className="text-xl sm:text-2xl font-black text-neutral-900 tracking-tight">
@@ -223,7 +220,7 @@ export default function SnakeGame({ soundEnabled }: SnakeProps) {
             className="flex items-center gap-1.5 px-3 py-1.5 bg-[#00C2FF] text-black border-2 border-black shadow-[2px_2px_0px_#000] cursor-pointer"
           >
             <RotateCcw className="w-3.5 h-3.5" />
-            <span>{isGameOver ? t("PLAY AGAIN 🚀", "MAIN LAGI 🚀") : t("RESET", "RESET")}</span>
+            <span>{isGameOver ? t("PLAY AGAIN", "MAIN LAGI") : t("RESET", "RESET")}</span>
           </motion.button>
         </div>
       </div>
@@ -239,7 +236,7 @@ export default function SnakeGame({ soundEnabled }: SnakeProps) {
           }}
         />
 
-        {/* Food item */}
+        {/* Food item (Neo-brutalist pulsing diamond token) */}
         <div
           style={{
             left: `${(food.x / GRID_SIZE) * 100}%`,
@@ -247,13 +244,14 @@ export default function SnakeGame({ soundEnabled }: SnakeProps) {
             width: `${100 / GRID_SIZE}%`,
             height: `${100 / GRID_SIZE}%`,
           }}
-          className="absolute flex items-center justify-center text-lg sm:text-xl z-20 pointer-events-none"
+          className="absolute flex items-center justify-center p-0.5 z-20 pointer-events-none"
         >
           <motion.div
-            animate={{ scale: [1, 1.25, 1] }}
-            transition={{ repeat: Infinity, duration: 1 }}
+            animate={{ scale: [1, 1.25, 1], rotate: [0, 90, 180, 270, 360] }}
+            transition={{ repeat: Infinity, duration: 2.2, ease: "linear" }}
+            className="w-3.5 h-3.5 sm:w-4 sm:h-4 bg-[#EF4444] border-2 border-black shadow-[1.5px_1.5px_0px_#000] rotate-45 flex items-center justify-center"
           >
-            {foodEmoji}
+            <div className="w-1.5 h-1.5 bg-[#FFF275] rounded-full" />
           </motion.div>
         </div>
 
@@ -309,7 +307,7 @@ export default function SnakeGame({ soundEnabled }: SnakeProps) {
               transition={{ repeat: Infinity, duration: 1.4 }}
               className="px-6 py-3 bg-[#FFF275] hover:bg-[#FFEB3B] text-neutral-900 border-2 border-black font-mono text-sm font-black shadow-[4px_4px_0px_#000] cursor-pointer"
             >
-              <span>{t("START GAME! 🚀", "MULAI MAIN! 🚀")}</span>
+              <span>{t("START GAME", "MULAI MAIN")}</span>
             </motion.button>
             <p className="font-mono text-[11px] text-white font-bold mt-2 drop-shadow-md">
               {t("Use Arrow keys or WASD", "Gunakan tombol Panah atau WASD")}
@@ -327,7 +325,7 @@ export default function SnakeGame({ soundEnabled }: SnakeProps) {
               className="absolute inset-0 bg-black/40 backdrop-blur-2xs flex flex-col items-center justify-center z-30 p-4"
             >
               <div className="bg-white border-2 border-black p-5 text-center shadow-[6px_6px_0px_#000]">
-                <div className="text-4xl mb-1">😵</div>
+                <Skull className="w-9 h-9 text-[#E11D5A] mx-auto mb-1 stroke-[2.5]" />
                 <h4 className="font-mono text-base font-black text-[#E11D5A] mb-1">
                   TABRAKAN! GAME OVER
                 </h4>
@@ -337,9 +335,10 @@ export default function SnakeGame({ soundEnabled }: SnakeProps) {
                 <button
                   type="button"
                   onClick={startGame}
-                  className="px-4 py-2 bg-[#00C2FF] text-black font-mono text-xs font-black border-2 border-black shadow-[2px_2px_0px_#000] cursor-pointer"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#00C2FF] text-black font-mono text-xs font-black border-2 border-black shadow-[2px_2px_0px_#000] cursor-pointer"
                 >
-                  {t("MAIN LAGI 🔄", "MAIN LAGI 🔄")}
+                  <RotateCcw className="w-3.5 h-3.5" />
+                  <span>{t("MAIN LAGI", "MAIN LAGI")}</span>
                 </button>
               </div>
             </motion.div>

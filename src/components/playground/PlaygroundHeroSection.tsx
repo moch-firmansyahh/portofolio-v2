@@ -195,12 +195,12 @@ export default function PlaygroundHeroSection({
             {soundEnabled ? (
               <>
                 <Volume2 className="w-3.5 h-3.5 text-neutral-900" />
-                <span>SOUND: ON 🔊</span>
+                <span>SOUND: ON</span>
               </>
             ) : (
               <>
                 <VolumeX className="w-3.5 h-3.5 text-neutral-600" />
-                <span>SOUND: MUTED 🔇</span>
+                <span>SOUND: MUTED</span>
               </>
             )}
           </motion.button>

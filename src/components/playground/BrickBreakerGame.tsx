@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
 import { playBubblePop, playJackpot, playSquish } from "./audioEffects";
-import { Trophy, RotateCcw, Heart } from "lucide-react";
+import { Trophy, RotateCcw, Heart, Skull } from "lucide-react";
 
 interface BrickProps {
   soundEnabled: boolean;
@@ -279,7 +279,7 @@ export default function BrickBreakerGame({ soundEnabled }: BrickProps) {
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pb-5 border-b-2 border-black mb-6">
         <div>
           <div className="flex items-center gap-2 font-mono text-xs font-bold text-neutral-600 mb-1">
-            <span className="text-base">🧱</span>
+            <span className="w-2 h-2 rounded-full bg-[#00C2FF] inline-block animate-pulse" />
             <span>SMOOTH CLASSIC // BRICK BREAKER</span>
           </div>
           <h3 className="text-xl sm:text-2xl font-black text-neutral-900 tracking-tight">
@@ -380,7 +380,7 @@ export default function BrickBreakerGame({ soundEnabled }: BrickProps) {
               transition={{ repeat: Infinity, duration: 1.4 }}
               className="px-6 py-3 bg-[#FFF275] hover:bg-[#FFEB3B] text-neutral-900 border-2 border-black font-mono text-sm font-black shadow-[4px_4px_0px_#000] cursor-pointer"
             >
-              <span>{t("START PLAYING! 🧱", "MULAI MAIN! 🧱")}</span>
+              <span>{t("START PLAYING", "MULAI MAIN")}</span>
             </motion.button>
             <p className="font-mono text-xs text-white mt-2">
               {t("Move your mouse to control the paddle", "Gerakkan mouse untuk mengontrol papan pantul")}
@@ -392,7 +392,7 @@ export default function BrickBreakerGame({ soundEnabled }: BrickProps) {
         {gameState === "gameover" && (
           <div className="absolute inset-0 bg-black/60 backdrop-blur-2xs flex flex-col items-center justify-center z-30 p-4">
             <div className="bg-white border-2 border-black p-5 text-center shadow-[6px_6px_0px_#000]">
-              <div className="text-4xl mb-1">💥</div>
+              <Skull className="w-9 h-9 text-[#E11D5A] mx-auto mb-1 stroke-[2.5]" />
               <h4 className="font-mono text-base font-black text-[#E11D5A] mb-1">
                 GAME OVER!
               </h4>
@@ -402,9 +402,10 @@ export default function BrickBreakerGame({ soundEnabled }: BrickProps) {
               <button
                 type="button"
                 onClick={startGame}
-                className="px-4 py-2 bg-[#00C2FF] text-black font-mono text-xs font-black border-2 border-black shadow-[2px_2px_0px_#000] cursor-pointer"
+                className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#00C2FF] text-black font-mono text-xs font-black border-2 border-black shadow-[2px_2px_0px_#000] cursor-pointer"
               >
-                {t("COBA LAGI 🔄", "COBA LAGI 🔄")}
+                <RotateCcw className="w-3.5 h-3.5" />
+                <span>{t("COBA LAGI", "COBA LAGI")}</span>
               </button>
             </div>
           </div>
@@ -414,7 +415,7 @@ export default function BrickBreakerGame({ soundEnabled }: BrickProps) {
         {gameState === "victory" && (
           <div className="absolute inset-0 bg-black/60 backdrop-blur-2xs flex flex-col items-center justify-center z-30 p-4">
             <div className="bg-[#FFF275] border-2 border-black p-5 text-center shadow-[6px_6px_0px_#000]">
-              <div className="text-4xl mb-1">🏆</div>
+              <Trophy className="w-9 h-9 text-neutral-900 mx-auto mb-1 stroke-[2.5]" />
               <h4 className="font-mono text-base font-black text-neutral-900 mb-1">
                 HEBAT! SEMUA BALOK HANCUR!
               </h4>
@@ -424,9 +425,10 @@ export default function BrickBreakerGame({ soundEnabled }: BrickProps) {
               <button
                 type="button"
                 onClick={startGame}
-                className="px-4 py-2 bg-neutral-900 text-white font-mono text-xs font-black border-2 border-black shadow-[2px_2px_0px_#00C2FF] cursor-pointer"
+                className="inline-flex items-center gap-1.5 px-4 py-2 bg-neutral-900 text-white font-mono text-xs font-black border-2 border-black shadow-[2px_2px_0px_#00C2FF] cursor-pointer"
               >
-                {t("MAIN LAGI 🔄", "MAIN LAGI 🔄")}
+                <RotateCcw className="w-3.5 h-3.5" />
+                <span>{t("MAIN LAGI", "MAIN LAGI")}</span>
               </button>
             </div>
           </div>
@@ -436,7 +438,7 @@ export default function BrickBreakerGame({ soundEnabled }: BrickProps) {
       <div className="mt-5 pt-3 border-t border-black/10 flex items-center justify-between font-mono text-xs text-neutral-600">
         <span>SMOOTH 60 FPS // CONTROLS: MOUSE / TOUCH / ARROWS</span>
         <span className="font-bold text-neutral-900">
-          {t("Destroy all bricks to win! 🧱", "Hancurkan semua balok untuk menang! 🧱")}
+          {t("Destroy all bricks to win!", "Hancurkan semua balok untuk menang!")}
         </span>
       </div>
     </div>

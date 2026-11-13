@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
+import { Gamepad2, Grid3X3, Boxes } from "lucide-react";
 import PlaygroundHeroSection from "./PlaygroundHeroSection";
 import SnakeGame from "./SnakeGame";
 import TicTacToeGame from "./TicTacToeGame";
@@ -15,7 +16,7 @@ interface GameOption {
   titleEn: string;
   titleId: string;
   badge: string;
-  icon: string;
+  icon: React.ComponentType<{ className?: string }>;
 }
 
 const GAMES: GameOption[] = [
@@ -24,21 +25,21 @@ const GAMES: GameOption[] = [
     titleEn: "01. RETRO SNAKE",
     titleId: "01. GAME ULAR",
     badge: "SMOOTH",
-    icon: "🐍",
+    icon: Gamepad2,
   },
   {
     key: "tictactoe",
     titleEn: "02. TIC-TAC-TOE",
     titleId: "02. DUEL XOXO",
     badge: "PUZZLE",
-    icon: "❌⭕",
+    icon: Grid3X3,
   },
   {
     key: "brick",
     titleEn: "03. BRICK BREAKER",
     titleId: "03. BALOK BATA",
     badge: "RELAXED",
-    icon: "🧱",
+    icon: Boxes,
   },
 ];
 
@@ -79,7 +80,7 @@ export default function PlaygroundContainer() {
                     transition={{ type: "spring", stiffness: 400, damping: 25 }}
                   />
                 )}
-                <span className="text-sm">{game.icon}</span>
+                <game.icon className="w-3.5 h-3.5 shrink-0" />
                 <span>{t(game.titleEn, game.titleId)}</span>
                 <span className="hidden sm:inline-block text-[9px] px-1.5 py-0.2 bg-white/20 border border-current font-normal">
                   {game.badge}

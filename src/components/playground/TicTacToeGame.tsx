@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
 import { playBubblePop, playJackpot, playSquish } from "./audioEffects";
-import { Trophy, RotateCcw, User, Bot, Users } from "lucide-react";
+import { Trophy, RotateCcw, User, Bot, Users, MinusCircle } from "lucide-react";
 
 interface TicTacToeProps {
   soundEnabled: boolean;
@@ -151,7 +151,7 @@ export default function TicTacToeGame({ soundEnabled }: TicTacToeProps) {
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pb-5 border-b-2 border-black mb-6">
         <div>
           <div className="flex items-center gap-2 font-mono text-xs font-bold text-neutral-600 mb-1">
-            <span className="text-base">❌⭕</span>
+            <span className="w-2 h-2 rounded-full bg-[#10B981] inline-block animate-pulse" />
             <span>CLASSIC CASUAL // TIC-TAC-TOE</span>
           </div>
           <h3 className="text-xl sm:text-2xl font-black text-neutral-900 tracking-tight">
@@ -204,7 +204,8 @@ export default function TicTacToeGame({ soundEnabled }: TicTacToeProps) {
       {/* Score Tally Board */}
       <div className="flex items-center justify-center gap-3 sm:gap-6 font-mono text-xs font-black mb-6 select-none">
         <div className="px-4 py-2 bg-[#00C2FF]/20 border-2 border-black shadow-[2px_2px_0px_#000] flex items-center gap-2">
-          <span>❌ PLAYER X:</span>
+          <span className="text-[#00C2FF] font-black text-sm">✕</span>
+          <span>PLAYER X:</span>
           <span className="text-sm font-black">{scoreX}</span>
         </div>
         <div className="px-4 py-2 bg-neutral-100 border-2 border-black shadow-[2px_2px_0px_#000] flex items-center gap-2">
@@ -212,7 +213,8 @@ export default function TicTacToeGame({ soundEnabled }: TicTacToeProps) {
           <span className="text-sm font-black">{draws}</span>
         </div>
         <div className="px-4 py-2 bg-[#E11D5A]/20 border-2 border-black shadow-[2px_2px_0px_#000] flex items-center gap-2">
-          <span>⭕ {vsBot ? "BOT O" : "PLAYER O"}:</span>
+          <span className="text-[#E11D5A] font-black text-sm">◯</span>
+          <span>{vsBot ? "BOT O" : "PLAYER O"}:</span>
           <span className="text-sm font-black">{scoreO}</span>
         </div>
       </div>
@@ -270,13 +272,16 @@ export default function TicTacToeGame({ soundEnabled }: TicTacToeProps) {
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            className="inline-block px-5 py-2 bg-[#10B981] border-2 border-black font-mono text-sm font-black text-black shadow-[3px_3px_0px_#000]"
+            className="inline-flex items-center gap-2 px-5 py-2 bg-[#10B981] border-2 border-black font-mono text-sm font-black text-black shadow-[3px_3px_0px_#000]"
           >
-            🎉 PEMENANG: {winInfo.winner === "X" ? "PLAYER X" : vsBot ? "BYTE BOT O" : "PLAYER O"} MENANG! 🎉
+            <Trophy className="w-4 h-4 text-black stroke-[2.5]" />
+            <span>PEMENANG: {winInfo.winner === "X" ? "PLAYER X" : vsBot ? "BYTE BOT O" : "PLAYER O"} MENANG!</span>
+            <Trophy className="w-4 h-4 text-black stroke-[2.5]" />
           </motion.div>
         ) : isDraw ? (
-          <div className="inline-block px-5 py-2 bg-[#FFF275] border-2 border-black font-mono text-sm font-black text-black shadow-[3px_3px_0px_#000]">
-            🤝 HASIL IMBANG / DRAW!
+          <div className="inline-flex items-center gap-2 px-5 py-2 bg-[#FFF275] border-2 border-black font-mono text-sm font-black text-black shadow-[3px_3px_0px_#000]">
+            <MinusCircle className="w-4 h-4 text-black stroke-[2.5]" />
+            <span>HASIL IMBANG / DRAW!</span>
           </div>
         ) : (
           <div className="font-mono text-xs font-bold text-neutral-600">
