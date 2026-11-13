@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
 import { Volume2, VolumeX } from "lucide-react";
 import { JetBrains_Mono } from "next/font/google";
+import { ModularTitle } from "@/components/ui/ModularTypography";
 
 const mono = JetBrains_Mono({
   subsets: ["latin"],
@@ -158,7 +159,7 @@ export default function PlaygroundHeroSection({
           transition={{ duration: 0.5, delay: 0.1, type: "spring", stiffness: 280, damping: 20 }}
           className="flex justify-center w-full my-3 sm:my-5 cursor-default select-none"
         >
-          <PlaygroundTypography />
+          <ModularTitle text="PLAYGROUND" />
         </motion.div>
 
         {/* 3. Description Subtitle */}

@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { motion, useMotionValue, useSpring, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
 import { JetBrains_Mono } from "next/font/google";
+import { ModularTitle } from "@/components/ui/ModularTypography";
 import { playBubblePop, playCombo } from "@/components/playground/audioEffects";
 import {
   Coffee,
@@ -22,93 +23,6 @@ const mono = JetBrains_Mono({
   variable: "--font-exp-mono",
   display: "swap",
 });
-
-/**
- * 1:1 Modular Geometric Vector Typography for "EXPERIENCE"
- * Matches the exact geometric modular font family across the portfolio.
- */
-function ExperienceTypography() {
-  return (
-    <svg
-      viewBox="0 0 584 84"
-      className="w-full max-w-[340px] sm:max-w-[480px] md:max-w-[620px] lg:max-w-[740px] h-auto block select-none text-[#171717] mx-auto"
-      fill="currentColor"
-      aria-label="EXPERIENCE"
-    >
-      {/* E */}
-      <g transform="translate(6, 4)">
-        <rect x="0" y="0" width="14" height="74" rx="7" />
-        <rect x="10" y="0" width="34" height="15" rx="7" />
-        <rect x="10" y="29" width="26" height="15" rx="6" />
-        <rect x="10" y="59" width="34" height="15" rx="7" />
-      </g>
-
-      {/* X */}
-      <g transform="translate(64, 4)">
-        <rect x="18" y="0" width="14" height="74" rx="7" transform="rotate(28 25 37)" />
-        <rect x="18" y="0" width="14" height="74" rx="7" transform="rotate(-28 25 37)" />
-      </g>
-
-      {/* P */}
-      <g transform="translate(126, 4)">
-        <rect x="0" y="0" width="14" height="74" rx="7" />
-        <path d="M 10 0 H 30 C 40 0 48 7 48 20 C 48 33 40 40 30 40 H 10 Z M 14 15 H 28 C 30 15 32 17 32 20 C 32 23 30 25 28 25 H 14 Z" />
-      </g>
-
-      {/* E */}
-      <g transform="translate(186, 4)">
-        <rect x="0" y="0" width="14" height="74" rx="7" />
-        <rect x="10" y="0" width="34" height="15" rx="7" />
-        <rect x="10" y="29" width="26" height="15" rx="6" />
-        <rect x="10" y="59" width="34" height="15" rx="7" />
-      </g>
-
-      {/* R */}
-      <g transform="translate(244, 4)">
-        <rect x="0" y="0" width="14" height="74" rx="7" />
-        <path d="M 10 0 H 30 C 40 0 48 7 48 20 C 48 33 40 40 30 40 H 10 Z M 14 15 H 28 C 30 15 32 17 32 20 C 32 23 30 25 28 25 H 14 Z" />
-        <rect x="20" y="34" width="14" height="42" rx="7" transform="rotate(-26 20 34)" />
-      </g>
-
-      {/* I */}
-      <g transform="translate(306, 4)">
-        <rect x="0" y="0" width="36" height="15" rx="7.5" />
-        <rect x="11" y="10" width="14" height="54" rx="7" />
-        <rect x="0" y="59" width="36" height="15" rx="7.5" />
-      </g>
-
-      {/* E */}
-      <g transform="translate(352, 4)">
-        <rect x="0" y="0" width="14" height="74" rx="7" />
-        <rect x="10" y="0" width="34" height="15" rx="7" />
-        <rect x="10" y="29" width="26" height="15" rx="6" />
-        <rect x="10" y="59" width="34" height="15" rx="7" />
-      </g>
-
-      {/* N */}
-      <g transform="translate(410, 4)">
-        <rect x="0" y="0" width="14" height="74" rx="7" />
-        <rect x="36" y="0" width="14" height="74" rx="7" />
-        <path d="M 10 0 L 38 60 H 42 V 74 L 14 14 H 10 Z" />
-      </g>
-
-      {/* C */}
-      <g transform="translate(476, 4)">
-        <rect x="0" y="0" width="14" height="74" rx="7" />
-        <rect x="10" y="0" width="34" height="15" rx="7" />
-        <rect x="10" y="59" width="34" height="15" rx="7" />
-      </g>
-
-      {/* E */}
-      <g transform="translate(534, 4)">
-        <rect x="0" y="0" width="14" height="74" rx="7" />
-        <rect x="10" y="0" width="34" height="15" rx="7" />
-        <rect x="10" y="29" width="26" height="15" rx="6" />
-        <rect x="10" y="59" width="34" height="15" rx="7" />
-      </g>
-    </svg>
-  );
-}
 
 type MoodKey = "coffee" | "code" | "chill" | "retro";
 
@@ -446,7 +360,7 @@ export default function ExperienceHeroSection() {
           transition={{ duration: 0.5, delay: 0.1, type: "spring", stiffness: 280, damping: 20 }}
           className="flex justify-center items-center w-full my-3 sm:my-5 cursor-default select-none"
         >
-          <ExperienceTypography />
+          <ModularTitle text="EXPERIENCE" />
         </motion.div>
 
         {/* 3. Supercharged Interactive Companion Mascot */}

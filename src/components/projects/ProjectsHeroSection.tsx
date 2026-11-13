@@ -4,88 +4,13 @@ import React from "react";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
 import { JetBrains_Mono } from "next/font/google";
+import { ModularTitle } from "@/components/ui/ModularTypography";
 
 const mono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-hero-mono",
   display: "swap",
 });
-
-/**
- * 1:1 Modular Vector Typography for "PROJECTS"
- * Consistent with WHAT, I DO, and CORE CAPABILITIES modular font system.
- */
-function ProjectsTypography() {
-  return (
-    <svg
-      viewBox="0 0 560 84"
-      className="w-full max-w-[340px] sm:max-w-[480px] md:max-w-[620px] lg:max-w-[720px] h-auto block select-none text-[#171717]"
-      fill="currentColor"
-      aria-label="PROJECTS"
-    >
-      {/* P */}
-      <g transform="translate(6, 4)">
-        <rect x="0" y="0" width="15" height="74" rx="7.5" />
-        <path d="M 12 0 H 34 C 44 0 52 7 52 20 C 52 33 44 40 34 40 H 12 Z M 15 15 H 32 C 34 15 36 17 36 20 C 36 23 34 25 32 25 H 15 Z" />
-      </g>
-
-      {/* R */}
-      <g transform="translate(66, 4)">
-        <rect x="0" y="0" width="15" height="74" rx="7.5" />
-        <path d="M 12 0 H 34 C 44 0 52 7 52 20 C 52 33 44 40 34 40 H 12 Z M 15 15 H 32 C 34 15 36 17 36 20 C 36 23 34 25 32 25 H 15 Z" />
-        <rect x="22" y="34" width="15" height="42" rx="7.5" transform="rotate(-26 22 34)" />
-      </g>
-
-      {/* O */}
-      <g transform="translate(136, 4)">
-        <rect x="0" y="0" width="15" height="74" rx="7.5" />
-        <rect x="36" y="0" width="15" height="74" rx="7.5" />
-        <rect x="10" y="0" width="32" height="16" rx="6" />
-        <rect x="10" y="58" width="32" height="16" rx="6" />
-      </g>
-
-      {/* J */}
-      <g transform="translate(202, 4)">
-        <rect x="24" y="0" width="15" height="60" rx="7.5" />
-        <path
-          fillRule="evenodd"
-          d="M 24 50 C 24 65 14 74 0 74 C -12 74 -20 66 -20 56 H -6 C -6 60 -2 62 2 62 C 6 62 10 58 10 50 V 0 H 24 Z"
-          transform="translate(14, 0)"
-        />
-      </g>
-
-      {/* E */}
-      <g transform="translate(266, 4)">
-        <rect x="0" y="0" width="15" height="74" rx="7.5" />
-        <rect x="10" y="0" width="36" height="16" rx="7.5" />
-        <rect x="10" y="29" width="28" height="16" rx="6" />
-        <rect x="10" y="58" width="36" height="16" rx="7.5" />
-      </g>
-
-      {/* C */}
-      <g transform="translate(332, 4)">
-        <rect x="0" y="0" width="15" height="74" rx="7.5" />
-        <rect x="10" y="0" width="36" height="16" rx="7.5" />
-        <rect x="10" y="58" width="36" height="16" rx="7.5" />
-      </g>
-
-      {/* T */}
-      <g transform="translate(398, 4)">
-        <rect x="0" y="0" width="56" height="16" rx="8" />
-        <rect x="20" y="14" width="16" height="60" rx="8" />
-      </g>
-
-      {/* S */}
-      <g transform="translate(468, 4)">
-        <path
-          fillRule="evenodd"
-          d="M 12 0 H 38 C 48 0 52 6 52 16 H 38 C 38 14 36 12 32 12 H 16 C 12 12 10 14 10 18 C 10 24 16 26 28 30 C 44 34 52 40 52 54 C 52 66 44 74 30 74 H 8 C -2 74 -6 68 -6 56 H 8 C 8 60 12 62 18 62 H 30 C 34 62 38 60 38 54 C 38 48 32 46 22 42 C 8 38 0 32 0 18 C 0 6 8 0 20 0 Z"
-          transform="translate(4, 0)"
-        />
-      </g>
-    </svg>
-  );
-}
 
 export default function ProjectsHeroSection() {
   const { t } = useLanguage();
@@ -138,7 +63,7 @@ export default function ProjectsHeroSection() {
           transition={{ duration: 0.5, delay: 0.1, type: "spring", stiffness: 280, damping: 20 }}
           className="flex justify-center w-full my-3 sm:my-5 cursor-default select-none"
         >
-          <ProjectsTypography />
+          <ModularTitle text="PROJECTS" />
         </motion.div>
 
         {/* 3. Architectural Sticky Note with Spring Drag Physics */}

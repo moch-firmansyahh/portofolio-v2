@@ -5,57 +5,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
 import AnimatedCursorBadge from "@/components/about/AnimatedCursorBadge";
-
-/* ─── Modular Chunky Modernist Typography: "ABOUT" (1:1 with reference) ─── */
-function AboutModularTypography() {
-  return (
-    <div className="w-full select-none text-neutral-900 mb-6 sm:mb-8">
-      <svg
-        viewBox="0 0 420 90"
-        className="w-full max-w-[340px] sm:max-w-[400px] md:max-w-[440px] h-auto block select-none overflow-visible"
-        fill="currentColor"
-        aria-label="ABOUT"
-      >
-        {/* A (Distinctive Modular Hourglass/Loop A) */}
-        <g transform="translate(0, 0)">
-          <path
-            fillRule="evenodd"
-            d="M 24 0 H 46 C 58 0 66 8 66 19 C 66 28 60 34 50 38 C 45 40 43 43 46 47 C 56 52 68 62 68 76 V 80 C 68 86 64 90 58 90 H 46 C 40 90 36 86 36 80 V 68 C 36 60 30 56 24 56 C 18 56 12 60 12 68 V 80 C 12 86 8 90 2 90 H -2 C -8 90 -12 86 -12 80 V 76 C -12 62 0 52 10 47 C 13 43 11 40 6 38 C -4 34 -10 28 -10 19 C -10 8 -2 0 10 0 Z M 16 18 C 16 23 20 27 25 27 C 30 27 34 23 34 18 C 34 13 30 9 25 9 C 20 9 16 13 16 18 Z"
-            transform="translate(10, 0)"
-          />
-        </g>
-        {/* B (Chunky Double Rounded Loops) */}
-        <g transform="translate(82, 0)">
-          <path
-            fillRule="evenodd"
-            d="M 10 0 H 46 C 58 0 66 8 66 20 C 66 28 60 34 52 38 C 62 42 68 50 68 64 C 68 78 58 90 46 90 H 10 C 4 90 0 86 0 80 V 10 C 0 4 4 0 10 0 Z M 22 16 H 42 C 48 16 50 20 50 24 C 50 28 48 32 42 32 H 22 Z M 22 46 H 44 C 50 46 52 50 52 62 C 52 70 50 74 44 74 H 22 Z"
-          />
-        </g>
-        {/* O (Rounded Chunky Rectangular Loop) */}
-        <g transform="translate(162, 0)">
-          <path
-            fillRule="evenodd"
-            d="M 22 0 H 50 C 66 0 72 10 72 24 V 66 C 72 80 66 90 50 90 H 22 C 6 90 0 80 0 66 V 24 C 0 10 6 0 22 0 Z M 24 18 H 48 C 54 18 56 22 56 28 V 62 C 56 68 54 72 48 72 H 24 C 18 72 16 68 16 62 V 28 C 16 22 18 18 24 18 Z"
-          />
-        </g>
-        {/* U (Modular Curved Base Stem) */}
-        <g transform="translate(244, 0)">
-          <path
-            fillRule="evenodd"
-            d="M 0 10 C 0 4 4 0 10 0 H 22 C 28 0 32 4 32 10 V 58 C 32 68 36 72 46 72 C 56 72 60 68 60 58 V 10 C 60 4 64 0 70 0 H 82 C 88 0 92 4 92 10 V 62 C 92 78 82 90 64 90 H 28 C 10 90 0 78 0 62 Z"
-          />
-        </g>
-        {/* T (Chunky Crossbar and Central Stem) */}
-        <g transform="translate(348, 0)">
-          <path
-            fillRule="evenodd"
-            d="M 4 0 H 66 C 72 0 76 4 76 10 V 20 C 76 26 72 30 66 30 H 46 V 80 C 46 86 42 90 36 90 H 34 C 28 90 24 86 24 80 V 30 H 4 C 1 30 0 26 0 20 V 10 C 0 4 4 0 4 0 Z"
-          />
-        </g>
-      </svg>
-    </div>
-  );
-}
+import { ModularTitle } from "@/components/ui/ModularTypography";
 
 /* ─── Inline Headline Glyphs (Enlarged) ─── */
 function PuzzleGlyph() {
@@ -94,7 +44,7 @@ const AboutBioSection = forwardRef<HTMLElement, React.HTMLAttributes<HTMLElement
         {...props}
       >
         {/* Top Giant Modular "ABOUT" Typography */}
-        <AboutModularTypography />
+        <div className="w-full select-none text-neutral-900 mb-6 sm:mb-8"><ModularTitle text="ABOUT" className="w-full max-w-[340px] sm:max-w-[400px] md:max-w-[440px] h-auto block select-none overflow-visible" /></div>
 
         {/* Figma Canvas Selection Box with Gold Border & Corner Handles */}
         <div className="relative border-2 border-[#EAB308] bg-white p-6 sm:p-10 md:p-12 shadow-sm">

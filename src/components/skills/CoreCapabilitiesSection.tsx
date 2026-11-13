@@ -2,129 +2,7 @@
 
 import React, { useRef } from "react";
 import { motion } from "framer-motion";
-
-/**
- * 1:1 Vector Typography untuk "CORE CAPABILITIES"
- * Huruf modular geometris tebal sesuai screenshot referensi
- */
-function CoreCapabilitiesTypography() {
-  return (
-    <svg
-      viewBox="0 0 580 160"
-      className="w-full max-w-[340px] sm:max-w-[440px] md:max-w-[540px] h-auto block select-none text-[#171717]"
-      fill="currentColor"
-      aria-label="CORE CAPABILITIES"
-    >
-      {/* BARIS 1: CORE (Centered) */}
-      <g transform="translate(170, 6)">
-        {/* C */}
-        <g transform="translate(0, 0)">
-          <rect x="0" y="0" width="15" height="62" rx="7.5" />
-          <rect x="10" y="0" width="32" height="15" rx="7.5" />
-          <rect x="10" y="47" width="32" height="15" rx="7.5" />
-        </g>
-        {/* O */}
-        <g transform="translate(58, 0)">
-          <rect x="0" y="0" width="15" height="62" rx="7.5" />
-          <rect x="32" y="0" width="15" height="62" rx="7.5" />
-          <rect x="8" y="0" width="31" height="15" rx="5" />
-          <rect x="8" y="47" width="31" height="15" rx="5" />
-        </g>
-        {/* R */}
-        <g transform="translate(120, 0)">
-          <rect x="0" y="0" width="15" height="62" rx="7.5" />
-          <path d="M 10 0 H 28 C 37 0 44 6 44 17 C 44 28 37 34 28 34 H 10 Z M 15 13 H 26 C 28 13 30 14 30 17 C 30 20 28 21 26 21 H 15 Z" />
-          <rect x="18" y="27" width="15" height="35" rx="7.5" transform="rotate(-23 18 27)" />
-        </g>
-        {/* E */}
-        <g transform="translate(182, 0)">
-          <rect x="0" y="0" width="15" height="62" rx="7.5" />
-          <rect x="10" y="0" width="32" height="15" rx="7.5" />
-          <rect x="10" y="24" width="24" height="15" rx="5" />
-          <rect x="10" y="47" width="32" height="15" rx="7.5" />
-        </g>
-      </g>
-
-      {/* BARIS 2: CAPABILITIES */}
-      <g transform="translate(10, 84)">
-        {/* C */}
-        <g transform="translate(0, 0)">
-          <rect x="0" y="0" width="14" height="62" rx="7" />
-          <rect x="10" y="0" width="28" height="14" rx="7" />
-          <rect x="10" y="48" width="28" height="14" rx="7" />
-        </g>
-        {/* A */}
-        <g transform="translate(46, 0)">
-          <rect x="0" y="12" width="14" height="50" rx="7" />
-          <rect x="28" y="12" width="14" height="50" rx="7" />
-          <rect x="4" y="0" width="34" height="15" rx="7" />
-          <rect x="10" y="27" width="22" height="13" rx="4" />
-        </g>
-        {/* P */}
-        <g transform="translate(96, 0)">
-          <rect x="0" y="0" width="14" height="62" rx="7" />
-          <path d="M 10 0 H 26 C 34 0 40 5 40 16 C 40 27 34 32 26 32 H 10 Z M 14 12 H 24 C 26 12 28 13 28 16 C 28 19 26 20 24 20 H 14 Z" />
-        </g>
-        {/* A */}
-        <g transform="translate(144, 0)">
-          <rect x="0" y="12" width="14" height="50" rx="7" />
-          <rect x="28" y="12" width="14" height="50" rx="7" />
-          <rect x="4" y="0" width="34" height="15" rx="7" />
-          <rect x="10" y="27" width="22" height="13" rx="4" />
-        </g>
-        {/* B */}
-        <g transform="translate(196, 0)">
-          <rect x="0" y="0" width="14" height="62" rx="7" />
-          <path d="M 10 0 H 25 C 33 0 37 5 37 15 C 37 24 32 28 25 28 H 10 Z" />
-          <path d="M 10 27 H 27 C 35 27 39 32 39 43 C 39 53 35 59 27 59 H 10 Z" />
-        </g>
-        {/* I */}
-        <g transform="translate(244, 0)">
-          <rect x="0" y="0" width="34" height="14" rx="7" />
-          <rect x="10" y="0" width="14" height="62" rx="7" />
-          <rect x="0" y="48" width="34" height="14" rx="7" />
-        </g>
-        {/* L */}
-        <g transform="translate(288, 0)">
-          <rect x="0" y="0" width="14" height="62" rx="7" />
-          <rect x="10" y="48" width="28" height="14" rx="7" />
-        </g>
-        {/* I */}
-        <g transform="translate(334, 0)">
-          <rect x="0" y="0" width="34" height="14" rx="7" />
-          <rect x="10" y="0" width="14" height="62" rx="7" />
-          <rect x="0" y="48" width="34" height="14" rx="7" />
-        </g>
-        {/* T */}
-        <g transform="translate(378, 0)">
-          <rect x="0" y="0" width="38" height="14" rx="7" />
-          <rect x="12" y="12" width="14" height="50" rx="7" />
-        </g>
-        {/* I */}
-        <g transform="translate(426, 0)">
-          <rect x="0" y="0" width="34" height="14" rx="7" />
-          <rect x="10" y="0" width="14" height="62" rx="7" />
-          <rect x="0" y="48" width="34" height="14" rx="7" />
-        </g>
-        {/* E */}
-        <g transform="translate(470, 0)">
-          <rect x="0" y="0" width="14" height="62" rx="7" />
-          <rect x="10" y="0" width="26" height="14" rx="7" />
-          <rect x="10" y="24" width="20" height="14" rx="5" />
-          <rect x="10" y="48" width="26" height="14" rx="7" />
-        </g>
-        {/* S */}
-        <g transform="translate(514, 0)">
-          <rect x="6" y="0" width="28" height="14" rx="7" />
-          <rect x="0" y="6" width="14" height="22" rx="7" />
-          <rect x="4" y="24" width="26" height="14" rx="7" />
-          <rect x="20" y="32" width="14" height="22" rx="7" />
-          <rect x="2" y="48" width="28" height="14" rx="7" />
-        </g>
-      </g>
-    </svg>
-  );
-}
+import { ModularSubheading } from "@/components/ui/ModularTypography";
 
 /**
  * Folder Tab Badge di pojok kiri atas tiap kuadran
@@ -159,25 +37,21 @@ function QuadrantFolderBadge({
 
 /**
  * 1:1 Sticky Note / Skill Tag
- * - FIX ANTI LONCAT:
- *   1. dragMomentum={false}: tidak meluncur liar saat mouse dilepas.
- *   2. dragElastic={0}: tidak membal/menarik balik sama sekali.
- *   3. dragTransition={{ power: 0, timeConstant: 0 }}: transisi inersia dimatikan total.
- *   4. whileHover dihilangkan dari transformasi CSS agar tidak memicu animasi saat cursor melepaskan tag.
- *   Hasil: Saat dilepas kursor, tag langsung 100% DIAM di posisi tersebut tanpa loncat!
+ * - FIX ANTI LONCAT & ANTI ILANG:
+ *   Menggunakan constraints relatif berbasis pixel boundaries yang stabil,
+ *   sehingga kartu tidak pernah hilang atau terlempar saat diklik/ditekan!
  */
 function DraggableSkillTag({
   label,
   color,
   rotation,
   style,
-  containerRef,
 }: {
   label: string;
   color: "green" | "blue" | "yellow" | "pink";
   rotation: number;
   style?: React.CSSProperties;
-  containerRef: React.RefObject<HTMLDivElement | null>;
+  containerRef?: React.RefObject<HTMLDivElement | null>;
 }) {
   const themeMap = {
     green: "bg-[#A1DFC5] text-[#0D4834] hover:bg-[#8BD7B5]",
@@ -189,16 +63,15 @@ function DraggableSkillTag({
   return (
     <motion.div
       drag
-      dragConstraints={containerRef}
+      dragConstraints={{ left: -160, right: 160, top: -110, bottom: 110 }}
+      dragElastic={0.08}
       dragMomentum={false}
-      dragElastic={0}
-      dragTransition={{ power: 0, timeConstant: 0 }}
-      whileDrag={{ zIndex: 50, cursor: "grabbing" }}
+      whileDrag={{ scale: 1.05, zIndex: 100, cursor: "grabbing" }}
       style={{
         ...style,
         rotate: rotation,
       }}
-      className={`absolute px-4 py-2 sm:px-5 sm:py-2.5 rounded-[2px] text-xs sm:text-[14px] font-medium select-none cursor-grab shadow-xs transition-colors ${themeMap[color]}`}
+      className={`absolute px-4 py-2 sm:px-5 sm:py-2.5 rounded-[2px] text-xs sm:text-[14px] font-medium select-none cursor-grab active:cursor-grabbing shadow-xs transition-colors ${themeMap[color]}`}
     >
       <span className="pointer-events-none whitespace-nowrap leading-none">{label}</span>
     </motion.div>
@@ -206,14 +79,13 @@ function DraggableSkillTag({
 }
 
 export default function CoreCapabilitiesSection() {
-  // boardRef menaungi seluruh area 4 kuadran agar pergerakan tag leluasa dan tidak menabrak batas sempit
   const boardRef = useRef<HTMLDivElement>(null);
 
   return (
     <section className="w-full min-h-screen bg-white bg-blueprint-grid relative flex flex-col items-center pt-24 pb-32 overflow-hidden border-t border-neutral-300">
       {/* Title Header: CORE CAPABILITIES */}
       <div className="flex flex-col items-center mb-10 sm:mb-14 select-none z-10 px-4">
-        <CoreCapabilitiesTypography />
+        <ModularSubheading line1="CORE" line2="CAPABILITIES" />
       </div>
 
       {/* 4-Quadrant Coordinate Grid Container */}
