@@ -388,7 +388,7 @@ export default function HeroSection() {
             {/* Pill capsule body */}
             <div className="flex items-center bg-[#F3A935] border-[2.5px] border-black rounded-l-full rounded-r-lg px-5 py-2 sm:px-6 sm:py-2.5 shadow-[3px_3px_0px_#000]">
               <span className="font-mono font-black text-[11px] sm:text-[13px] text-black tracking-[0.12em] uppercase whitespace-nowrap">
-                {t("FRONTEND DEVELOPER", "PENGEMBANG FRONTEND")}
+                {t("FULL STACK DEVELOPER", "FULL STACK DEVELOPER")}
               </span>
             </div>
             {/* Arrow cursor pinned to top-right corner */}

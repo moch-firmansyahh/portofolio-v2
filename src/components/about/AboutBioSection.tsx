@@ -118,7 +118,7 @@ const AboutBioSection = forwardRef<HTMLElement, React.HTMLAttributes<HTMLElement
             className="mb-8"
           >
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-bold leading-[1.3] text-neutral-900 tracking-tight">
-              {t("I'm Bejaman", "Saya Moch Firmansyah")}{" "}
+              {t("I'm Moch. Firmansyah", "Saya Moch. Firmansyah")}{" "}
               {/* Inline Avatar thumbnail */}
               <span className="inline-block w-8 h-8 sm:w-9 sm:h-9 rounded-md overflow-hidden align-middle mx-1 border border-neutral-300 shadow-xs relative">
                 <Image
@@ -129,13 +129,13 @@ const AboutBioSection = forwardRef<HTMLElement, React.HTMLAttributes<HTMLElement
                 />
               </span>{" "}
               {t(
-                "a product designer in Chicago who gets excited",
-                "seorang frontend developer & desainer yang antusias"
+                "a Full Stack Developer & Software Engineering student at Telkom University",
+                "seorang Full Stack Developer & mahasiswa Informatika di Universitas Telkom"
               )}
               <PuzzleGlyph />
               {t(
-                "about making complicated things simple",
-                "dalam menyederhanakan hal yang rumit"
+                "passionate about building scalable digital solutions",
+                "yang berdedikasi membangun solusi digital inovatif dan terukur"
               )}
               <HourglassGlyph />
               .
@@ -146,23 +146,23 @@ const AboutBioSection = forwardRef<HTMLElement, React.HTMLAttributes<HTMLElement
           <div className="space-y-5 text-sm sm:text-base leading-relaxed text-neutral-800 mb-10 relative">
             <p>
               {t(
-                "I spend my days designing for healthcare platforms, booking systems, and other products where 'just figure it out' isn't an option. The people using these tools are busy, stressed, and have actual work to do. My job is to get out of their way.",
-                "Saya mendedikasikan waktu saya untuk merancang platform kesehatan, sistem pemesanan, dan produk lainnya di mana sekadar 'mencoba-coba sendiri' bukanlah pilihan. Orang-orang yang menggunakan alat ini sibuk, memiliki beban kerja nyata, dan tugas saya adalah membuat semuanya berjalan lancar dan mudah."
+                "I focus on Software Engineering and full-stack web development with React, Next.js, TypeScript, Python, and Go. Currently interning as a Full Stack Developer at Reacteev, leading the Web Development division at CCI UNITEL Telkom University, and holding certifications including AWS Certified AI Practitioner, Google AI Professional, and Google Network Security.",
+                "Saya berfokus pada Software Engineering dan pengembangan web fullstack menggunakan React, Next.js, TypeScript, Python, dan Go. Saat ini saya aktif magang sebagai Full Stack Developer di Reacteev, menjabat sebagai Kepala Divisi Web Development di CCI UNITEL Universitas Telkom, serta meraih sertifikasi resmi AWS Certified AI Practitioner, Google AI Professional, dan Google Network Security."
               )}
             </p>
 
             <div className="relative">
               <p>
                 {t(
-                  "I've worked on teams of two and teams of twenty. I've had access to endless user research and I've had to make educated guesses with limited data. I've worked within strict component libraries and I've built design systems from scratch. What stays consistent is asking good questions, collaborating with people who know more than me, and shipping things that actually help",
-                  "Saya telah bekerja dalam tim beranggotakan dua hingga dua puluh orang. Saya terbiasa memanfaatkan riset pengguna yang mendalam maupun mengambil keputusan terarah dengan data yang terbatas. Saya bekerja dalam batasan pustaka komponen ketat dan membangun sistem desain dari nol. Yang selalu konsisten adalah mengajukan pertanyaan yang tepat, berkolaborasi dengan mereka yang ahli, dan merilis hal yang benar-benar membantu."
+                  "Having engineered full-stack applications such as SimGizi (AI-powered child nutrition & stunting detection, 3rd Winner at CCI THE HACK 2026), Voluntrip, and Manajemen Kontrakan Pa Iman, I take pride in collaborating closely with UI/UX designers and backend developers to build resilient, accessible, and high-impact digital systems.",
+                  "Berbekal pengalaman membangun aplikasi web full-stack seperti SimGizi (aplikasi deteksi stunting & gizi buruk berbasis AI yang meraih Juara 3 CCI THE HACK 2026), Voluntrip, dan Manajemen Kontrakan Pa Iman, saya terbiasa berkolaborasi erat dengan desainer antarmuka dan backend engineer untuk menciptakan sistem digital yang tangguh, mudah digunakan, dan berdampak nyata."
                 )}
               </p>
 
-              {/* 1:1 Animated "BEJAMAN" Cursor Badge (Shifted right, pointing to text without overlapping) */}
+              {/* 1:1 Animated "FIRMAN" Cursor Badge (Shifted right, pointing to text without overlapping) */}
               <div className="hidden sm:block absolute right-0 translate-x-[75%] sm:translate-x-[82%] md:translate-x-[90%] -bottom-2 md:-bottom-3 pointer-events-none">
                 <AnimatedCursorBadge
-                  text={t("BEJAMAN", "FIRMAN")}
+                  text="FIRMAN"
                   bgColor="#EAB308"
                   textColor="text-neutral-950"
                   initialRotate={-11}
@@ -175,7 +175,7 @@ const AboutBioSection = forwardRef<HTMLElement, React.HTMLAttributes<HTMLElement
           {/* 1:1 Bottom Layout: Yellow Sticky Note + Polaroid with "it's me" */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start pt-2">
             
-            {/* Sticky Note 1 (Left - Meridian Health / StyleBook reflection) */}
+            {/* Sticky Note 1 (Left - Reacteev & CCI reflection) */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -185,8 +185,8 @@ const AboutBioSection = forwardRef<HTMLElement, React.HTMLAttributes<HTMLElement
             >
               <p className="text-sm sm:text-base font-normal leading-relaxed text-neutral-900">
                 {t(
-                  "Currently, I'm at Meridian Health working on experiences for mental health clinicians and administrators. Before that, I spent almost two years at StyleBook helping salons manage their businesses (and discovering that stylists have very strong opinions about scheduling interfaces, which I deeply respect).",
-                  "Saat ini, saya di Meridian Health mengerjakan pengalaman pengguna untuk para klinisi kesehatan mental dan administrator. Sebelumnya, saya menghabiskan hampir dua tahun di StyleBook membantu salon mengelola bisnis mereka (dan menyadari bahwa para penata gaya memiliki opini kuat tentang antarmuka penjadwalan, yang sangat saya hormati)."
+                  "Currently at Reacteev helping design and maintain production web apps and REST APIs, while mentoring web development study sessions as Head of Web Development at CCI UNITEL. I believe great software bridges thoughtful engineering with exceptional user delight.",
+                  "Saat ini di Reacteev membantu merancang dan memelihara aplikasi web produksi serta REST API, sekaligus membimbing sesi belajar web sebagai Kepala Divisi Web Development di CCI UNITEL Telkom University. Saya percaya perangkat lunak hebat tercipta dari perpaduan rekayasa sistem yang matang dengan antarmuka yang menyenangkan bagi pengguna."
                 )}
               </p>
             </motion.div>

@@ -31,11 +31,35 @@ const SECRET_DEV_LOGS: Record<
   string,
   { en: string; id: string; mood: string; techTrophy: string }
 > = {
-  "Central Computer Improvement Telkom University": {
-    en: "Behind The Scenes: Deep dived into Next.js 16 Server Components and architecture until dawn with the team! Debated state hydration vs SSR while sipping hot black coffee. Most valuable takeaway: understanding system architecture from the user's real perspective.",
-    id: "Catatan Dapur: Begadang ngulik Next.js 16 Server Components dan arsitektur web sampai subuh bareng temen-temen! Debat sehat soal hidrasi state vs SSR sambil ngopi hitam. Pelajaran paling berharga: paham analisis sistem dari perspektif real user.",
+  Reacteev: {
+    en: "Behind The Scenes: Working as Full Stack Developer Intern at Reacteev! Designing and shipping responsive frontend components while integrating performant REST APIs. Experiencing firsthand how production features scale in a fast-paced environment.",
+    id: "Catatan Dapur: Pengalaman nyata sebagai Full Stack Developer Intern di Reacteev! Merancang dan merilis antarmuka front-end responsif terintegrasi dengan REST API handal. Belajar langsung bagaimana fitur skala produksi dirawat secara profesional.",
+    mood: "Industry Velocity & Real-World Impact",
+    techTrophy: "Next.js • Express • REST API Services",
+  },
+  "CCI UNITEL Universitas Telkom - Kepala Divisi": {
+    en: "Behind The Scenes: Stepping up to lead the Web Development Division at CCI Telkom University! Guiding members, structuring modern web roadmaps, and mentoring projects. True leadership is about empowering peers to level up together!",
+    id: "Catatan Dapur: Memimpin divisi Web Development di CCI UNITEL Telkom University! Mengoordinasikan anggota divisi, menyusun kurikulum belajar web modern, dan menggerakkan proyek kolaboratif. Kepemimpinan sejati adalah tentang memberdayakan rekan-rekan untuk berkembang bersama!",
+    mood: "Leadership, Mentorship & Vision",
+    techTrophy: "Curriculum • Project Direction • Leadership",
+  },
+  "CCI UNITEL Universitas Telkom": {
+    en: "Behind The Scenes: Deep dived into Next.js Server Components and reactive architecture until dawn with the team! Debated state hydration vs SSR while sipping hot coffee. Most valuable takeaway: building clean, user-centric interfaces.",
+    id: "Catatan Dapur: Begadang ngulik Next.js Server Components dan arsitektur web sampai subuh bareng tim! Debat sehat soal hidrasi state vs SSR sambil ngopi hitam. Pelajaran paling berharga: paham analisis sistem dari perspektif real user.",
     mood: "High Energy & Deep Focus",
-    techTrophy: "Next.js 16 • Server Components",
+    techTrophy: "Next.js • React • State Management",
+  },
+  "Central Computer Improvement Telkom University": {
+    en: "Behind The Scenes: Deep dived into Next.js Server Components and reactive architecture until dawn with the team! Debated state hydration vs SSR while sipping hot coffee. Most valuable takeaway: building clean, user-centric interfaces.",
+    id: "Catatan Dapur: Begadang ngulik Next.js Server Components dan arsitektur web sampai subuh bareng tim! Debat sehat soal hidrasi state vs SSR sambil ngopi hitam. Pelajaran paling berharga: paham analisis sistem dari perspektif real user.",
+    mood: "High Energy & Deep Focus",
+    techTrophy: "Next.js • React • State Management",
+  },
+  "CPS Laboratory Universitas Telkom": {
+    en: "Behind The Scenes: First time deploying a full REST API Express + MySQL to cloud infrastructure. Panicked when hitting port permission and CORS errors, but fixing it felt like discovering gold. Learned the true power of middleware!",
+    id: "Catatan Dapur: Pertama kali deploy REST API Express + MySQL ke cloud infrastructure. Sempat deg-degan pas kena error CORS dan izin port database, tapi pas berhasil connect ke React rasanya kaya nemu harta karun. Paham banget pentingnya middleware!",
+    mood: "Cloud & Database Discovery",
+    techTrophy: "Express 5 • MySQL Cloud",
   },
   "Cyber Physical System Laboratory": {
     en: "Behind The Scenes: First time deploying a full REST API Express + MySQL to cloud infrastructure. Panicked when hitting port permission and CORS errors, but fixing it felt like discovering gold. Learned the true power of middleware!",
@@ -43,9 +67,15 @@ const SECRET_DEV_LOGS: Record<
     mood: "Cloud & Database Discovery",
     techTrophy: "Express 5 • MySQL Cloud",
   },
+  "GDGoC Universitas Telkom": {
+    en: "Behind The Scenes: The genesis of the web obsession! Transitioned from basic HTML/CSS to reactive thinking, component-driven UI with Tailwind, and modern JavaScript standards. Met amazing peers who share the same web engineering passion.",
+    id: "Catatan Dapur: Titik awal kecintaan pada Frontend! Dari yang tadinya cuma nulis HTML/CSS statis, di sini kebuka dunia reactive components, Tailwind styling, dan JavaScript modern. Ketemu banyak temen sefrekuensi yang seru diajak ngoding bareng.",
+    mood: "Foundational Spark & Wonder",
+    techTrophy: "Modern JS • Component Architecture",
+  },
   "GDGoC Telkom University Bandung": {
-    en: "Behind The Scenes: The genesis of the frontend obsession! Transitioned from basic HTML/CSS to reactive thinking, component-driven UI with Tailwind, and modern JavaScript standards. Met amazing peers who share the same web engineering passion.",
-    id: "Catatan Dapur: Titik balik kecintaan pada Frontend! Dari yang tadinya cuma nulis HTML/CSS statis, di sini kebuka dunia reactive components, Tailwind styling, dan JavaScript modern. Ketemu banyak temen sefrekuensi yang seru diajak ngoding bareng.",
+    en: "Behind The Scenes: The genesis of the web obsession! Transitioned from basic HTML/CSS to reactive thinking, component-driven UI with Tailwind, and modern JavaScript standards. Met amazing peers who share the same web engineering passion.",
+    id: "Catatan Dapur: Titik awal kecintaan pada Frontend! Dari yang tadinya cuma nulis HTML/CSS statis, di sini kebuka dunia reactive components, Tailwind styling, dan JavaScript modern. Ketemu banyak temen sefrekuensi yang seru diajak ngoding bareng.",
     mood: "Foundational Spark & Wonder",
     techTrophy: "Modern JS • Component Architecture",
   },
@@ -53,40 +83,100 @@ const SECRET_DEV_LOGS: Record<
 
 // Curated Key Takeaways / Milestones per experience
 const MILESTONE_HIGHLIGHTS: Record<string, { en: string[]; id: string[] }> = {
-  "Central Computer Improvement Telkom University": {
+  Reacteev: {
     en: [
-      "Mastered Next.js 16 App Router & Server Components architecture",
-      "Managed complex reactive UI state and dynamic page routing",
-      "Engineered efficient data fetching pipelines with Axios & REST APIs",
+      "Engineered responsive front-end interfaces integrated with backend REST APIs",
+      "Designed and maintained resilient server-side services powering core app workflows",
+      "Participated in production code reviews, testing, and modern deployment cycles",
     ],
     id: [
-      "Menguasai arsitektur Next.js 16 App Router & Server Components",
-      "Menangani manajemen state reaktif kompleks & routing dinamis",
-      "Membangun pipeline pengambilan data efisien via Axios & REST API",
+      "Merancang dan mengembangkan antarmuka front-end responsif terintegrasi API",
+      "Membangun dan memelihara layanan back-end beserta REST API pendukung fitur",
+      "Berpartisipasi dalam review kode produksi, pengujian sistem, dan siklus rilis modern",
+    ],
+  },
+  "CCI UNITEL Universitas Telkom - Kepala Divisi": {
+    en: [
+      "Led the Web Development Division, coordinating members, projects, and learning agendas",
+      "Drove cross-division collaboration to ensure system integration and code quality standards",
+      "Mentored peers through hands-on technical workshops and structured web roadmaps",
+    ],
+    id: [
+      "Memimpin divisi Web Development, mengoordinasikan anggota, proyek, dan program belajar web",
+      "Mendorong kolaborasi lintas divisi untuk menjaga standar kualitas dan integrasi sistem",
+      "Mementori anggota divisi melalui workshop teknis intensif dan kurikulum terarah",
+    ],
+  },
+  "CCI UNITEL Universitas Telkom": {
+    en: [
+      "Mastered React, Next.js, and modern component-driven architectures",
+      "Engineered complex client-side state management and responsive interfaces",
+      "Collaborated cross-functionally with UI/UX designers and back-end engineers",
+    ],
+    id: [
+      "Mengembangkan antarmuka interaktif responsif menggunakan HTML, CSS, JavaScript, dan React",
+      "Berkolaborasi lintas fungsi dengan UI/UX designer dan back-end developer",
+      "Menerapkan responsive design dan state management modern pada aplikasi web",
+    ],
+  },
+  "Central Computer Improvement Telkom University": {
+    en: [
+      "Mastered React, Next.js, and modern component-driven architectures",
+      "Engineered complex client-side state management and responsive interfaces",
+      "Collaborated cross-functionally with UI/UX designers and back-end engineers",
+    ],
+    id: [
+      "Mengembangkan antarmuka interaktif responsif menggunakan HTML, CSS, JavaScript, dan React",
+      "Berkolaborasi lintas fungsi dengan UI/UX designer dan back-end developer",
+      "Menerapkan responsive design dan state management modern pada aplikasi web",
+    ],
+  },
+  "CPS Laboratory Universitas Telkom": {
+    en: [
+      "Full-stack web application development bridging frontend UI with server databases",
+      "Engineered RESTful APIs with Node.js & Express.js connected to MySQL",
+      "Practiced end-to-end fullstack workflow from database modeling to UI integration",
+    ],
+    id: [
+      "Eksplorasi full-stack web: menjembatani front-end interaktif dengan database server",
+      "Membangun arsitektur server-side & REST API fungsional dengan Node.js, Express, dan MySQL",
+      "Mempraktikkan alur kerja full-stack mulai dari perancangan database hingga antarmuka",
     ],
   },
   "Cyber Physical System Laboratory": {
     en: [
-      "End-to-end full-stack web application development (React + Node.js)",
-      "Designed RESTful APIs using Express.js connected to MySQL database",
-      "Executed public cloud deployment, security CORS rules, and API testing",
+      "Full-stack web application development bridging frontend UI with server databases",
+      "Engineered RESTful APIs with Node.js & Express.js connected to MySQL",
+      "Practiced end-to-end fullstack workflow from database modeling to UI integration",
     ],
     id: [
-      "Pengembangan aplikasi web full-stack end-to-end (React + Node.js)",
-      "Merancang arsitektur REST API dengan Express.js dan database MySQL",
-      "Deployment aplikasi ke public cloud, konfigurasi CORS & pengujian API",
+      "Eksplorasi full-stack web: menjembatani front-end interaktif dengan database server",
+      "Membangun arsitektur server-side & REST API fungsional dengan Node.js, Express, dan MySQL",
+      "Mempraktikkan alur kerja full-stack mulai dari perancangan database hingga antarmuka",
+    ],
+  },
+  "GDGoC Universitas Telkom": {
+    en: [
+      "Deepened foundational modern web standards & responsive layouts",
+      "Collaborated in developer group study sessions, workshops, and project showcases",
+      "Explored cutting-edge frontend engineering practices with campus peers",
+    ],
+    id: [
+      "Memperdalam fondasi pengembangan web modern dan standar antarmuka responsif",
+      "Berpartisipasi aktif dalam sesi belajar kelompok, diskusi teknis, dan proyek kolaboratif",
+      "Mengeksplorasi praktik rekayasa front-end terkini bersama komunitas kampus",
     ],
   },
   "GDGoC Telkom University Bandung": {
     en: [
-      "Strengthened modern JavaScript fundamentals & reactive component paradigms",
-      "Constructed clean responsive layouts with Tailwind CSS & Figma specs",
-      "Engaged in hands-on tech workshops & peer engineering collaboration",
+      "Deepened foundational modern web standards & responsive layouts",
+      "Collaborated in developer group study sessions, workshops, and project showcases",
+      "Explored cutting-edge frontend engineering practices with campus peers",
     ],
     id: [
-      "Memperdalam fondasi JavaScript modern & paradigma reactive component",
-      "Membangun layout antarmuka responsif dengan Tailwind CSS & Figma",
-      "Kolaborasi aktif dalam workshop teknologi dan sesi belajar kelompok",
+      "Memperdalam fondasi pengembangan web modern dan standar antarmuka responsif",
+      "Berpartisipasi aktif dalam sesi belajar kelompok, diskusi teknis, dan proyek kolaboratif",
+      "Mengeksplorasi praktik rekayasa front-end terkini bersama komunitas kampus",
     ],
   },
 };
@@ -127,9 +217,18 @@ export default function ExperienceTimelineSection({
   // Filter logic
   const filteredExperiences = useMemo(() => {
     if (activeFilter === "ALL") return initialExperiences;
+    if (activeFilter === "WORK") {
+      return initialExperiences.filter(
+        (e) =>
+          e.company.toLowerCase().includes("reacteev") ||
+          (e.type && e.type.toLowerCase() === "work")
+      );
+    }
     if (activeFilter === "CCI") {
-      return initialExperiences.filter((e) =>
-        e.company.toLowerCase().includes("central computer")
+      return initialExperiences.filter(
+        (e) =>
+          e.company.toLowerCase().includes("central computer") ||
+          e.company.toLowerCase().includes("cci")
       );
     }
     if (activeFilter === "LAB") {
@@ -199,15 +298,19 @@ export default function ExperienceTimelineSection({
       labelEn: `ALL JOURNEY (${initialExperiences.length})`,
       labelId: `SEMUA PERJALANAN (${initialExperiences.length})`,
     },
+    { key: "WORK", labelEn: "WORK & INTERN", labelId: "MAGANG & KERJA" },
     { key: "CCI", labelEn: "CCI TELKOM", labelId: "CCI TELKOM" },
     { key: "LAB", labelEn: "CPS LABORATORY", labelId: "LABORATORIUM CPS" },
     { key: "GDG", labelEn: "GDGoC GOOGLE", labelId: "GDGoC GOOGLE" },
   ];
 
   // Icons for specific companies
-  const getCompanyIcon = (company: string) => {
+  const getCompanyIcon = (company: string, role?: string) => {
     const c = company.toLowerCase();
-    if (c.includes("central computer")) return Code2;
+    const r = (role || "").toLowerCase();
+    if (c.includes("reacteev")) return Terminal;
+    if (r.includes("kepala") || r.includes("lead") || r.includes("head")) return Sparkles;
+    if (c.includes("central computer") || c.includes("cci")) return Code2;
     if (c.includes("laboratory") || c.includes("cps")) return Server;
     return Globe;
   };
@@ -284,7 +387,13 @@ export default function ExperienceTimelineSection({
         <div className="space-y-10 sm:space-y-12">
           <AnimatePresence mode="popLayout">
             {filteredExperiences.map((exp, index) => {
+              const logKey =
+                exp.role.toLowerCase().includes("kepala") || exp.role.toLowerCase().includes("head")
+                  ? "CCI UNITEL Universitas Telkom - Kepala Divisi"
+                  : exp.company;
+
               const secretLog =
+                SECRET_DEV_LOGS[logKey] ||
                 SECRET_DEV_LOGS[exp.company] || {
                   en: "Behind The Scenes: Continuously exploring cutting-edge web architecture, learning alongside peers, and pushing code quality forward.",
                   id: "Catatan Dapur: Terus mengulik arsitektur web modern, belajar bareng rekan sejawat, dan meningkatkan kualitas kode.",
@@ -293,6 +402,7 @@ export default function ExperienceTimelineSection({
                 };
 
               const milestones =
+                MILESTONE_HIGHLIGHTS[logKey] ||
                 MILESTONE_HIGHLIGHTS[exp.company] || {
                   en: [
                     "Active participation in core study group modules",
@@ -309,28 +419,42 @@ export default function ExperienceTimelineSection({
               const isLogOpen = !!expandedLogs[exp.company || String(index)];
               const kudos = kudosCount[String(index)] || 15;
               const isShaking = shakingCard === index;
-              const CompanyIcon = getCompanyIcon(exp.company);
+              const CompanyIcon = getCompanyIcon(exp.company, exp.role);
 
               // Station Theme Colors
               const stationThemes = [
                 {
                   badgeBg: "bg-[#00C2FF]",
                   badgeText: "text-black",
-                  label: "STATION 01 // FRONT-END & ARCHITECTURE",
-                  status: t("ACTIVE // CURRENT ✦", "AKTIF // ONGOING ✦"),
+                  label: "STATION 01 // FULL-STACK INDUSTRY INTERNSHIP",
+                  status: t("ACTIVE // ONGOING ✦", "AKTIF // BERJALAN ✦"),
                   statusBg: "bg-[#10B981]/15 text-[#065F46] border-[#10B981]",
+                },
+                {
+                  badgeBg: "bg-[#FFE600]",
+                  badgeText: "text-black",
+                  label: "STATION 02 // WEB DEV LEADERSHIP",
+                  status: t("ACTIVE // ONGOING ✦", "AKTIF // BERJALAN ✦"),
+                  statusBg: "bg-[#10B981]/15 text-[#065F46] border-[#10B981]",
+                },
+                {
+                  badgeBg: "bg-[#38C6F4]",
+                  badgeText: "text-black",
+                  label: "STATION 03 // FRONT-END ENGINEERING",
+                  status: t("COMPLETED ✓", "SELESAI // MILESTONE ✓"),
+                  statusBg: "bg-neutral-100 text-neutral-800 border-neutral-600",
                 },
                 {
                   badgeBg: "bg-[#EDB22E]",
                   badgeText: "text-black",
-                  label: "STATION 02 // FULL-STACK & CLOUD LAB",
+                  label: "STATION 04 // FULL-STACK & CLOUD LAB",
                   status: t("COMPLETED ✓", "SELESAI // MILESTONE ✓"),
                   statusBg: "bg-neutral-100 text-neutral-800 border-neutral-600",
                 },
                 {
                   badgeBg: "bg-[#10B981]",
                   badgeText: "text-white",
-                  label: "STATION 03 // COMMUNITY & WEB FOUNDATION",
+                  label: "STATION 05 // COMMUNITY & WEB FOUNDATION",
                   status: t("COMPLETED ✓", "SELESAI // MILESTONE ✓"),
                   statusBg: "bg-neutral-100 text-neutral-800 border-neutral-600",
                 },

@@ -189,7 +189,11 @@ export async function getSkillCategories(): Promise<SkillCategory[]> {
 
     const predefinedOrder = [
       "Front-End Web Development",
+      "Back-End Development",
       "Programming Languages",
+      "Database & Storage",
+      "Authentication & Security",
+      "Deployment & Testing",
       "Developer Tools",
       "Soft Skills & Professional",
       "Achievements & Certifications",
