@@ -220,14 +220,6 @@ export default function ProjectsSection() {
                 }}
               >
                 <span
-                  className="flex h-[0.9em] w-[1em] shrink-0 items-end gap-[0.12em]"
-                  aria-hidden="true"
-                >
-                  <span className="h-[0.4em] w-[0.22em] bg-[var(--ink)]" />
-                  <span className="h-[0.65em] w-[0.22em] bg-[var(--ink)]" />
-                  <span className="h-[0.9em] w-[0.22em] bg-[var(--ink)]" />
-                </span>
-                <span
                   className={`${MONO} whitespace-nowrap text-[0.85em] font-medium tracking-wide`}
                 >
                   <span className="hidden sm:inline">PROJECT </span>

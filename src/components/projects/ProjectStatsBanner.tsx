@@ -78,11 +78,6 @@ export default function ProjectStatsBanner() {
               {t("Technical Blueprint & Quality Metrics", "Spesifikasi Teknis & Kualitas Sistem")}
             </h3>
           </div>
-
-          <div className="flex items-center gap-2 font-mono text-xs px-3 py-1 bg-neutral-800 border border-neutral-700 text-neutral-300">
-            <span className="w-2 h-2 rounded-full bg-[#10B981]" />
-            <span>STANDARDS: STRICT</span>
-          </div>
         </div>
 
         {/* 4 Columns Spec Grid */}
