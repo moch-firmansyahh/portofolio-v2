@@ -514,16 +514,47 @@ export default function ExperienceTimelineSection({
                       </span>
                     </motion.div>
 
-                    {/* Full Solid Cyan Connector Line - NEVER above station 01, runs ALL THE WAY DOWN with continuous full-length white core */}
+                    {/* Full Solid Cyan Connector Line - NEVER above station 01, runs ALL THE WAY DOWN with moving glowing light pulse */}
                     {index < filteredExperiences.length - 1 ? (
-                      <div className="w-2 flex-1 bg-[#00C2FF] border-x-2 border-black shadow-[0_0_8px_rgba(0,194,255,0.8)] mt-2 -mb-10 sm:-mb-12 relative flex justify-center">
-                        {/* Solid white core line extending continuously from top box to bottom box */}
-                        <div className="w-0.5 h-full bg-white shadow-[0_0_3px_#FFFFFF]" />
+                      <div className="w-2 flex-1 bg-[#00C2FF] border-x-2 border-black shadow-[0_0_8px_rgba(0,194,255,0.8)] mt-2 -mb-10 sm:-mb-12 relative flex justify-center overflow-hidden">
+                        {/* Subtle ambient core track */}
+                        <div className="w-[1px] h-full bg-white/25" />
+
+                        {/* Moving Glowing Light Beam (Pulsa Cahaya Berjalan) */}
+                        <motion.div
+                          animate={{
+                            top: ["-30%", "130%"],
+                          }}
+                          transition={{
+                            duration: 2.0,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                            delay: index * 0.25,
+                          }}
+                          className="absolute w-1 h-24 sm:h-36 bg-gradient-to-b from-transparent via-white to-transparent shadow-[0_0_8px_#FFFFFF,0_0_16px_#00C2FF,0_0_24px_#00C2FF] rounded-full pointer-events-none flex items-center justify-center"
+                        >
+                          {/* Titik Inti Cahaya Paling Terang */}
+                          <div className="w-1.5 h-3 bg-white rounded-full shadow-[0_0_6px_#FFFFFF,0_0_12px_#00C2FF]" />
+                        </motion.div>
                       </div>
                     ) : (
                       /* Terminus extension below the last station all the way to the bottom */
-                      <div className="w-2 h-16 sm:h-20 bg-[#00C2FF] border-x-2 border-black shadow-[0_0_8px_rgba(0,194,255,0.6)] mt-2 relative flex flex-col items-center justify-between">
-                        <div className="w-0.5 h-full bg-white shadow-[0_0_3px_#FFFFFF]" />
+                      <div className="w-2 h-16 sm:h-20 bg-[#00C2FF] border-x-2 border-black shadow-[0_0_8px_rgba(0,194,255,0.6)] mt-2 relative flex flex-col items-center justify-between overflow-hidden">
+                        <div className="w-[1px] h-full bg-white/25" />
+                        <motion.div
+                          animate={{
+                            top: ["-50%", "120%"],
+                          }}
+                          transition={{
+                            duration: 1.6,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                            delay: (filteredExperiences.length - 1) * 0.25,
+                          }}
+                          className="absolute w-1 h-12 bg-gradient-to-b from-transparent via-white to-transparent shadow-[0_0_8px_#FFFFFF,0_0_16px_#00C2FF] rounded-full pointer-events-none flex items-center justify-center"
+                        >
+                          <div className="w-1.5 h-2 bg-white rounded-full shadow-[0_0_6px_#FFFFFF]" />
+                        </motion.div>
                         <span className="w-3 h-3 rounded-full bg-[#00C2FF] border-2 border-black shadow-xs -mb-1.5 z-10" />
                       </div>
                     )}
