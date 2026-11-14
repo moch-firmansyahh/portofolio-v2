@@ -10,7 +10,7 @@ interface NavItem {
   nameEn: string;
   nameId: string;
   href: string;
-  iconType: "home" | "asterisk" | "casestudy" | "services" | "journal" | "playground" | "contact";
+  iconType: "home" | "asterisk" | "casestudy" | "services" | "journal" | "award" | "playground" | "contact";
 }
 
 const NAV_ITEMS: NavItem[] = [
@@ -19,6 +19,7 @@ const NAV_ITEMS: NavItem[] = [
   { key: "skills", nameEn: "Skills", nameId: "Keahlian", href: "/skills", iconType: "services" },
   { key: "projects", nameEn: "Projects", nameId: "Proyek", href: "/projects", iconType: "casestudy" },
   { key: "experience", nameEn: "Experience", nameId: "Pengalaman", href: "/experience", iconType: "journal" },
+  { key: "certificates", nameEn: "Certificates", nameId: "Sertifikat", href: "/certificates", iconType: "award" },
   { key: "playground", nameEn: "Playground", nameId: "Playground", href: "/playground", iconType: "playground" },
   { key: "contact", nameEn: "Contact", nameId: "Kontak", href: "/contact", iconType: "contact" },
 ];
@@ -49,6 +50,13 @@ function NavIcon({ type, className = "" }: { type: NavItem["iconType"]; classNam
       return (
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" className={className}>
           <path d="M12 22V10M12 10L6 4M12 10l6-6M6 4h3M18 4h-3" />
+        </svg>
+      );
+    case "award":
+      return (
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={className}>
+          <circle cx="12" cy="8" r="5" />
+          <path d="M15.5 12.5 17 21l-5-2.5L7 21l1.5-8.5" />
         </svg>
       );
     case "playground":
