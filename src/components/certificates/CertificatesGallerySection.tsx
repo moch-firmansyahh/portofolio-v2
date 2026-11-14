@@ -54,6 +54,17 @@ export default function CertificatesGallerySection() {
   const [activeCert, setActiveCert] = useState<Certificate | null>(null);
   const [copiedId, setCopiedId] = useState(false);
 
+  // Close modal on ESC key
+  React.useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setActiveCert(null);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
   // Filter logic
   const filteredCertificates = useMemo(() => {
     if (selectedCategory === "all") {
@@ -226,6 +237,7 @@ export default function CertificatesGallerySection() {
                 </div>
                 <button
                   onClick={() => setActiveCert(null)}
+                  aria-label="Close modal"
                   className="w-7 h-7 flex items-center justify-center border-2 border-black bg-white hover:bg-neutral-200 text-black cursor-pointer transition-colors"
                 >
                   <X className="w-4 h-4" />
