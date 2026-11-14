@@ -133,11 +133,12 @@ export default function CertificatesGallerySection() {
                   className="group flex flex-col bg-white border-2 border-black shadow-[3px_3px_0px_#000] hover:shadow-[6px_6px_0px_#000] hover:-translate-y-1 transition-all duration-200 cursor-pointer overflow-hidden"
                 >
                   {/* Top Image Preview (16:10 ratio) */}
-                  <div className="relative aspect-[16/10] bg-neutral-900 border-b-2 border-black overflow-hidden flex items-center justify-center">
+                  <div className="relative aspect-[16/10] bg-neutral-100 border-b-2 border-black overflow-hidden flex items-center justify-center">
                     <Image
                       src={cert.image}
                       alt={cert.title}
                       fill
+                      unoptimized
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       className="object-cover group-hover:scale-105 transition-transform duration-300"
                     />
@@ -234,11 +235,12 @@ export default function CertificatesGallerySection() {
               {/* Scrollable Content Body */}
               <div className="overflow-y-auto p-5 sm:p-7 space-y-6">
                 {/* Full Aspect Certificate Visual */}
-                <div className="relative aspect-[16/10] w-full bg-neutral-900 border-2 border-black overflow-hidden shadow-inner">
+                <div className="relative aspect-[16/10] w-full bg-neutral-100 border-2 border-black overflow-hidden shadow-inner flex items-center justify-center">
                   <Image
                     src={activeCert.image}
                     alt={activeCert.title}
                     fill
+                    unoptimized
                     className="object-contain"
                     priority
                   />
