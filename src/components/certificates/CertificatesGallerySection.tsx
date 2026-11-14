@@ -141,7 +141,7 @@ export default function CertificatesGallerySection() {
                     setActiveCert(cert);
                     setCopiedId(false);
                   }}
-                  className="group flex flex-col bg-white border-2 border-black shadow-[3px_3px_0px_#000] hover:shadow-[6px_6px_0px_#000] hover:-translate-y-1 transition-all duration-200 cursor-pointer overflow-hidden"
+                  className="certificate-card group flex flex-col bg-white border-2 border-black shadow-[3px_3px_0px_#000] hover:shadow-[6px_6px_0px_#000] hover:-translate-y-1 transition-all duration-200 cursor-pointer overflow-hidden"
                 >
                   {/* Top Image Preview (16:10 ratio) */}
                   <div className="relative aspect-[16/10] bg-neutral-100 border-b-2 border-black overflow-hidden flex items-center justify-center">
