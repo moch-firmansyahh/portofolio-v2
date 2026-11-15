@@ -189,15 +189,15 @@ export default function WhatIDoSection() {
 
   return (
     <section className="relative w-full min-h-[85vh] flex flex-col items-center justify-center px-4 sm:px-6 py-20 md:py-28 overflow-hidden">
-      <div className="max-w-4xl mx-auto flex flex-col items-center text-center">
+      <div className="max-w-5xl mx-auto flex flex-col items-center text-center">
         {/* Top: WHAT Typography */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="flex justify-center mb-1.5 sm:mb-2.5"
+          className="flex justify-center mb-2 sm:mb-3 md:mb-4"
         >
-          <h1 className="font-flux text-6xl sm:text-7xl md:text-8xl lg:text-[108px] text-neutral-900 leading-[0.85] tracking-[-0.03em] uppercase select-none text-center">
+          <h1 className="font-flux text-6xl sm:text-7xl md:text-9xl lg:text-[145px] xl:text-[165px] text-neutral-900 leading-[0.82] tracking-[-0.035em] uppercase select-none text-center">
             WHAT
           </h1>
         </motion.div>
@@ -208,27 +208,27 @@ export default function WhatIDoSection() {
             backgroundColor: currentTheme.bg,
             color: currentTheme.icon,
           }}
-          className="relative px-5 sm:px-8 md:px-10 py-2 sm:py-2.5 md:py-3 flex items-center justify-center gap-3 sm:gap-5 md:gap-7 select-none transition-none shadow-none"
+          className="relative px-4 sm:px-8 md:px-12 lg:px-14 py-2 sm:py-3.5 md:py-4 lg:py-5 flex items-center justify-center gap-3 sm:gap-6 md:gap-8 lg:gap-10 select-none transition-none shadow-none"
         >
           {/* 4 Corner Square Handles (ala Figma / Referensi) */}
           <div
             style={{ backgroundColor: currentTheme.bg }}
-            className="w-2.5 h-2.5 sm:w-3 sm:h-3 border border-black absolute -top-1 -left-1 sm:-top-1.5 sm:-left-1.5 z-20 pointer-events-none"
+            className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-3.5 md:h-3.5 border border-black absolute -top-1 -left-1 sm:-top-1.5 sm:-left-1.5 md:-top-1.5 md:-left-1.5 z-20 pointer-events-none"
           />
           <div
             style={{ backgroundColor: currentTheme.bg }}
-            className="w-2.5 h-2.5 sm:w-3 sm:h-3 border border-black absolute -top-1 -right-1 sm:-top-1.5 sm:-right-1.5 z-20 pointer-events-none"
+            className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-3.5 md:h-3.5 border border-black absolute -top-1 -right-1 sm:-top-1.5 sm:-right-1.5 md:-top-1.5 md:-right-1.5 z-20 pointer-events-none"
           />
           <div
             style={{ backgroundColor: currentTheme.bg }}
-            className="w-2.5 h-2.5 sm:w-3 sm:h-3 border border-black absolute -bottom-1 -left-1 sm:-bottom-1.5 sm:-left-1.5 z-20 pointer-events-none"
+            className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-3.5 md:h-3.5 border border-black absolute -bottom-1 -left-1 sm:-bottom-1.5 sm:-left-1.5 md:-bottom-1.5 md:-left-1.5 z-20 pointer-events-none"
           />
           <div
             style={{ backgroundColor: currentTheme.bg }}
-            className="w-2.5 h-2.5 sm:w-3 sm:h-3 border border-black absolute -bottom-1 -right-1 sm:-bottom-1.5 sm:-right-1.5 z-20 pointer-events-none"
+            className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-3.5 md:h-3.5 border border-black absolute -bottom-1 -right-1 sm:-bottom-1.5 sm:-right-1.5 md:-bottom-1.5 md:-right-1.5 z-20 pointer-events-none"
           />
 
-                    {/* Left Icon: Muter continuous tanpa delay, membesar saat lurus (1.06) & mengecil saat ga lurus (0.75) */}
+          {/* Left Icon: Muter continuous tanpa delay, membesar saat lurus (1.06) & mengecil saat ga lurus (0.75) */}
           <motion.div
             animate={{
               rotate: 360,
@@ -247,19 +247,19 @@ export default function WhatIDoSection() {
                 times: [0, 0.25, 0.5, 0.75, 1],
               },
             }}
-            className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 shrink-0 flex items-center justify-center origin-center"
+            className="w-12 h-12 sm:w-16 sm:h-16 md:w-24 md:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 shrink-0 flex items-center justify-center origin-center"
           >
             <LeftIcon className="w-full h-full" />
           </motion.div>
 
           {/* Center: "I DO" Typography - Lebih nempel dan lebih besar */}
-          <div className="shrink-0 flex items-center justify-center px-1 sm:px-2">
-            <h2 className="font-flux text-5xl sm:text-6xl md:text-7xl lg:text-[88px] text-neutral-900 leading-[0.85] tracking-[-0.03em] uppercase select-none text-center">
+          <div className="shrink-0 flex items-center justify-center px-1 sm:px-2 md:px-3">
+            <h2 className="font-flux text-5xl sm:text-6xl md:text-8xl lg:text-[118px] xl:text-[135px] text-neutral-900 leading-[0.82] tracking-[-0.035em] uppercase select-none text-center">
               I DO
             </h2>
           </div>
 
-                    {/* Right Icon: Muter continuous tanpa delay, membesar saat lurus (1.06) & mengecil saat ga lurus (0.75) */}
+          {/* Right Icon: Muter continuous tanpa delay, membesar saat lurus (1.06) & mengecil saat ga lurus (0.75) */}
           <motion.div
             animate={{
               rotate: 360,
@@ -278,7 +278,7 @@ export default function WhatIDoSection() {
                 times: [0, 0.25, 0.5, 0.75, 1],
               },
             }}
-            className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 shrink-0 flex items-center justify-center origin-center"
+            className="w-12 h-12 sm:w-16 sm:h-16 md:w-24 md:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 shrink-0 flex items-center justify-center origin-center"
           >
             <RightIcon className="w-full h-full" />
           </motion.div>
