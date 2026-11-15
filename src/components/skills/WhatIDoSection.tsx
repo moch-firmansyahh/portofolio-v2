@@ -214,7 +214,7 @@ export default function WhatIDoSection() {
             backgroundColor: currentTheme.bg,
             color: currentTheme.icon,
           }}
-          className="relative inline-flex items-center justify-center w-fit max-w-[95vw] px-4 sm:px-6 md:px-7 pt-3 sm:pt-4 pb-1 sm:pb-2 gap-4 sm:gap-7 md:gap-10 select-none transition-none shadow-none"
+          className="relative inline-flex items-center justify-center w-fit max-w-[95vw] px-4 sm:px-6 md:px-8 py-3.5 sm:py-4 md:py-5 gap-4 sm:gap-7 md:gap-9 select-none transition-none shadow-none"
         >
           {/* 4 Corner Square Handles (ala Figma / 1:1 Nudge 16px x 16px) */}
           <div
@@ -234,17 +234,26 @@ export default function WhatIDoSection() {
             className="w-3.5 h-3.5 sm:w-4 sm:h-4 border border-black absolute -bottom-1.5 -right-1.5 sm:-bottom-2 sm:-right-2 z-20 pointer-events-none"
           />
 
-          {/* Left Icon: Muter continuous clockwise */}
+          {/* Left Icon: Muter continuous clockwise & mengecil/membesar halus agar tidak keluar batas */}
           <motion.div
             animate={{
               rotate: 360,
+              scale: [1, 0.78, 1, 0.78, 1, 0.78, 1, 0.78, 1],
             }}
             transition={{
-              repeat: Infinity,
-              duration: 3.5,
-              ease: "linear",
+              rotate: {
+                repeat: Infinity,
+                duration: 4,
+                ease: "linear",
+              },
+              scale: {
+                repeat: Infinity,
+                duration: 4,
+                ease: "easeInOut",
+                times: [0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1],
+              },
             }}
-            className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-[88px] lg:h-[88px] shrink-0 flex items-center justify-center origin-center"
+            className="w-11 h-11 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-[72px] lg:h-[72px] shrink-0 flex items-center justify-center origin-center"
           >
             <LeftIcon className="w-full h-full" />
           </motion.div>
@@ -263,17 +272,26 @@ export default function WhatIDoSection() {
             </span>
           </div>
 
-          {/* Right Icon: Muter counter-clockwise continuous */}
+          {/* Right Icon: Muter counter-clockwise continuous & mengecil/membesar halus agar tidak keluar batas */}
           <motion.div
             animate={{
               rotate: -360,
+              scale: [1, 0.78, 1, 0.78, 1, 0.78, 1, 0.78, 1],
             }}
             transition={{
-              repeat: Infinity,
-              duration: 3.5,
-              ease: "linear",
+              rotate: {
+                repeat: Infinity,
+                duration: 4,
+                ease: "linear",
+              },
+              scale: {
+                repeat: Infinity,
+                duration: 4,
+                ease: "easeInOut",
+                times: [0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1],
+              },
             }}
-            className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-[88px] lg:h-[88px] shrink-0 flex items-center justify-center origin-center"
+            className="w-11 h-11 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-[72px] lg:h-[72px] shrink-0 flex items-center justify-center origin-center"
           >
             <RightIcon className="w-full h-full" />
           </motion.div>
