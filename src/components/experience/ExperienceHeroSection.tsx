@@ -13,8 +13,6 @@ import {
   Sparkles,
   Zap,
   Star,
-  MapPin,
-  Calendar,
 } from "lucide-react";
 
 type MoodKey = "coffee" | "code" | "chill" | "retro";
@@ -358,56 +356,6 @@ export default function ExperienceHeroSection() {
 
         {/* 3. Supercharged Interactive Companion Mascot */}
         <CuteMascot />
-
-        {/* 4. Draggable Field Note Card with Washi Tape & Spring Physics */}
-        <motion.div
-          drag
-          dragConstraints={{ left: -50, right: 50, top: -20, bottom: 40 }}
-          dragElastic={0.25}
-          initial={{ opacity: 0, rotate: -2, y: 14 }}
-          animate={{ opacity: 1, rotate: -1.2, y: 0 }}
-          whileHover={{ rotate: 0, scale: 1.02 }}
-          whileDrag={{ scale: 1.06, rotate: 2, cursor: "grabbing" }}
-          transition={{ type: "spring", stiffness: 350, damping: 22 }}
-          className="relative mt-6 max-w-lg bg-[#FFF275] border-2 border-black p-5 sm:p-6 text-left shadow-[5px_5px_0px_#000] cursor-grab select-none group"
-        >
-          {/* Washi Tape Strip at Top */}
-          <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-28 h-6 bg-white/80 border border-black/40 shadow-xs rotate-[-1.5deg] backdrop-blur-xs flex items-center justify-center">
-            <span className="font-mono text-[9px] font-black text-neutral-600 tracking-widest uppercase">
-              // ROADMAP MEMO
-            </span>
-          </div>
-
-          {/* Red Pin Accent */}
-          <div className="absolute -top-2 left-6 w-4 h-4 rounded-full bg-[#E11D5A] border-2 border-black shadow-xs flex items-center justify-center">
-            <div className="w-1 h-1 bg-white rounded-full" />
-          </div>
-
-          <span
-            style={{ fontFamily: "var(--font-caveat), cursive" }}
-            className="absolute -top-5 right-3 text-xs text-neutral-600 font-semibold opacity-0 group-hover:opacity-100 transition-opacity"
-          >
-            {t("pull me!", "tarik saya!")} ↗
-          </span>
-
-          <p className="font-mono text-xs sm:text-sm font-bold text-neutral-900 leading-relaxed pt-2">
-            {t(
-              "Hands-on immersion through engineering labs, active study groups, and deep dive web development projects at Telkom University.",
-              "Pengalaman nyata melalui keterlibatan aktif di laboratorium riset, kelompok studi web, dan eksplorasi teknologi modern di Telkom University."
-            )}
-          </p>
-
-          <div className="mt-4 pt-2.5 border-t border-black/20 flex flex-wrap items-center justify-between gap-2 font-mono text-[11px] text-neutral-800 font-bold">
-            <span className="flex items-center gap-1">
-              <MapPin className="w-3 h-3 text-[#E11D5A]" />
-              BANDUNG, ID // TELKOM UNIVERSITY
-            </span>
-            <span className="flex items-center gap-1 text-neutral-700">
-              <Calendar className="w-3 h-3" />
-              2024 - 2026 ✦
-            </span>
-          </div>
-        </motion.div>
       </div>
     </section>
   );

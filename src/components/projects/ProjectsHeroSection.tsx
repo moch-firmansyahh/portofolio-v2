@@ -58,44 +58,6 @@ export default function ProjectsHeroSection() {
         >
           <ModularTitle text="PROJECTS" />
         </motion.div>
-
-        {/* 3. Architectural Sticky Note with Spring Drag Physics */}
-        <motion.div
-          drag
-          dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
-          dragElastic={0.25}
-          initial={{ opacity: 0, rotate: -4, y: 16 }}
-          animate={{ opacity: 1, rotate: -1.5, y: 0 }}
-          whileHover={{ rotate: 0, scale: 1.03 }}
-          whileDrag={{ scale: 1.06, rotate: 2, cursor: "grabbing" }}
-          transition={{ type: "spring", stiffness: 350, damping: 22 }}
-          className="relative mt-8 sm:mt-12 max-w-md bg-[#F6DCA0] border-2 border-black p-4 sm:p-5 text-left shadow-[5px_5px_0px_#000] cursor-grab select-none group"
-        >
-          {/* Pin accent on sticky note */}
-          <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-[#E11D5A] border-2 border-black shadow-xs flex items-center justify-center">
-            <div className="w-1.5 h-1.5 bg-white rounded-full" />
-          </div>
-
-          {/* Interactive small caveat drag badge */}
-          <span
-            style={{ fontFamily: "var(--font-caveat), cursive" }}
-            className="absolute -top-5 right-2 text-xs text-neutral-500 font-semibold opacity-0 group-hover:opacity-100 transition-opacity"
-          >
-            {t("pull me!", "tarik saya!")} ↗
-          </span>
-
-          <p className="font-mono text-xs sm:text-sm font-semibold text-neutral-900 leading-relaxed">
-            {t(
-              "Every project is crafted with high attention to user interface details, strict security validation, and fluid Framer Motion animations.",
-              "Setiap proyek dibangun dengan presisi antarmuka tinggi, validasi keamanan ketat, serta animasi interaktif Framer Motion yang mulus."
-            )}
-          </p>
-
-          <div className="mt-3 pt-2 border-t border-black/20 flex items-center justify-between font-mono text-[11px] text-neutral-700">
-            <span>Moch. Firmansyah</span>
-            <span>ENG // 2026</span>
-          </div>
-        </motion.div>
       </div>
     </section>
   );
