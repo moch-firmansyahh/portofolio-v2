@@ -39,7 +39,7 @@ const BASE_FONT =
 
 /* Bentuk pill ala folder (satuan em mengikuti font pill itu sendiri) */
 const PILL_CLIP =
-  "polygon(0 0, 2.4em 0, 3em 0.9em, 100% 0.9em, 100% 100%, 0 100%)";
+  "polygon(0 0, 2.6em 0, 3.2em 0.45em, 100% 0.45em, 100% 100%, 0 100%)";
 
 /* Tab trapesium: tab pertama rata kiri, sisanya miring di dua sisi */
 const TAB_CLIP_FIRST =
@@ -254,7 +254,7 @@ export default function ProjectsSection() {
                     {pills.map((label) => (
                       <span
                         key={label}
-                        className={`${MONO} bg-[var(--ink)] px-[1em] pb-[0.5em] pt-[1.4em] text-[0.85em] uppercase tracking-wide text-[var(--bg)]`}
+                        className={`${MONO} bg-[var(--ink)] px-4 pt-3 pb-2 text-[0.85em] uppercase tracking-wide text-[var(--bg)] inline-block`}
                         style={{ clipPath: PILL_CLIP }}
                       >
                         {label}

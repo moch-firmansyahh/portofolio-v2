@@ -20,7 +20,7 @@ import { GithubIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/context/LanguageContext";
 import type { Project } from "@/types/project";
 
-const PILL_CLIP = "polygon(0 0, 2.4em 0, 3em 0.9em, 100% 0.9em, 100% 100%, 0 100%)";
+const PILL_CLIP = "polygon(0 0, 2.6em 0, 3.2em 0.45em, 100% 0.45em, 100% 100%, 0 100%)";
 const FALLBACK_IMAGE = "/projects/manajemen-kontrakan.png";
 
 interface CaseStudyClientProps {
@@ -226,7 +226,7 @@ export default function CaseStudyClient({ project, otherProjects }: CaseStudyCli
           {project.category && (
             <div className="absolute bottom-4 left-4">
               <span
-                className="font-mono text-xs font-bold uppercase tracking-wider px-4 pb-1.5 pt-2.5 bg-black text-[#00C2FF] border border-white/20 shadow-lg inline-block"
+                className="font-mono text-xs font-bold uppercase tracking-wider px-4 pt-3.5 pb-2 bg-black text-[#00C2FF] border border-white/20 shadow-lg inline-block"
                 style={{ clipPath: PILL_CLIP }}
               >
                 {project.category}

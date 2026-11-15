@@ -16,7 +16,7 @@ const THEMES = [
   { bg: "#E11D5A", ink: "#FFFFFF", accent: "#EDB22E" }, // Magenta
 ] as const;
 
-const PILL_CLIP = "polygon(0 0, 2.4em 0, 3em 0.9em, 100% 0.9em, 100% 100%, 0 100%)";
+const PILL_CLIP = "polygon(0 0, 2.6em 0, 3.2em 0.45em, 100% 0.45em, 100% 100%, 0 100%)";
 const FALLBACK_IMAGE = "/projects/manajemen-kontrakan.png";
 
 interface ProjectsCatalogSectionProps {
@@ -325,7 +325,7 @@ export default function ProjectsCatalogSection({ initialProjects }: ProjectsCata
                     {project.category && (
                       <div className="absolute bottom-3 left-3">
                         <span
-                          className="font-mono text-xs font-bold uppercase tracking-wider px-3 pb-1 pt-2 bg-black text-white border border-white/20 shadow-md inline-block"
+                          className="font-mono text-xs font-bold uppercase tracking-wider px-4 pt-3.5 pb-2 bg-black text-white border border-white/20 shadow-md inline-block"
                           style={{ clipPath: PILL_CLIP }}
                         >
                           {project.category}
