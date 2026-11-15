@@ -314,7 +314,9 @@ export default function LetsTalkSection() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="w-full"
             >
-              <LetsTalkTypography />
+              <h2 className="font-flux text-5xl sm:text-6xl md:text-7xl lg:text-[84px] leading-[0.88] tracking-[-0.03em] text-neutral-900 uppercase">
+                LET&apos;S TALK
+              </h2>
             </motion.div>
 
             <motion.p

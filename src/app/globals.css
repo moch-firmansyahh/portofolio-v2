@@ -35,12 +35,26 @@
   --font-jakarta: var(--font-inter), sans-serif;
 }
 
+@font-face {
+  font-family: 'Flux Variable';
+  src: url('/FluxVariable.woff2') format('woff2');
+  font-weight: 100 1000;
+  font-style: normal;
+  font-display: swap;
+}
+
 .font-handwriting {
   font-family: var(--font-just-me), cursive;
 }
 
 .font-mono {
   font-family: var(--font-dm-mono), monospace;
+}
+
+.font-flux {
+  font-family: var(--font-flux), 'Flux Variable', sans-serif;
+  font-weight: 1000;
+  text-transform: uppercase;
 }
 
 html {

@@ -73,9 +73,9 @@ export default function ContactFAQSection() {
           <HelpCircle className="w-4 h-4 text-[#00C2FF]" />
           <span>FREQUENTLY ASKED QUESTIONS</span>
         </div>
-        <h3 className="text-2xl sm:text-3xl font-extrabold text-neutral-900 tracking-tight flex items-center gap-2">
+        <h3 className="font-flux text-3xl sm:text-4xl md:text-5xl text-neutral-900 tracking-[-0.025em] leading-[0.9] uppercase flex flex-wrap items-center justify-center gap-2">
           <span>{t("Collaboration & Inquiries FAQ", "Pertanyaan Umum Seputar Kolaborasi")}</span>
-          <span className="font-mono text-xs px-2 py-0.5 bg-[#FFF275] border-2 border-black shadow-[2px_2px_0px_#000] rotate-2">
+          <span className="font-mono text-xs px-2 py-0.5 bg-[#FFF275] border-2 border-black shadow-[2px_2px_0px_#000] rotate-2 normal-case font-bold">
             INFO ✦
           </span>
         </h3>

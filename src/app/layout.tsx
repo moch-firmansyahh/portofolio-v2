@@ -1,6 +1,14 @@
 import type { Metadata } from "next";
 import { Inter, DM_Mono, Just_Me_Again_Down_Here } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
+
+const flux = localFont({
+  src: "../../public/FluxVariable.woff2",
+  variable: "--font-flux",
+  display: "swap",
+  weight: "1000",
+});
 
 const inter = Inter({
   subsets: ["latin"],
@@ -76,7 +84,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id" className={`${inter.variable} ${dmMono.variable} ${justMe.variable}`}>
+    <html lang="id" className={`${inter.variable} ${dmMono.variable} ${justMe.variable} ${flux.variable}`}>
       <body className="min-h-screen bg-white text-[#111212] font-sans antialiased selection:bg-[#F7EAE5] selection:text-[#B5654A]">
         <Preloader />
         <GlobalCursor />

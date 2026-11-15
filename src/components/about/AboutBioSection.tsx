@@ -44,7 +44,9 @@ const AboutBioSection = forwardRef<HTMLElement, React.HTMLAttributes<HTMLElement
         {...props}
       >
         {/* Top Giant Modular "ABOUT" Typography */}
-        <div className="w-full select-none text-neutral-900 mb-6 sm:mb-8"><ModularTitle text="ABOUT" className="w-full max-w-[340px] sm:max-w-[400px] md:max-w-[440px] h-auto block select-none overflow-visible" /></div>
+        <div className="w-full select-none text-neutral-900 mb-6 sm:mb-8">
+          <ModularTitle text="ABOUT" />
+        </div>
 
         {/* Figma Canvas Selection Box with Gold Border & Corner Handles */}
         <div className="relative border-2 border-[#EAB308] bg-white p-6 sm:p-10 md:p-12 shadow-sm">

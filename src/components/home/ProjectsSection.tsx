@@ -127,13 +127,13 @@ export default function ProjectsSection() {
           </svg>
         </motion.div>
 
-        {/* Judul: font & gaya sama dengan headline AboutSection */}
+        {/* Judul: Font Flux Variable matching Nudge Folio */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-center text-5xl font-bold uppercase leading-[0.92] tracking-[-0.02em] text-neutral-900 sm:text-7xl md:text-8xl lg:text-[clamp(6rem,7.6vw,12rem)]"
+          className="font-flux text-center text-5xl font-bold uppercase leading-[0.88] tracking-[-0.03em] text-neutral-900 sm:text-7xl md:text-8xl lg:text-[clamp(5rem,7.5vw,10.5rem)]"
         >
           <span className="block">Featured</span>
           <span className="block">Projects</span>

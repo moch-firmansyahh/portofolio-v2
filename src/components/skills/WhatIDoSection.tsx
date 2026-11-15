@@ -197,7 +197,9 @@ export default function WhatIDoSection() {
           transition={{ duration: 0.5 }}
           className="flex justify-center mb-1.5 sm:mb-2.5"
         >
-          <WhatTypography />
+          <h1 className="font-flux text-6xl sm:text-7xl md:text-8xl lg:text-[108px] text-neutral-900 leading-[0.85] tracking-[-0.03em] uppercase select-none text-center">
+            WHAT
+          </h1>
         </motion.div>
 
         {/* Center: "I DO" Banner dengan 4 kotak pojok ala Figma dan jarak lebih nempel */}
@@ -252,7 +254,9 @@ export default function WhatIDoSection() {
 
           {/* Center: "I DO" Typography - Lebih nempel dan lebih besar */}
           <div className="shrink-0 flex items-center justify-center px-1 sm:px-2">
-            <IDoTypography />
+            <h2 className="font-flux text-5xl sm:text-6xl md:text-7xl lg:text-[88px] text-neutral-900 leading-[0.85] tracking-[-0.03em] uppercase select-none text-center">
+              I DO
+            </h2>
           </div>
 
                     {/* Right Icon: Muter continuous tanpa delay, membesar saat lurus (1.06) & mengecil saat ga lurus (0.75) */}

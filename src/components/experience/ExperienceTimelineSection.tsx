@@ -392,9 +392,9 @@ export default function ExperienceTimelineSection({
           <span>JOURNEY ROADMAP // TELKOM UNIVERSITY</span>
         </div>
 
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-neutral-900 tracking-tight flex flex-wrap items-center justify-center gap-3">
+        <h2 className="font-flux text-3xl sm:text-5xl md:text-6xl text-neutral-900 tracking-[-0.025em] leading-[0.9] uppercase flex flex-wrap items-center justify-center gap-3">
           <span>{t("Chapters & Milestones", "Babak & Tonggak Perjalanan")}</span>
-          <span className="font-mono text-xs px-2.5 py-1 bg-[#EDB22E] border-2 border-black shadow-[2px_2px_0px_#000] rotate-2">
+          <span className="font-mono text-xs px-2.5 py-1 bg-[#EDB22E] border-2 border-black shadow-[2px_2px_0px_#000] rotate-2 normal-case font-bold">
             VERIFIED ✦
           </span>
         </h2>

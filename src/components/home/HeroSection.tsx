@@ -353,9 +353,11 @@ export default function HeroSection() {
           {/* Bottom-Right */}
           <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-[#00C2FF] border border-black absolute -bottom-1.5 -right-1.5 z-20" />
 
-          {/* 100% Mathematically and Optically Centered: MOCH FIRMANSYAH */}
+          {/* 100% Mathematically and Optically Centered: MOCH FIRMANSYAH in Flux Variable */}
           <div className="w-full flex items-center justify-center text-black m-0 p-0">
-            <MochFirmansyahLetters />
+            <h1 className="font-flux text-4xl sm:text-6xl md:text-7xl lg:text-[76px] xl:text-[84px] leading-[0.88] tracking-[-0.03em] uppercase text-neutral-900 text-center select-none whitespace-normal sm:whitespace-nowrap">
+              MOCH FIRMANSYAH
+            </h1>
           </div>
         </div>
 
