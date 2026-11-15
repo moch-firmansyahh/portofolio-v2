@@ -4,25 +4,14 @@ import { useState, useEffect, type CSSProperties } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { Inter_Tight, JetBrains_Mono } from "next/font/google";
 import { PROJECTS as DEFAULT_PROJECTS } from "@/data/portfolioData";
 import type { Project } from "@/types/project";
 import { getProjects } from "@/services/portfolio";
 import { useLanguage } from "@/context/LanguageContext";
 
-/* Font kartu: padanan terdekat dari font contoh (sans rapat + mono dengan nol bergaris) */
-const cardSans = Inter_Tight({
-  subsets: ["latin"],
-  variable: "--font-card-sans",
-  display: "swap",
-});
-const cardMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-card-mono",
-  display: "swap",
-});
-const SANS = "font-[family-name:var(--font-card-sans)]";
-const MONO = "font-[family-name:var(--font-card-mono)]";
+/* Font kartu: Menggunakan Inter & DM Mono global dari sistem Nudge Folio */
+const SANS = "font-sans";
+const MONO = "font-mono";
 
 const MAX_PROJECTS = 3;
 const FALLBACK_IMAGE = "/projects/manajemen-kontrakan.png";
@@ -100,7 +89,7 @@ export default function ProjectsSection() {
   return (
     <section
       id="projects"
-      className={`${cardSans.variable} ${cardMono.variable} relative bg-transparent pt-10 pb-24 sm:pt-14 sm:pb-32`}
+      className="relative bg-transparent pt-10 pb-24 sm:pt-14 sm:pb-32"
     >
       {/* ── Header (ikut membesar di layar lebar) ───────────── */}
       <div className="relative z-10 mb-16 flex flex-col items-center px-4 sm:mb-20">
@@ -207,6 +196,8 @@ export default function ProjectsSection() {
                   "--bg": theme.bg,
                   "--ink": theme.ink,
                   zIndex: 10 + index,
+                  boxShadow:
+                    "rgba(0, 0, 0, 0.13) 0px 0.602px 1.807px -0.833px, rgba(0, 0, 0, 0.13) 0px 2.289px 6.866px -1.667px, rgba(0, 0, 0, 0.13) 0px 10px 30px -2.5px",
                 } as CSSProperties
               }
             >

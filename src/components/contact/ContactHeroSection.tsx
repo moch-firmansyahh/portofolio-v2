@@ -4,15 +4,8 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
 import { Copy, Check, Clock } from "lucide-react";
-import { JetBrains_Mono } from "next/font/google";
 import { ModularTitle } from "@/components/ui/ModularTypography";
 import { playBubblePop } from "@/components/playground/audioEffects";
-
-const mono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-contact-mono",
-  display: "swap",
-});
 
 export default function ContactHeroSection() {
   const { t } = useLanguage();
@@ -46,7 +39,7 @@ export default function ContactHeroSection() {
   };
 
   return (
-    <section className={`relative pt-12 pb-8 sm:pt-16 sm:pb-12 overflow-hidden ${mono.variable}`}>
+    <section className="relative pt-12 pb-8 sm:pt-16 sm:pb-12 overflow-hidden font-sans">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-10 flex flex-col items-center text-center">
         {/* 1. Handwritten Accent Tag with SVG Sketch */}
         <motion.div

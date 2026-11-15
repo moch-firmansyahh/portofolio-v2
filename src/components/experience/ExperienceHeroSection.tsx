@@ -3,7 +3,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, useMotionValue, useSpring, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
-import { JetBrains_Mono } from "next/font/google";
 import { ModularTitle } from "@/components/ui/ModularTypography";
 import { playBubblePop, playCombo } from "@/components/playground/audioEffects";
 import {
@@ -17,12 +16,6 @@ import {
   MapPin,
   Calendar,
 } from "lucide-react";
-
-const mono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-exp-mono",
-  display: "swap",
-});
 
 type MoodKey = "coffee" | "code" | "chill" | "retro";
 
@@ -312,7 +305,7 @@ export default function ExperienceHeroSection() {
   const { t } = useLanguage();
 
   return (
-    <section className={`relative pt-12 pb-10 sm:pt-16 sm:pb-14 overflow-hidden ${mono.variable}`}>
+    <section className="relative pt-12 pb-10 sm:pt-16 sm:pb-14 overflow-hidden font-sans">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-10 flex flex-col items-center text-center">
         {/* 1. Handwritten Accent Tag with SVG Sketch */}
         <motion.div

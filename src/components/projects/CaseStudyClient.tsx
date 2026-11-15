@@ -19,19 +19,6 @@ import {
 import { GithubIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/context/LanguageContext";
 import type { Project } from "@/types/project";
-import { JetBrains_Mono, Inter_Tight } from "next/font/google";
-
-const mono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-cs-mono",
-  display: "swap",
-});
-
-const sans = Inter_Tight({
-  subsets: ["latin"],
-  variable: "--font-cs-sans",
-  display: "swap",
-});
 
 const PILL_CLIP = "polygon(0 0, 2.4em 0, 3em 0.9em, 100% 0.9em, 100% 100%, 0 100%)";
 const FALLBACK_IMAGE = "/projects/manajemen-kontrakan.png";
@@ -75,7 +62,7 @@ export default function CaseStudyClient({ project, otherProjects }: CaseStudyCli
   };
 
   return (
-    <div className={`max-w-7xl mx-auto px-4 sm:px-6 md:px-10 py-10 md:py-16 ${mono.variable} ${sans.variable}`}>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 py-10 md:py-16 font-sans">
       {/* ── 1. Top Breadcrumb & Back Bar ── */}
       <motion.div
         initial={{ opacity: 0, y: -10 }}

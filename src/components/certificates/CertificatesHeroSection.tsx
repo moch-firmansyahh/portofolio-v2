@@ -3,21 +3,14 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
-import { JetBrains_Mono } from "next/font/google";
 import { ModularTitle } from "@/components/ui/ModularTypography";
 import { Award, ShieldCheck, CheckCircle2 } from "lucide-react";
-
-const mono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-hero-mono",
-  display: "swap",
-});
 
 export default function CertificatesHeroSection() {
   const { t } = useLanguage();
 
   return (
-    <section className={`relative pt-12 pb-14 sm:pt-16 sm:pb-20 overflow-hidden ${mono.variable}`}>
+    <section className="relative pt-12 pb-14 sm:pt-16 sm:pb-20 overflow-hidden font-sans">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-10 flex flex-col items-center text-center">
         {/* 1. Handwritten Accent Tag with SVG sketch (matching Projects & Experience) */}
         <motion.div
@@ -76,7 +69,7 @@ export default function CertificatesHeroSection() {
           animate={{ opacity: 1, rotate: -1.5, y: 0 }}
           whileHover={{ rotate: 0, scale: 1.03 }}
           whileDrag={{ scale: 1.06, rotate: 2, cursor: "grabbing" }}
-          transition={{ type: "spring", stiffness: 350, damping: 22 }}
+          transition={{ type: "spring", stiffness: 693, damping: 30, mass: 7.3 }}
           className="relative mt-8 sm:mt-12 max-w-lg bg-[#F6DCA0] border-2 border-black p-4 sm:p-5 text-left shadow-[5px_5px_0px_#000] cursor-grab select-none group"
         >
           {/* Pin accent on sticky note */}

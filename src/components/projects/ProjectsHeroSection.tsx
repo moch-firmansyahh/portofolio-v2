@@ -3,20 +3,13 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
-import { JetBrains_Mono } from "next/font/google";
 import { ModularTitle } from "@/components/ui/ModularTypography";
-
-const mono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-hero-mono",
-  display: "swap",
-});
 
 export default function ProjectsHeroSection() {
   const { t } = useLanguage();
 
   return (
-    <section className={`relative pt-12 pb-14 sm:pt-16 sm:pb-20 overflow-hidden ${mono.variable}`}>
+    <section className="relative pt-12 pb-14 sm:pt-16 sm:pb-20 overflow-hidden font-sans">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-10 flex flex-col items-center text-center">
         {/* 1. Handwritten Accent Tag with SVG sketch */}
         <motion.div

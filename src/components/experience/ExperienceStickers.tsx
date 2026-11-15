@@ -323,8 +323,9 @@ export default function ExperienceStickers() {
                 }}
                 transition={{
                   type: "spring",
-                  stiffness: 300,
-                  damping: 20,
+                  stiffness: 693,
+                  damping: 30,
+                  mass: 7.3,
                   delay: idx * 0.04,
                 }}
                 className={`relative ${sticker.cardBg} ${sticker.textColor} border-2 border-black p-3.5 sm:p-4 shadow-[4px_4px_0px_#000] cursor-grab select-none flex flex-col justify-between`}

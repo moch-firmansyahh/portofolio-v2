@@ -1,18 +1,25 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Caveat } from "next/font/google";
+import { Inter, DM_Mono, Just_Me_Again_Down_Here } from "next/font/google";
 import "./globals.css";
 
-const jakarta = Plus_Jakarta_Sans({
+const inter = Inter({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
-  variable: "--font-jakarta",
+  variable: "--font-inter",
   display: "swap",
 });
 
-const caveat = Caveat({
+const dmMono = DM_Mono({
   subsets: ["latin"],
-  weight: ["400", "600", "700"],
-  variable: "--font-caveat",
+  weight: ["400", "500"],
+  variable: "--font-dm-mono",
+  display: "swap",
+});
+
+const justMe = Just_Me_Again_Down_Here({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-just-me",
   display: "swap",
 });
 
@@ -69,8 +76,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id" className={`${jakarta.variable} ${caveat.variable}`}>
-      <body className="min-h-screen bg-white text-[#1A1A1A] font-sans antialiased selection:bg-[#F7EAE5] selection:text-[#B5654A]">
+    <html lang="id" className={`${inter.variable} ${dmMono.variable} ${justMe.variable}`}>
+      <body className="min-h-screen bg-white text-[#111212] font-sans antialiased selection:bg-[#F7EAE5] selection:text-[#B5654A]">
         <Preloader />
         <GlobalCursor />
         {children}

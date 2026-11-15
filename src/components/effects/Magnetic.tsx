@@ -33,7 +33,7 @@ export default function Magnetic({ children, className = "", strength = 0.25 }: 
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       animate={{ x: position.x, y: position.y }}
-      transition={{ type: "spring", stiffness: 250, damping: 15, mass: 0.5 }}
+      transition={{ type: "spring", stiffness: 400, damping: 30, mass: 0.8 }}
       className={`inline-block ${className}`}
     >
       {children}

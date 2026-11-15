@@ -300,7 +300,7 @@ export default function HeroSection() {
           <div className="absolute -top-12 sm:-top-14 left-1/2 -translate-x-1/2 flex flex-col items-center z-25 select-none pointer-events-none">
             <span
               style={{ fontFamily: "var(--font-caveat), cursive" }}
-              className="text-2xl sm:text-3xl md:text-4xl text-neutral-900 font-semibold tracking-wide whitespace-nowrap"
+              className="text-3xl sm:text-4xl md:text-[42px] text-neutral-900 font-normal tracking-[-0.03em] leading-[1.2] whitespace-nowrap"
             >
               my name is
             </span>
@@ -359,9 +359,9 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* Status Line: Cyan Dot + AVAILABLE FOR THOUGHTFUL PROJECTS (Centered) */}
+        {/* Status Line: Mint Green Dot (#2FBC81) + AVAILABLE FOR THOUGHTFUL PROJECTS (Centered per Nudge Folio) */}
         <div className="mt-5 flex items-center justify-center gap-2 select-none mx-auto text-center">
-          <span className="w-2.5 h-2.5 rounded-full bg-[#00C2FF] inline-block animate-pulse shrink-0" />
+          <span className="w-2.5 h-2.5 rounded-full bg-[#2FBC81] inline-block animate-pulse shrink-0 shadow-[0_0_8px_rgba(47,188,129,0.8)]" />
           <span className="font-mono text-[10px] sm:text-xs font-bold text-neutral-800 tracking-[0.2em] uppercase">
             {t("AVAILABLE FOR THOUGHTFUL PROJECTS", "TERSEDIA UNTUK PROYEK DIGITAL")}
           </span>
@@ -426,8 +426,8 @@ export default function HeroSection() {
           </div>
         </motion.div>
 
-        {/* Centered Headline: "I design ⊙ outstanding digital products 🌸." (Slightly reduced font + Spinning flower) */}
-        <h1 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-neutral-900 tracking-tight flex items-center justify-center gap-1.5 sm:gap-2 flex-wrap text-center max-w-2xl leading-snug mx-auto">
+        {/* Centered Headline: "I design ⊙ outstanding digital products 🌸." (Inter Display 500 Medium with -0.03em tracking per Nudge spec) */}
+        <h1 className="text-base sm:text-lg md:text-xl lg:text-2xl font-medium text-neutral-900 tracking-[-0.03em] flex items-center justify-center gap-1.5 sm:gap-2 flex-wrap text-center max-w-2xl leading-snug mx-auto">
           <span>{t("I design", "Saya merancang")}</span>
           {/* Concentric Cyan Circles Glyph */}
           <span className="inline-flex items-center justify-center text-[#00C2FF] mx-0.5">

@@ -8,19 +8,6 @@ import { Search, ExternalLink, ArrowUpRight, Filter, FolderGit2 } from "lucide-r
 import { GithubIcon } from "@/components/ui/icons";
 import { useLanguage } from "@/context/LanguageContext";
 import type { Project } from "@/types/project";
-import { JetBrains_Mono, Inter_Tight } from "next/font/google";
-
-const mono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-catalog-mono",
-  display: "swap",
-});
-
-const sans = Inter_Tight({
-  subsets: ["latin"],
-  variable: "--font-catalog-sans",
-  display: "swap",
-});
 
 const THEMES = [
   { bg: "#38C6F4", ink: "#171717", accent: "#000000" }, // Cyan
@@ -83,7 +70,7 @@ export default function ProjectsCatalogSection({ initialProjects }: ProjectsCata
   };
 
   return (
-    <section className={`relative max-w-7xl mx-auto px-4 sm:px-6 md:px-10 pb-24 ${mono.variable} ${sans.variable}`}>
+    <section className="relative max-w-7xl mx-auto px-4 sm:px-6 md:px-10 pb-24 font-sans">
       {/* ── 1. Interactive Control Toolbar (Filter & Search) ── */}
       <motion.div
         initial={{ opacity: 0, y: 16 }}

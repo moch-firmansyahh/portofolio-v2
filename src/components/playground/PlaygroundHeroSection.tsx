@@ -4,14 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
 import { Volume2, VolumeX } from "lucide-react";
-import { JetBrains_Mono } from "next/font/google";
 import { ModularTitle } from "@/components/ui/ModularTypography";
-
-const mono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-playground-mono",
-  display: "swap",
-});
 
 /**
  * 1:1 Modular Vector Typography for "PLAYGROUND"
@@ -112,7 +105,7 @@ export default function PlaygroundHeroSection({
   const { t } = useLanguage();
 
   return (
-    <section className={`relative pt-12 pb-8 sm:pt-16 sm:pb-10 overflow-hidden ${mono.variable}`}>
+    <section className="relative pt-12 pb-8 sm:pt-16 sm:pb-10 overflow-hidden font-sans">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-10 flex flex-col items-center text-center">
         {/* 1. Handwritten Accent Tag with Sketch Doodle */}
         <motion.div
