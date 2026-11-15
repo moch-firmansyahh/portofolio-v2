@@ -109,63 +109,69 @@ function IDoTypography() {
 }
 
 /**
- * 1:1 Left Icon Matching Reference:
- * Spool/Hourglass shape with flared top and bottom and convex circular middle bulb.
+ * 1:1 Left Icon Matching Reference (Nudge Folio):
+ * Hourglass / spool shape with circular flare and pinched waist.
  */
 function LeftIcon({ className = "w-full h-full" }: { className?: string }) {
   return (
-    <svg viewBox="0 0 64 64" className={className} fill="currentColor">
-      {/* 1:1 Pixel-perfect match with reference: Atas flat, pinggang ramping, tengah melendung bulat keluar, bawah flat */}
+    <svg
+      viewBox="0 0 200 200"
+      className={className}
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <path
-        d="
-          M 8 8
-          H 56
-          C 55 13, 52 17, 46 21
-          C 54 24, 56 28, 56 32
-          C 56 36, 54 40, 46 43
-          C 52 47, 55 51, 56 56
-          H 8
-          C 9 51, 12 47, 18 43
-          C 10 40, 8 36, 8 32
-          C 8 28, 10 24, 18 21
-          C 12 17, 9 13, 8 8
-          Z
-        "
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M0.00242398 200C0.000809232 199.834 0 199.667 0 199.5C0 174.111 18.7366 153.097 43.1371 149.533C18.7701 146.188 0 125.286 0 100C0 72.3858 22.3858 50 50 50H50.5C22.7765 50 0.270718 27.6601 0.00242398 0H199.998C199.729 27.6601 177.224 50 149.5 50H150C177.614 50 200 72.3858 200 100C200 125.286 181.23 146.188 156.863 149.533C181.263 153.097 200 174.111 200 199.5C200 199.667 199.999 199.834 199.998 200H0.00242398Z"
+        fill="currentColor"
       />
     </svg>
   );
 }
 
 /**
- * 1:1 Right Icon Matching Reference:
- * 4-blade geometric pinwheel with flat outer edges and curved arcs meeting at center.
+ * 1:1 Right Icon Matching Reference (Nudge Folio):
+ * 4-blade geometric pinwheel / flower petals meeting at center.
  */
 function RightIcon({ className = "w-full h-full" }: { className?: string }) {
   return (
-    <svg viewBox="0 0 64 64" className={className} fill="currentColor">
-      {/* Top-Left Blade */}
-      <path d="M 32 32 L 32 8 L 8 8 Q 12 26 32 32 Z" />
-      {/* Top-Right Blade */}
-      <path d="M 32 32 L 56 32 L 56 8 Q 38 12 32 32 Z" />
-      {/* Bottom-Right Blade */}
-      <path d="M 32 32 L 32 56 L 56 56 Q 52 38 32 32 Z" />
-      {/* Bottom-Left Blade */}
-      <path d="M 32 32 L 8 32 L 8 56 Q 26 52 32 32 Z" />
+    <svg
+      viewBox="0 0 357 357"
+      className={className}
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M4.57764e-05 356.35C98.4032 356.35 178.175 276.578 178.175 178.175H4.57764e-05V356.35Z"
+        fill="currentColor"
+      />
+      <path
+        d="M178.175 178.175C178.175 79.7716 257.946 3.48693e-06 356.35 7.78827e-06L356.35 178.175L178.175 178.175Z"
+        fill="currentColor"
+      />
+      <path
+        d="M178.175 178.175C79.7716 178.175 1.39477e-05 98.4032 3.11531e-05 4.57764e-05L178.175 7.69294e-05L178.175 178.175Z"
+        fill="currentColor"
+      />
+      <path
+        d="M356.349 356.35C356.349 257.946 276.578 178.175 178.175 178.175L178.175 356.35L356.349 356.35Z"
+        fill="currentColor"
+      />
     </svg>
   );
 }
 
 /**
  * Color Themes for "satset" instant switching:
- * Theme 0 matches the reference image (warm yellow/cream background with gold icon).
+ * Exact authentic palette from Nudge Folio.
  */
 const COLOR_THEMES = [
-  { bg: "#F6DE9D", icon: "#E2A426" }, // Reference yellow
-  { bg: "#9FE5C3", icon: "#1B9E68" }, // Mint green
-  { bg: "#F8B4D9", icon: "#DB2777" }, // Soft pink
-  { bg: "#C4B5FD", icon: "#7C3AED" }, // Lavender
-  { bg: "#BAE6FD", icon: "#0284C7" }, // Sky blue
-  { bg: "#FED7AA", icon: "#EA580C" }, // Warm peach
+  { bg: "#A1DFC5", icon: "#2FBC81" }, // Mint green (sesuai referensi gambar user)
+  { bg: "#A4E5F8", icon: "#36C5F0" }, // Soft Cyan
+  { bg: "#FABED1", icon: "#E01E5A" }, // Soft Pink
+  { bg: "#F5DDA1", icon: "#ECB22E" }, // Warm Yellow
+  { bg: "#D5CCFF", icon: "#7C5CFC" }, // Soft Lavender
 ];
 
 export default function WhatIDoSection() {
@@ -195,90 +201,79 @@ export default function WhatIDoSection() {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="flex justify-center mb-2 sm:mb-3 md:mb-4"
+          className="flex justify-center mb-0 sm:mb-1"
         >
-          <h1 className="font-flux text-6xl sm:text-7xl md:text-9xl lg:text-[145px] xl:text-[165px] text-neutral-900 leading-[0.82] tracking-[-0.035em] uppercase select-none text-center">
+          <h1 className="font-flux text-6xl sm:text-7xl md:text-8xl lg:text-[120px] text-neutral-900 leading-[0.8] tracking-[-3px] uppercase select-none text-center">
             WHAT
           </h1>
         </motion.div>
 
-        {/* Center: "I DO" Banner dengan 4 kotak pojok ala Figma dan jarak lebih nempel */}
+        {/* Center: "I DO" Banner dengan 4 kotak pojok ala Figma dan ukuran pas 1:1 Nudge */}
         <div
           style={{
             backgroundColor: currentTheme.bg,
             color: currentTheme.icon,
           }}
-          className="relative px-4 sm:px-8 md:px-12 lg:px-14 py-2 sm:py-3.5 md:py-4 lg:py-5 flex items-center justify-center gap-3 sm:gap-6 md:gap-8 lg:gap-10 select-none transition-none shadow-none"
+          className="relative inline-flex items-center justify-center w-fit max-w-[95vw] px-4 sm:px-6 md:px-7 pt-3 sm:pt-4 pb-1 sm:pb-2 gap-4 sm:gap-7 md:gap-10 select-none transition-none shadow-none"
         >
-          {/* 4 Corner Square Handles (ala Figma / Referensi) */}
+          {/* 4 Corner Square Handles (ala Figma / 1:1 Nudge 16px x 16px) */}
           <div
             style={{ backgroundColor: currentTheme.bg }}
-            className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-3.5 md:h-3.5 border border-black absolute -top-1 -left-1 sm:-top-1.5 sm:-left-1.5 md:-top-1.5 md:-left-1.5 z-20 pointer-events-none"
+            className="w-3.5 h-3.5 sm:w-4 sm:h-4 border border-black absolute -top-1.5 -left-1.5 sm:-top-2 sm:-left-2 z-20 pointer-events-none"
           />
           <div
             style={{ backgroundColor: currentTheme.bg }}
-            className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-3.5 md:h-3.5 border border-black absolute -top-1 -right-1 sm:-top-1.5 sm:-right-1.5 md:-top-1.5 md:-right-1.5 z-20 pointer-events-none"
+            className="w-3.5 h-3.5 sm:w-4 sm:h-4 border border-black absolute -top-1.5 -right-1.5 sm:-top-2 sm:-right-2 z-20 pointer-events-none"
           />
           <div
             style={{ backgroundColor: currentTheme.bg }}
-            className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-3.5 md:h-3.5 border border-black absolute -bottom-1 -left-1 sm:-bottom-1.5 sm:-left-1.5 md:-bottom-1.5 md:-left-1.5 z-20 pointer-events-none"
+            className="w-3.5 h-3.5 sm:w-4 sm:h-4 border border-black absolute -bottom-1.5 -left-1.5 sm:-bottom-2 sm:-left-2 z-20 pointer-events-none"
           />
           <div
             style={{ backgroundColor: currentTheme.bg }}
-            className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-3.5 md:h-3.5 border border-black absolute -bottom-1 -right-1 sm:-bottom-1.5 sm:-right-1.5 md:-bottom-1.5 md:-right-1.5 z-20 pointer-events-none"
+            className="w-3.5 h-3.5 sm:w-4 sm:h-4 border border-black absolute -bottom-1.5 -right-1.5 sm:-bottom-2 sm:-right-2 z-20 pointer-events-none"
           />
 
-          {/* Left Icon: Muter continuous tanpa delay, membesar saat lurus (1.06) & mengecil saat ga lurus (0.75) */}
+          {/* Left Icon: Muter continuous clockwise */}
           <motion.div
             animate={{
               rotate: 360,
-              scale: [1.06, 0.75, 1.06, 0.75, 1.06],
             }}
             transition={{
-              rotate: {
-                repeat: Infinity,
-                duration: 3.5,
-                ease: "linear",
-              },
-              scale: {
-                repeat: Infinity,
-                duration: 3.5,
-                ease: "easeInOut",
-                times: [0, 0.25, 0.5, 0.75, 1],
-              },
+              repeat: Infinity,
+              duration: 3.5,
+              ease: "linear",
             }}
-            className="w-12 h-12 sm:w-16 sm:h-16 md:w-24 md:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 shrink-0 flex items-center justify-center origin-center"
+            className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-[88px] lg:h-[88px] shrink-0 flex items-center justify-center origin-center"
           >
             <LeftIcon className="w-full h-full" />
           </motion.div>
 
-          {/* Center: "I DO" Typography - Lebih nempel dan lebih besar */}
-          <div className="shrink-0 flex items-center justify-center px-1 sm:px-2 md:px-3">
-            <h2 className="font-flux text-5xl sm:text-6xl md:text-8xl lg:text-[118px] xl:text-[135px] text-neutral-900 leading-[0.82] tracking-[-0.035em] uppercase select-none text-center">
-              I DO
-            </h2>
+          {/* Letter "I" */}
+          <div className="shrink-0 flex items-center justify-center">
+            <span className="font-flux text-6xl sm:text-7xl md:text-8xl lg:text-[120px] text-neutral-900 leading-[0.8] tracking-[-3px] uppercase select-none text-center">
+              I
+            </span>
           </div>
 
-          {/* Right Icon: Muter continuous tanpa delay, membesar saat lurus (1.06) & mengecil saat ga lurus (0.75) */}
+          {/* Letters "DO" */}
+          <div className="shrink-0 flex items-center justify-center">
+            <span className="font-flux text-6xl sm:text-7xl md:text-8xl lg:text-[120px] text-neutral-900 leading-[0.8] tracking-[-3px] uppercase select-none text-center">
+              DO
+            </span>
+          </div>
+
+          {/* Right Icon: Muter counter-clockwise continuous */}
           <motion.div
             animate={{
-              rotate: 360,
-              scale: [1.06, 0.75, 1.06, 0.75, 1.06],
+              rotate: -360,
             }}
             transition={{
-              rotate: {
-                repeat: Infinity,
-                duration: 3.5,
-                ease: "linear",
-              },
-              scale: {
-                repeat: Infinity,
-                duration: 3.5,
-                ease: "easeInOut",
-                times: [0, 0.25, 0.5, 0.75, 1],
-              },
+              repeat: Infinity,
+              duration: 3.5,
+              ease: "linear",
             }}
-            className="w-12 h-12 sm:w-16 sm:h-16 md:w-24 md:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 shrink-0 flex items-center justify-center origin-center"
+            className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-[88px] lg:h-[88px] shrink-0 flex items-center justify-center origin-center"
           >
             <RightIcon className="w-full h-full" />
           </motion.div>
