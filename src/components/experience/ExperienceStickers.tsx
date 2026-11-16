@@ -269,19 +269,6 @@ export default function ExperienceStickers() {
           </div>
         </div>
 
-        {/* Playful Instruction Subtitle */}
-        <div className="relative z-10 flex justify-center mb-6">
-          <p className="font-mono text-xs text-neutral-600 flex items-center justify-center gap-2 text-center max-w-lg">
-            <span className="w-2 h-2 bg-[#10B981] rounded-full inline-block shrink-0 animate-ping" />
-            <span>
-              {t(
-                "Authentic tech stack, verified certifications, and core competencies mastered through hands-on engineering.",
-                "Keahlian nyata, sertifikasi resmi, dan teknologi utama yang dikuasai melalui implementasi sistem nyata."
-              )}
-            </span>
-          </p>
-        </div>
-
         {/* Die-Cut Vinyl Stickers Grid / Canvas */}
         <div
           key={scatterKey}
