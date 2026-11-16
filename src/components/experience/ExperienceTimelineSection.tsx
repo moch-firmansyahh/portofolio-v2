@@ -303,18 +303,18 @@ export default function ExperienceTimelineSection({
   const filterTabs = [
     {
       key: "ALL",
-      labelEn: `ALL JOURNEY (${initialExperiences.length})`,
-      labelId: `SEMUA PERJALANAN (${initialExperiences.length})`,
+      labelEn: "ALL JOURNEY",
+      labelId: "SEMUA PERJALANAN",
     },
     {
       key: "WORK",
-      labelEn: `WORK & INTERN (${workCount})`,
-      labelId: `MAGANG & KERJA (${workCount})`,
+      labelEn: "WORK & INTERN",
+      labelId: "MAGANG & KERJA",
     },
     {
       key: "CAMPUS",
-      labelEn: `CAMPUS ACTIVITIES (${campusCount})`,
-      labelId: `KEGIATAN KAMPUS & ORGANISASI (${campusCount})`,
+      labelEn: "CAMPUS ACTIVITIES",
+      labelId: "KEGIATAN KAMPUS",
     },
   ];
 
@@ -382,67 +382,47 @@ export default function ExperienceTimelineSection({
   return (
     <section
       ref={timelineRef}
-      className="relative py-12 sm:py-20 max-w-4xl mx-auto px-4 sm:px-6 md:px-8"
+      className="relative pt-2 pb-16 sm:pb-24 max-w-4xl mx-auto px-4 sm:px-6 md:px-8"
     >
-      {/* 1. Header Bar with Clean & Cute Styling */}
-      <div className="flex flex-col items-center text-center pb-8 border-b-2 border-black mb-12 max-w-2xl mx-auto">
-        {/* Cute Top Tag */}
-        <div className="inline-flex items-center gap-2 px-3 py-1 bg-white border-2 border-black font-mono text-xs font-bold shadow-[2px_2px_0px_#000] mb-3">
-          <Sparkles className="w-3.5 h-3.5 text-[#EDB22E]" />
-          <span>JOURNEY ROADMAP // TELKOM UNIVERSITY</span>
-        </div>
+      {/* 1. Category Filter Navigation (Neo-brutalist pill buttons matching /certificates) */}
+      <div className="flex flex-wrap items-center justify-center gap-2.5 pb-2 mb-10 sm:mb-14 select-none">
+        {filterTabs.map((tab) => {
+          const isActive = activeFilter === tab.key;
+          const count =
+            tab.key === "ALL"
+              ? initialExperiences.length
+              : tab.key === "WORK"
+              ? workCount
+              : campusCount;
+          const label = language === "ID" ? tab.labelId : tab.labelEn;
 
-        <h2 className="font-flux text-3xl sm:text-5xl md:text-6xl text-neutral-900 tracking-[-0.025em] leading-[0.9] uppercase flex flex-wrap items-center justify-center gap-3">
-          <span>{t("Chapters & Milestones", "Babak & Tonggak Perjalanan")}</span>
-          <span className="font-mono text-xs px-2.5 py-1 bg-[#EDB22E] border-2 border-black shadow-[2px_2px_0px_#000] rotate-2 normal-case font-bold">
-            VERIFIED ✦
-          </span>
-        </h2>
-
-        <p
-          style={{ fontFamily: "var(--font-caveat), cursive" }}
-          className="text-xl sm:text-2xl text-neutral-700 font-medium mt-1.5"
-        >
-          {t(
-            "every step built with curiosity, late-night experiments, and care",
-            "setiap langkah dibangun dengan rasa ingin tahu & dedikasi ngoding"
-          )}
-        </p>
-
-        {/* Global Kudos Counter Chip */}
-        <motion.div
-          whileHover={{ scale: 1.05 }}
-          className="mt-3.5 inline-flex items-center gap-1.5 px-3 py-1 bg-[#FFF275] border-2 border-black font-mono text-xs font-black shadow-[2px_2px_0px_#000]"
-        >
-          <Heart className="w-3.5 h-3.5 text-[#E11D5A] fill-[#E11D5A]" />
-          <span>{t(`TOTAL KUDOS SENT: ${totalKudos}`, `TOTAL APRESIASI: ${totalKudos}`)}</span>
-        </motion.div>
-
-        {/* Filter Navigation Tabs */}
-        <div className="flex flex-wrap items-center justify-center gap-2 font-mono text-xs select-none mt-6">
-          {filterTabs.map((tab) => {
-            const isActive = activeFilter === tab.key;
-            return (
-              <motion.button
-                key={tab.key}
-                type="button"
-                onClick={() => {
-                  setActiveFilter(tab.key);
-                  playBubblePop(1.1, true);
-                }}
-                whileHover={{ scale: 1.04 }}
-                whileTap={{ scale: 0.96 }}
-                className={`relative px-3.5 py-1.5 font-bold border-2 border-black transition-all cursor-pointer ${
+          return (
+            <button
+              key={tab.key}
+              type="button"
+              onClick={() => {
+                setActiveFilter(tab.key);
+                playBubblePop(1.1, true);
+              }}
+              className={`px-4 py-2 text-xs sm:text-[13px] font-black uppercase tracking-wider border-2 border-black transition-all duration-150 cursor-pointer whitespace-nowrap shrink-0 flex items-center gap-2 ${
+                isActive
+                  ? "bg-[#00C2FF] text-black shadow-[3px_3px_0px_#000] -translate-y-0.5"
+                  : "bg-white text-neutral-800 hover:bg-neutral-100 shadow-[2px_2px_0px_#000] active:translate-y-0.5 active:shadow-[1px_1px_0px_#000]"
+              }`}
+            >
+              <span>{label}</span>
+              <span
+                className={`text-[10px] font-mono px-1.5 py-0.5 rounded-sm border ${
                   isActive
-                    ? "bg-neutral-900 text-white shadow-[3px_3px_0px_#00C2FF]"
-                    : "bg-white text-neutral-800 hover:bg-neutral-100 shadow-[2px_2px_0px_#000]"
+                    ? "bg-black text-[#00C2FF] border-black"
+                    : "bg-neutral-100 text-neutral-600 border-neutral-300"
                 }`}
               >
-                <span>{t(tab.labelEn, tab.labelId)}</span>
-              </motion.button>
-            );
-          })}
-        </div>
+                {count}
+              </span>
+            </button>
+          );
+        })}
       </div>
 
       {/* 2. Unified Metro-Rail Roadmap Layout */}

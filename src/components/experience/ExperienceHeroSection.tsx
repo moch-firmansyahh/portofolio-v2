@@ -145,24 +145,7 @@ function CuteMascot() {
   const MoodIcon = currentMood.icon;
 
   return (
-    <div className="relative flex flex-col items-center mt-6 mb-4 select-none">
-      {/* Floating Orbit Items around Byte - Clean Lucide vector cards */}
-      <motion.div
-        animate={{ y: [-5, 5, -5], rotate: [-6, 6, -6] }}
-        transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-        className="hidden md:flex absolute -left-16 top-4 bg-white border-2 border-black p-2 shadow-[2px_2px_0px_#000] text-neutral-800 pointer-events-none"
-      >
-        <Coffee className="w-4 h-4 text-[#D97706]" />
-      </motion.div>
-
-      <motion.div
-        animate={{ y: [5, -5, 5], rotate: [6, -6, 6] }}
-        transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut" }}
-        className="hidden md:flex absolute -right-16 top-4 bg-white border-2 border-black p-2 shadow-[2px_2px_0px_#000] text-neutral-800 pointer-events-none"
-      >
-        <Zap className="w-4 h-4 text-[#00C2FF]" />
-      </motion.div>
-
+    <div className="relative flex flex-col items-center mt-5 mb-2 select-none">
       {/* Speech Bubble */}
       <motion.button
         type="button"
@@ -303,7 +286,7 @@ export default function ExperienceHeroSection() {
   const { t } = useLanguage();
 
   return (
-    <section className="relative pt-12 pb-10 sm:pt-16 sm:pb-14 overflow-hidden font-sans">
+    <section className="relative pt-12 pb-4 sm:pt-16 sm:pb-6 overflow-hidden font-sans">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-10 flex flex-col items-center text-center">
         {/* 1. Handwritten Accent Tag with SVG Sketch */}
         <motion.div
