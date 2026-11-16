@@ -382,10 +382,37 @@ export default function ExperienceTimelineSection({
   return (
     <section
       ref={timelineRef}
-      className="relative pt-2 pb-16 sm:pb-24 max-w-4xl mx-auto px-4 sm:px-6 md:px-8"
+      className="relative pt-4 pb-16 sm:pb-24 max-w-4xl mx-auto px-4 sm:px-6 md:px-8"
     >
+      {/* Blueprint Line with Circuit Badge & Transition Intro */}
+      <div className="w-full max-w-2xl mx-auto px-4 mb-8 flex flex-col items-center text-center">
+        {/* Blueprint Line with Circuit Badge */}
+        <div className="w-full flex items-center justify-center gap-3 sm:gap-4 mb-4">
+          <div className="flex-1 h-[2px] bg-black/15 border-t border-dashed border-black/30" />
+          <div className="px-3.5 py-1.5 bg-white border-2 border-black font-mono text-xs font-bold shadow-[2px_2px_0px_#000] flex items-center gap-2 select-none shrink-0">
+            <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
+            <span>CIRCUIT // CAREER & LEARNING ROADMAP</span>
+          </div>
+          <div className="flex-1 h-[2px] bg-black/15 border-t border-dashed border-black/30" />
+        </div>
+
+        {/* Narrative Subtitle */}
+        <p className="font-sans text-xs sm:text-sm text-neutral-600 max-w-lg mx-auto font-medium leading-relaxed mb-4">
+          {t(
+            "A timeline of curiosity, leadership, and code — from first campus algorithms to production systems at Reacteev.",
+            "Rekam jejak eksplorasi, kepemimpinan, dan dedikasi ngoding — dari baris kode pertama di kampus hingga rilis sistem produksi di industri."
+          )}
+        </p>
+
+        {/* Scroll & Filter Cue */}
+        <div className="inline-flex items-center gap-1.5 font-mono text-[11px] font-bold text-neutral-500 uppercase tracking-widest">
+          <span>{t("EXPLORE BY CHAPTERS", "JELAJAHI SESUAI KATEGORI")}</span>
+          <span className="text-neutral-800 animate-bounce">↓</span>
+        </div>
+      </div>
+
       {/* 1. Category Filter Navigation (Neo-brutalist pill buttons matching /certificates) */}
-      <div className="flex flex-wrap items-center justify-center gap-2.5 pb-2 mb-10 sm:mb-14 select-none">
+      <div className="flex flex-wrap items-center justify-center gap-2.5 pb-2 mb-12 sm:mb-16 select-none">
         {filterTabs.map((tab) => {
           const isActive = activeFilter === tab.key;
           const count =

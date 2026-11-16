@@ -286,7 +286,7 @@ export default function ExperienceHeroSection() {
   const { t } = useLanguage();
 
   return (
-    <section className="relative pt-12 pb-4 sm:pt-16 sm:pb-6 overflow-hidden font-sans">
+    <section className="relative pt-12 pb-6 sm:pt-16 sm:pb-8 overflow-hidden font-sans">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-10 flex flex-col items-center text-center">
         {/* 1. Handwritten Accent Tag with SVG Sketch */}
         <motion.div
