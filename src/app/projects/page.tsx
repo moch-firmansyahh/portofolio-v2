@@ -4,7 +4,6 @@ import MeasurementRuler from "@/components/layout/MeasurementRuler";
 import Footer from "@/components/layout/Footer";
 import ProjectsHeroSection from "@/components/projects/ProjectsHeroSection";
 import ProjectsCatalogSection from "@/components/projects/ProjectsCatalogSection";
-import ProjectStatsBanner from "@/components/projects/ProjectStatsBanner";
 import LetsTalkSection from "@/components/home/LetsTalkSection";
 import ContactSection from "@/components/home/ContactSection";
 import { LanguageProvider } from "@/context/LanguageContext";
@@ -38,10 +37,7 @@ export default async function ProjectsPage() {
             {/* 2. Interactive Projects Catalog (Filter, Search, Grid Cards) */}
             <ProjectsCatalogSection initialProjects={projects} />
 
-            {/* 3. Engineering Specifications & Quality Standards Banner */}
-            <ProjectStatsBanner />
-
-            {/* 4. Let's Talk Section */}
+            {/* 3. Let's Talk Section */}
             <LetsTalkSection />
 
             {/* 5. Contact & Footer Section */}
