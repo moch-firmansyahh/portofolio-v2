@@ -284,8 +284,8 @@ export default function ContactSection() {
                 </h4>
                 <p className="mt-0.5 text-[10px] sm:text-[11px] leading-snug text-neutral-600">
                   {t(
-                    "Open to contract work, full-time roles, and interesting conversations about hard design problems.",
-                    "Terbuka untuk pekerjaan kontrak, peran penuh waktu, dan diskusi seputar tantangan rekayasa web.",
+                    "Telkom University student & Full Stack Developer. Open to internships, freelance projects, and tech collaborations.",
+                    "Mahasiswa Informatika Telkom University & Full Stack Developer. Terbuka untuk magang, proyek freelance, dan kolaborasi teknologi.",
                   )}
                 </p>
 

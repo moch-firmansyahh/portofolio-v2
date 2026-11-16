@@ -428,9 +428,9 @@ export default function HeroSection() {
           </div>
         </motion.div>
 
-        {/* Centered Headline: "I design ⊙ outstanding digital products 🌸." (Inter Display 500 Medium with -0.03em tracking per Nudge spec) */}
+        {/* Centered Headline: "I build ⊙ modern web apps & scalable systems 🌸." */}
         <h1 className="text-base sm:text-lg md:text-xl lg:text-2xl font-medium text-neutral-900 tracking-[-0.03em] flex items-center justify-center gap-1.5 sm:gap-2 flex-wrap text-center max-w-2xl leading-snug mx-auto">
-          <span>{t("I design", "Saya merancang")}</span>
+          <span>{t("I build", "Saya membangun")}</span>
           {/* Concentric Cyan Circles Glyph */}
           <span className="inline-flex items-center justify-center text-[#00C2FF] mx-0.5">
             <svg
@@ -444,7 +444,7 @@ export default function HeroSection() {
               <circle cx="12" cy="12" r="4.5" stroke="#00C2FF" strokeWidth="2.5" />
             </svg>
           </span>
-          <span>{t("outstanding digital products", "produk digital berkelas")}</span>
+          <span>{t("modern web apps & scalable systems", "aplikasi web modern & sistem yang skalabel")}</span>
           {/* Continuously Spinning Flower 🌸 */}
           <motion.span
             animate={{ rotate: 360 }}
