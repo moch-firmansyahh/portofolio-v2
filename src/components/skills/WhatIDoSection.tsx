@@ -214,7 +214,7 @@ export default function WhatIDoSection() {
             backgroundColor: currentTheme.bg,
             color: currentTheme.icon,
           }}
-          className="relative inline-flex items-center justify-center w-fit max-w-[95vw] px-4 sm:px-6 md:px-8 py-3.5 sm:py-4 md:py-5 gap-4 sm:gap-7 md:gap-9 select-none transition-none shadow-none"
+          className="relative inline-flex items-center justify-center w-fit max-w-[95vw] px-6 sm:px-8 md:px-11 lg:px-14 py-4 sm:py-5 md:py-6 lg:py-7 gap-5 sm:gap-8 md:gap-11 lg:gap-14 select-none transition-none shadow-none"
         >
           {/* 4 Corner Square Handles (ala Figma / 1:1 Nudge 16px x 16px) */}
           <div
@@ -234,64 +234,42 @@ export default function WhatIDoSection() {
             className="w-3.5 h-3.5 sm:w-4 sm:h-4 border border-black absolute -bottom-1.5 -right-1.5 sm:-bottom-2 sm:-right-2 z-20 pointer-events-none"
           />
 
-          {/* Left Icon: Muter continuous clockwise & mengecil/membesar halus agar tidak keluar batas */}
+          {/* Left Icon: Muter continuous clockwise - diperbesar & tetap aman tidak keluar kotak saat berputar */}
           <motion.div
             animate={{
               rotate: 360,
-              scale: [1, 0.78, 1, 0.78, 1, 0.78, 1, 0.78, 1],
             }}
             transition={{
-              rotate: {
-                repeat: Infinity,
-                duration: 4,
-                ease: "linear",
-              },
-              scale: {
-                repeat: Infinity,
-                duration: 4,
-                ease: "easeInOut",
-                times: [0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1],
-              },
+              repeat: Infinity,
+              duration: 5,
+              ease: "linear",
             }}
-            className="w-11 h-11 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-[72px] lg:h-[72px] shrink-0 flex items-center justify-center origin-center"
+            className="w-[50px] h-[50px] sm:w-[64px] sm:h-[64px] md:w-[80px] md:h-[80px] lg:w-[94px] lg:h-[94px] shrink-0 flex items-center justify-center origin-center"
           >
             <LeftIcon className="w-full h-full" />
           </motion.div>
 
-          {/* Letter "I" */}
-          <div className="shrink-0 flex items-center justify-center">
+          {/* Centered Typography: "I DO" as one unified centered block */}
+          <div className="shrink-0 flex items-center justify-center gap-3 sm:gap-4 md:gap-5">
             <span className="font-flux text-6xl sm:text-7xl md:text-8xl lg:text-[120px] text-neutral-900 leading-[0.8] tracking-[-3px] uppercase select-none text-center">
               I
             </span>
-          </div>
-
-          {/* Letters "DO" */}
-          <div className="shrink-0 flex items-center justify-center">
             <span className="font-flux text-6xl sm:text-7xl md:text-8xl lg:text-[120px] text-neutral-900 leading-[0.8] tracking-[-3px] uppercase select-none text-center">
               DO
             </span>
           </div>
 
-          {/* Right Icon: Muter counter-clockwise continuous & mengecil/membesar halus agar tidak keluar batas */}
+          {/* Right Icon: Muter counter-clockwise continuous - diperbesar & tetap aman tidak keluar kotak saat berputar */}
           <motion.div
             animate={{
               rotate: -360,
-              scale: [1, 0.78, 1, 0.78, 1, 0.78, 1, 0.78, 1],
             }}
             transition={{
-              rotate: {
-                repeat: Infinity,
-                duration: 4,
-                ease: "linear",
-              },
-              scale: {
-                repeat: Infinity,
-                duration: 4,
-                ease: "easeInOut",
-                times: [0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1],
-              },
+              repeat: Infinity,
+              duration: 5,
+              ease: "linear",
             }}
-            className="w-11 h-11 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-[72px] lg:h-[72px] shrink-0 flex items-center justify-center origin-center"
+            className="w-[50px] h-[50px] sm:w-[64px] sm:h-[64px] md:w-[80px] md:h-[80px] lg:w-[94px] lg:h-[94px] shrink-0 flex items-center justify-center origin-center"
           >
             <RightIcon className="w-full h-full" />
           </motion.div>
