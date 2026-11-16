@@ -2,7 +2,7 @@ export interface Certificate {
   id: string;
   title: string;
   issuer: string;
-  category: "competition" | "cloud-ai" | "security" | "workshop";
+  category: "cloud-ai" | "security" | "workshop";
   categoryLabelEn: string;
   categoryLabelId: string;
   issueDateEn: string;
@@ -44,31 +44,7 @@ export const CERTIFICATES_DATA: Certificate[] = [
     featured: true,
   },
 
-  // 2. National Hackathon Award
-  {
-    id: "cci-hackathon-2026",
-    title: "Juara 3 CCI THE HACK (2026)",
-    issuer: "Central Computer Improvement (Telkom University)",
-    category: "competition",
-    categoryLabelEn: "Competition & Awards",
-    categoryLabelId: "Kompetisi & Penghargaan",
-    issueDateEn: "August 2026",
-    issueDateId: "Agustus 2026",
-    credentialId: "CCI-HACK-SIMGI-03",
-    credentialUrl: "https://simgizi.vercel.app/",
-    descriptionEn:
-      "Awarded 3rd Winner in national technology hackathon CCI THE HACK (2026) for developing SimGizi — an AI-powered early detection and nutrition monitoring web application for Posyandu.",
-    descriptionId:
-      "Meraih Juara 3 Nasional dalam kompetisi hackathon teknologi bergengsi CCI THE HACK (2026) melalui inovasi SimGizi — aplikasi web deteksi dini stunting dan pemantauan gizi Posyandu berbasis AI.",
-    skills: ["Next.js", "AI Gemini API", "Antropometri WHO", "Full-Stack Development"],
-    image: "/certificates/cci-hackathon.svg",
-    iconType: "trophy",
-    iconBgColor: "bg-amber-500",
-    accentColor: "#F59E0B",
-    featured: true,
-  },
-
-  // 3. Google AI Series (Coursera)
+  // 2. Google AI Series (Coursera)
   {
     id: "google-ai-fundamentals",
     title: "Google AI Fundamentals",
@@ -409,6 +385,5 @@ export const CERTIFICATE_CATEGORIES = [
   { key: "all", labelEn: "ALL CERTIFICATES", labelId: "SEMUA SERTIFIKAT" },
   { key: "cloud-ai", labelEn: "CLOUD & AI", labelId: "CLOUD & KECERDASAN BUATAN" },
   { key: "security", labelEn: "CYBER SECURITY & NETWORK", labelId: "KEAMANAN SIBER & JARINGAN" },
-  { key: "competition", labelEn: "COMPETITIONS & AWARDS", labelId: "KOMPETISI & PENGHARGAAN" },
   { key: "workshop", labelEn: "WORKSHOP & ACADEMIC", labelId: "WORKSHOP & AKADEMIK" },
 ] as const;
