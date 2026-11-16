@@ -384,31 +384,39 @@ export default function ExperienceTimelineSection({
       ref={timelineRef}
       className="relative pt-4 pb-16 sm:pb-24 max-w-4xl mx-auto px-4 sm:px-6 md:px-8"
     >
-      {/* Blueprint Line with Circuit Badge & Transition Intro */}
-      <div className="w-full max-w-2xl mx-auto px-4 mb-8 flex flex-col items-center text-center">
-        {/* Blueprint Line with Circuit Badge */}
-        <div className="w-full flex items-center justify-center gap-3 sm:gap-4 mb-4">
-          <div className="flex-1 h-[2px] bg-black/15 border-t border-dashed border-black/30" />
-          <div className="px-3.5 py-1.5 bg-white border-2 border-black font-mono text-xs font-bold shadow-[2px_2px_0px_#000] flex items-center gap-2 select-none shrink-0">
-            <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
-            <span>CIRCUIT // CAREER & LEARNING ROADMAP</span>
-          </div>
-          <div className="flex-1 h-[2px] bg-black/15 border-t border-dashed border-black/30" />
-        </div>
-
-        {/* Narrative Subtitle */}
-        <p className="font-sans text-xs sm:text-sm text-neutral-600 max-w-lg mx-auto font-medium leading-relaxed mb-4">
-          {t(
-            "A timeline of curiosity, leadership, and code — from first campus algorithms to production systems at Reacteev.",
-            "Rekam jejak eksplorasi, kepemimpinan, dan dedikasi ngoding — dari baris kode pertama di kampus hingga rilis sistem produksi di industri."
-          )}
-        </p>
-
-        {/* Scroll & Filter Cue */}
-        <div className="inline-flex items-center gap-1.5 font-mono text-[11px] font-bold text-neutral-500 uppercase tracking-widest">
-          <span>{t("EXPLORE BY CHAPTERS", "JELAJAHI SESUAI KATEGORI")}</span>
-          <span className="text-neutral-800 animate-bounce">↓</span>
-        </div>
+      {/* 1. Handwritten Accent Tag: "my experience" */}
+      <div className="flex flex-col items-center text-center mb-8 sm:mb-10 select-none">
+        <span
+          style={{ fontFamily: "var(--font-caveat), cursive" }}
+          className="text-3xl sm:text-4xl md:text-[40px] text-neutral-900 font-bold tracking-wide"
+        >
+          {t("my experience", "pengalaman saya")}
+        </span>
+        <svg
+          viewBox="0 0 130 16"
+          fill="none"
+          className="w-28 sm:w-32 text-neutral-900 -mt-1"
+          aria-hidden="true"
+        >
+          <path
+            d="M4 4 Q 35 1, 70 4 T 126 3"
+            stroke="currentColor"
+            strokeWidth="1.9"
+            strokeLinecap="round"
+          />
+          <path
+            d="M12 9 Q 40 6.5, 75 9 T 118 8"
+            stroke="currentColor"
+            strokeWidth="1.9"
+            strokeLinecap="round"
+          />
+          <path
+            d="M22 14 Q 45 11.5, 75 14 T 106 13"
+            stroke="currentColor"
+            strokeWidth="1.9"
+            strokeLinecap="round"
+          />
+        </svg>
       </div>
 
       {/* 1. Category Filter Navigation (Neo-brutalist pill buttons matching /certificates) */}
