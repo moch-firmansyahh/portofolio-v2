@@ -371,12 +371,12 @@ export default function HeroSection() {
       </div>
 
       {/* 4. Floating Callout Badges: Frontend Developer & BDG, IN (1:1 with reference) */}
-      <div className="relative z-10 w-full max-w-5xl px-4 flex flex-col items-center mt-14 sm:mt-20 mx-auto">
+      <div className="relative z-10 w-full max-w-6xl px-4 flex flex-col items-center mt-14 sm:mt-20 mx-auto">
         {/* Left: Yellow "FRONTEND DEVELOPER" — drifts LEFT */}
         <motion.div
           animate={{
             y: [-6, 6, -6],
-            x: [-20, -8, -20],
+            x: [-28, -14, -28],
             rotate: [-14, -8, -14],
           }}
           transition={{
@@ -384,7 +384,7 @@ export default function HeroSection() {
             duration: 5,
             ease: "easeInOut",
           }}
-          className="absolute -left-4 sm:left-0 md:left-4 -top-2 sm:top-0 z-20 select-none cursor-default"
+          className="absolute -left-2 sm:-left-6 md:-left-10 lg:-left-16 xl:-left-24 -top-2 sm:top-0 z-20 select-none cursor-default"
         >
           <div className="relative select-none">
             {/* Pill capsule body */}
