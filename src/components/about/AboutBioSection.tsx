@@ -74,7 +74,7 @@ const AboutBioSection = forwardRef<HTMLElement, React.HTMLAttributes<HTMLElement
               {/* Inline Avatar thumbnail */}
               <span className="inline-block w-8 h-8 sm:w-9 sm:h-9 rounded-md overflow-hidden align-middle mx-1 border border-neutral-300 shadow-xs relative">
                 <Image
-                  src="/about-me.jpg"
+                  src="/about-sketch.png"
                   alt="Portrait"
                   fill
                   className="object-cover object-center"
@@ -155,7 +155,7 @@ const AboutBioSection = forwardRef<HTMLElement, React.HTMLAttributes<HTMLElement
                 {/* Photo Frame */}
                 <div className="relative w-full aspect-square overflow-hidden bg-neutral-100 mb-2.5">
                   <Image
-                    src="/about-me.jpg"
+                    src="/about-sketch.png"
                     alt="it's me"
                     fill
                     className="object-cover object-top"
