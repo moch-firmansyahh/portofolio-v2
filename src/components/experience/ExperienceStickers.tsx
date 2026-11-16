@@ -19,6 +19,7 @@ import {
   Flame,
   Code2,
   Terminal,
+  Database,
 } from "lucide-react";
 import { playBubblePop, playSquish, playCombo } from "@/components/playground/audioEffects";
 
@@ -36,9 +37,9 @@ interface Sticker {
 const DEFAULT_STICKERS: Sticker[] = [
   {
     id: "s1",
-    title: "NEXT.JS 16 NINJA",
-    subtitle: "Turbopack & App Router",
-    icon: Rocket,
+    title: "REACT & NEXT.JS",
+    subtitle: "App Router & Server Actions",
+    icon: Code2,
     iconBg: "bg-white text-neutral-900",
     cardBg: "bg-[#00C2FF]",
     textColor: "text-neutral-900",
@@ -46,9 +47,9 @@ const DEFAULT_STICKERS: Sticker[] = [
   },
   {
     id: "s2",
-    title: "MIDNIGHT COFFEE",
-    subtitle: "Fueling deep focus commits",
-    icon: Coffee,
+    title: "NODE.JS & EXPRESS",
+    subtitle: "REST APIs & Middleware",
+    icon: Terminal,
     iconBg: "bg-[#D97706] text-white",
     cardBg: "bg-[#F97316]",
     textColor: "text-white",
@@ -57,7 +58,7 @@ const DEFAULT_STICKERS: Sticker[] = [
   {
     id: "s3",
     title: "TELKOM UNIVERSITY",
-    subtitle: "Informatics Student // BDG",
+    subtitle: "Informatics // CCI Web Lead",
     icon: GraduationCap,
     iconBg: "bg-[#171717] text-white",
     cardBg: "bg-[#EDB22E]",
@@ -66,9 +67,9 @@ const DEFAULT_STICKERS: Sticker[] = [
   },
   {
     id: "s4",
-    title: "CLEAN CODE POLICY",
-    subtitle: "Type safety & zero slop",
-    icon: ShieldCheck,
+    title: "AWS CERTIFIED AI",
+    subtitle: "Practitioner // Bedrock & ML",
+    icon: Sparkles,
     iconBg: "bg-white text-[#10B981]",
     cardBg: "bg-[#10B981]",
     textColor: "text-white",
@@ -76,9 +77,9 @@ const DEFAULT_STICKERS: Sticker[] = [
   },
   {
     id: "s5",
-    title: "BUG SLAYER",
-    subtitle: "It works on my machine!",
-    icon: Bug,
+    title: "CYBER SECURITY",
+    subtitle: "Google Certified Network Defense",
+    icon: ShieldCheck,
     iconBg: "bg-white text-[#E11D5A]",
     cardBg: "bg-[#E11D5A]",
     textColor: "text-white",
@@ -86,9 +87,9 @@ const DEFAULT_STICKERS: Sticker[] = [
   },
   {
     id: "s6",
-    title: "TAILWIND WIZARD",
-    subtitle: "Pixel-perfect geometry",
-    icon: Palette,
+    title: "TYPESCRIPT & JS",
+    subtitle: "Type-Safe Web Architecture",
+    icon: Code2,
     iconBg: "bg-white text-[#8B5CF6]",
     cardBg: "bg-[#8B5CF6]",
     textColor: "text-white",
@@ -96,9 +97,9 @@ const DEFAULT_STICKERS: Sticker[] = [
   },
   {
     id: "s7",
-    title: "TURSO EDGE SPEED",
-    subtitle: "Sub-millisecond queries",
-    icon: Zap,
+    title: "POSTGRES & MYSQL",
+    subtitle: "Relational Data Modeling",
+    icon: Database,
     iconBg: "bg-white text-[#06B6D4]",
     cardBg: "bg-[#06B6D4]",
     textColor: "text-white",
@@ -106,9 +107,9 @@ const DEFAULT_STICKERS: Sticker[] = [
   },
   {
     id: "s8",
-    title: "MOTION MAGIC ✦",
-    subtitle: "Framer Motion 60 FPS",
-    icon: Sparkles,
+    title: "TAILWIND & MOTION",
+    subtitle: "Responsive UI & Framer Motion",
+    icon: Palette,
     iconBg: "bg-[#EDB22E] text-neutral-900",
     cardBg: "bg-[#FFF275]",
     textColor: "text-neutral-900",
@@ -274,8 +275,8 @@ export default function ExperienceStickers() {
             <span className="w-2 h-2 bg-[#10B981] rounded-full inline-block shrink-0 animate-ping" />
             <span>
               {t(
-                "Every sticker represents a chapter, a badge of honor, or an all-nighter bug hunt. Pick one up!",
-                "Setiap stiker merepresentasikan babak pengalaman, lencana kebanggaan, dan serunya ngulik kode. Coba angkat!"
+                "Authentic tech stack, verified certifications, and core competencies mastered through hands-on engineering.",
+                "Keahlian nyata, sertifikasi resmi, dan teknologi utama yang dikuasai melalui implementasi sistem nyata."
               )}
             </span>
           </p>
