@@ -231,18 +231,13 @@ export default function ContactFormSection({
             <div className="absolute bottom-2 right-2 text-neutral-400 font-mono text-[9px]">+</div>
 
             {/* Header */}
-            <div className="flex items-center justify-between pb-4 mb-6 border-b-2 border-black">
-              <div>
-                <span className="font-mono text-[10px] font-black uppercase text-neutral-500 block">
-                  TRANSMIT PROTOCOL // DISPATCH
-                </span>
-                <h3 className="text-xl sm:text-2xl font-black text-neutral-900 tracking-tight">
-                  {t("Send a Direct Message", "Kirim Pesan Langsung")}
-                </h3>
-              </div>
-              <div className="px-2.5 py-1 bg-[#EDB22E] border-2 border-black font-mono text-xs font-black shadow-xs select-none">
-                SLA: &lt; 24H ⚡
-              </div>
+            <div className="pb-4 mb-6 border-b-2 border-black">
+              <span className="font-mono text-[10px] font-black uppercase text-neutral-500 block">
+                TRANSMIT PROTOCOL // DISPATCH
+              </span>
+              <h3 className="text-xl sm:text-2xl font-black text-neutral-900 tracking-tight">
+                {t("Send a Direct Message", "Kirim Pesan Langsung")}
+              </h3>
             </div>
 
             {/* Quick Topic Presets */}

@@ -96,12 +96,6 @@ export default function ContactHeroSection() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3.5 mt-4 select-none"
         >
-          {/* Availability Pill */}
-          <div className="flex items-center gap-2 px-3.5 py-1.5 bg-[#10B981]/15 border-2 border-black font-mono text-xs font-bold text-neutral-900 shadow-[2px_2px_0px_#000]">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#10B981] border border-black animate-pulse" />
-            <span>{t("AVAILABLE FOR OPPORTUNITIES", "TERBUKA UNTUK KOLABORASI")}</span>
-          </div>
-
           {/* Time Zone & Live Clock */}
           <div className="flex items-center gap-2 px-3.5 py-1.5 bg-white border-2 border-black font-mono text-xs font-bold text-neutral-800 shadow-[2px_2px_0px_#000]">
             <Clock className="w-3.5 h-3.5 text-neutral-600" />
